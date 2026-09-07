@@ -1,0 +1,822 @@
+<title>Ruta crítica de una CUO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F3F4F1;
+  --surface:#FFFFFF;
+  --surface-2:#EAECE7;
+  --ink:#131F23;
+  --ink-2:#3A4A4E;
+  --muted:#65767A;
+  --line:#D6DAD4;
+  --line-strong:#B9C0B9;
+  --accent:#0E6B64;
+  --accent-soft:#DDE9E6;
+  --accent-ink:#0A4F4A;
+  --warn:#A2601B;
+  --warn-soft:#F0E4D3;
+  --shadow:0 1px 2px rgba(19,31,35,.06), 0 8px 24px -18px rgba(19,31,35,.35);
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1518;
+    --surface:#131E22;
+    --surface-2:#1A272B;
+    --ink:#E6EBE7;
+    --ink-2:#B6C3C1;
+    --muted:#8A9B9A;
+    --line:#26363A;
+    --line-strong:#3A4E52;
+    --accent:#4BAEA4;
+    --accent-soft:#16302F;
+    --accent-ink:#8FD3CA;
+    --warn:#D79A4E;
+    --warn-soft:#2E2415;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1518;
+  --surface:#131E22;
+  --surface-2:#1A272B;
+  --ink:#E6EBE7;
+  --ink-2:#B6C3C1;
+  --muted:#8A9B9A;
+  --line:#26363A;
+  --line-strong:#3A4E52;
+  --accent:#4BAEA4;
+  --accent-soft:#16302F;
+  --accent-ink:#8FD3CA;
+  --warn:#D79A4E;
+  --warn-soft:#2E2415;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+}
+
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+*,*::before,*::after{box-sizing:border-box;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+@media (max-width:640px){.wrap{padding:0 18px;}}
+
+h1,h2,h3{font-family:Spectral,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0;line-height:1.18;}
+h1{font-size:clamp(2rem,4.6vw,3.05rem);letter-spacing:-.015em;}
+h2{font-size:clamp(1.42rem,2.6vw,1.85rem);letter-spacing:-.01em;}
+h3{font-size:1.1rem;font-weight:600;letter-spacing:-.005em;}
+p{margin:0;}
+a{color:var(--accent-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;}
+a:hover{text-decoration-thickness:2px;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace;
+  font-size:.685rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;}
+
+/* ---------- header ---------- */
+header.masthead{
+  border-bottom:1px solid var(--line);
+  background:var(--surface);
+  padding:clamp(38px,6vw,64px) 0 0;
+}
+.masthead .wrap{display:flex;flex-direction:column;gap:22px;}
+.mast-top{display:flex;flex-direction:column;gap:14px;}
+.mast-top h1{max-width:14ch;}
+.mast-lede{font-size:1.06rem;color:var(--ink-2);max-width:60ch;}
+.mast-meta{
+  display:flex;flex-wrap:wrap;gap:0;
+  border-top:1px solid var(--line);
+  margin-top:8px;
+}
+.mast-meta div{
+  flex:1 1 190px;padding:14px 22px 16px 0;
+  display:flex;flex-direction:column;gap:3px;
+}
+.mast-meta dt{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.mast-meta dd{margin:0;font-size:.9rem;color:var(--ink-2);}
+
+/* ---------- figures ---------- */
+.figures{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line);
+  margin-top:6px;
+}
+@media (max-width:820px){.figures{grid-template-columns:repeat(2,1fr);}}
+.fig{
+  padding:22px 20px 26px;
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:5px;
+}
+.fig:last-child{border-right:0;}
+@media (max-width:820px){
+  .fig:nth-child(2n){border-right:0;}
+  .fig:nth-child(-n+2){border-bottom:1px solid var(--line);}
+}
+.fig .num{font-family:Spectral,serif;font-size:2.35rem;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.fig .num small{font-size:.95rem;font-family:"IBM Plex Sans",sans-serif;color:var(--muted);margin-left:3px;letter-spacing:0;}
+.fig .cap{font-size:.83rem;color:var(--muted);line-height:1.4;}
+.fig.p80 .num{color:var(--warn);}
+.fig.p50 .num{color:var(--accent);}
+
+/* ---------- sections ---------- */
+section{padding:clamp(46px,6vw,74px) 0;border-bottom:1px solid var(--line);}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:30px;max-width:72ch;}
+.sec-head p{color:var(--ink-2);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:34px;}
+@media (max-width:800px){.grid-2{grid-template-columns:1fr;gap:26px;}}
+
+/* ---------- definition list ---------- */
+.deflist{display:flex;flex-direction:column;}
+.deflist > div{
+  display:grid;grid-template-columns:minmax(150px,.42fr) 1fr;gap:18px;
+  padding:13px 0;border-top:1px solid var(--line);
+}
+.deflist > div:last-child{border-bottom:1px solid var(--line);}
+.deflist dt{font-weight:600;font-size:.88rem;}
+.deflist dd{margin:0;font-size:.9rem;color:var(--ink-2);}
+.deflist .src{display:block;margin-top:3px;font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--muted);}
+
+/* ---------- callout ---------- */
+.callout{
+  background:var(--accent-soft);
+  border-left:3px solid var(--accent);
+  padding:20px 22px;
+  display:flex;flex-direction:column;gap:10px;
+}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--warn);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);}
+.callout.warn h3{color:var(--warn);}
+.callout p{font-size:.9rem;color:var(--ink-2);}
+
+/* ---------- controls ---------- */
+.controls{
+  display:flex;flex-wrap:wrap;gap:26px;align-items:flex-end;
+  padding-bottom:20px;margin-bottom:4px;
+}
+.ctrl-group{display:flex;flex-direction:column;gap:7px;}
+.segmented{display:inline-flex;border:1px solid var(--line-strong);background:var(--surface);}
+.segmented button{
+  font-family:"IBM Plex Sans",sans-serif;font-size:.85rem;font-weight:500;
+  padding:8px 15px;border:0;background:transparent;color:var(--ink-2);cursor:pointer;
+  border-right:1px solid var(--line);transition:background .15s,color .15s;
+}
+.segmented button:last-child{border-right:0;}
+.segmented button:hover{background:var(--surface-2);}
+.segmented button[aria-pressed="true"]{background:var(--accent);color:#fff;}
+:root[data-theme="dark"] .segmented button[aria-pressed="true"],
+:root:not([data-theme="light"]) .segmented button[aria-pressed="true"]{color:#0D1518;}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]) .segmented button[aria-pressed="true"]{color:#fff;}
+}
+
+/* ---------- gantt ---------- */
+.gantt-shell{border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);}
+.gantt-scroll{overflow-x:auto;}
+.gantt{min-width:720px;}
+.gantt-axis{
+  position:relative;height:30px;
+  border-bottom:1px solid var(--line-strong);
+  margin-left:var(--labelw);
+}
+.tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--line);}
+.tick span{
+  position:absolute;top:7px;left:5px;
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--muted);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.gantt-body{position:relative;}
+.gantt-grid{position:absolute;top:0;bottom:0;left:var(--labelw);right:0;pointer-events:none;}
+.gantt-grid .gline{position:absolute;top:0;bottom:0;border-left:1px solid var(--line);opacity:.45;}
+.grow{
+  display:grid;grid-template-columns:var(--labelw) 1fr;
+  align-items:center;min-height:38px;
+  border-bottom:1px solid var(--line);position:relative;
+}
+.grow:last-child{border-bottom:0;}
+.grow:hover{background:var(--surface-2);}
+.grow.phase{background:var(--surface-2);min-height:28px;}
+.grow.phase .glabel{
+  font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);
+}
+.glabel{
+  padding:6px 14px 6px 16px;font-size:.82rem;line-height:1.3;
+  display:flex;gap:8px;align-items:baseline;
+}
+.glabel .code{
+  font-family:"IBM Plex Mono",monospace;font-size:.7rem;font-weight:600;
+  color:var(--accent);flex:0 0 auto;
+}
+.gtrack{position:relative;height:38px;}
+.bar{
+  position:absolute;top:11px;height:16px;
+  background:var(--accent);border-radius:1px;
+  display:flex;align-items:center;
+}
+.bar.parallel{background:transparent;border:1.5px solid var(--accent);}
+.bar.prep{background:var(--line-strong);}
+.bar .blab{
+  position:absolute;left:calc(100% + 7px);white-space:nowrap;
+  font-family:"IBM Plex Mono",monospace;font-size:.67rem;color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.bar.flip .blab{left:auto;right:calc(100% + 7px);}
+.ms{
+  position:absolute;top:12px;width:14px;height:14px;
+  background:var(--warn);transform:rotate(45deg) translateX(-5px);
+}
+.gantt-legend{
+  display:flex;flex-wrap:wrap;gap:20px;padding:13px 16px;
+  border-top:1px solid var(--line);font-size:.76rem;color:var(--muted);
+}
+.gantt-legend span{display:inline-flex;align-items:center;gap:7px;}
+.swatch{display:inline-block;width:18px;height:9px;background:var(--accent);flex:0 0 auto;}
+.swatch.parallel{background:transparent;border:1.5px solid var(--accent);}
+.swatch.prep{background:var(--line-strong);}
+.swatch-ms{width:11px;height:11px;background:var(--warn);transform:rotate(45deg);}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;margin-top:34px;}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.86rem;}
+caption{
+  text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.68rem;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-bottom:11px;
+}
+th{
+  text-align:left;font-weight:600;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding:0 14px 9px 0;border-bottom:1px solid var(--line-strong);vertical-align:bottom;
+}
+td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);}
+td:first-child,th:first-child{padding-left:0;}
+td.num,th.num{text-align:right;padding-right:20px;font-variant-numeric:tabular-nums;}
+td.num{font-family:"IBM Plex Mono",monospace;color:var(--ink);}
+tr.crit td:first-child{box-shadow:inset 3px 0 0 var(--accent);padding-left:11px;}
+.code-cell{font-family:"IBM Plex Mono",monospace;font-size:.76rem;font-weight:600;color:var(--accent);}
+.stage-name{color:var(--ink);font-weight:500;display:block;margin-bottom:3px;}
+.chip{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;
+  padding:2px 7px;border:1px solid var(--line-strong);color:var(--muted);white-space:nowrap;
+}
+.chip.crit{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft);}
+.chip.par{border-color:var(--line-strong);}
+.chip.risk{border-color:var(--warn);color:var(--warn);background:var(--warn-soft);}
+
+/* ---------- lists ---------- */
+ul.plain{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+ul.plain li{display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:.92rem;color:var(--ink-2);}
+ul.plain li .n{
+  font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--accent);
+  padding-top:3px;
+}
+ul.plain li strong{color:var(--ink);font-weight:600;}
+
+.refs{display:flex;flex-direction:column;gap:0;}
+.refgroup{border-top:1px solid var(--line);padding:18px 0 20px;}
+.refgroup h3{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:600;}
+.refgroup ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:9px;}
+.refgroup li{font-size:.84rem;color:var(--ink-2);line-height:1.5;}
+.refgroup li .date{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--muted);}
+
+footer{padding:34px 0 54px;font-size:.8rem;color:var(--muted);}
+footer .wrap{display:flex;flex-direction:column;gap:9px;}
+
+@media (prefers-reduced-motion: reduce){
+  *{transition:none !important;animation:none !important;}
+}
+</style>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="mast-top">
+      <p class="eyebrow">Ministerio de Bienes Nacionales · DL N° 1.939</p>
+      <h1>Ruta crítica de una CUO</h1>
+    </div>
+    <p class="mast-lede">Estimación de actividades y plazos por etapa para adjudicar una concesión de uso oneroso sobre inmueble fiscal, en sus dos modalidades: asignación directa y licitación pública.</p>
+    <dl class="mast-meta">
+      <div><dt>Elaborado</dt><dd>Septiembre 2026</dd></div>
+      <div><dt>Marco legal</dt><dd>DL N° 1.939/1977 · Ley N° 21.770/2025</dd></div>
+      <div><dt>Línea base</dt><dd>CNEP 2023 · ChileAtiende 56395</dd></div>
+      <div><dt>Casos de calibración</dt><dd>Rex 998/2021 · Rex 375/2024 · Licitación ERNC 2024–25</dd></div>
+    </dl>
+    <div class="figures">
+      <div class="fig p50">
+        <p class="eyebrow">Directa · P50</p>
+        <p class="num">13,5<small>meses</small></p>
+        <p class="cap">Desde el ingreso de la solicitud hasta el contrato inscrito.</p>
+      </div>
+      <div class="fig p80">
+        <p class="eyebrow">Directa · P80</p>
+        <p class="num">21,5<small>meses</small></p>
+        <p class="cap">Escenario con contingencia, para comprometer fechas.</p>
+      </div>
+      <div class="fig p50">
+        <p class="eyebrow">Licitación · P50</p>
+        <p class="num">9,0<small>meses</small></p>
+        <p class="cap">Horizonte del oferente, desde el llamado hasta el contrato inscrito.</p>
+      </div>
+      <div class="fig p80">
+        <p class="eyebrow">Licitación · P80</p>
+        <p class="num">14,5<small>meses</small></p>
+        <p class="cap">No incluye los 6–13 meses de preparación interna del MBN.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="marco">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">01 — Punto de partida</p>
+      <h2>Qué fija la ley y qué queda a la práctica administrativa</h2>
+      <p>Sólo cuatro plazos de este cronograma son normativos. El resto se reconstruye desde el plazo declarado por el propio Ministerio, la medición de la CNEP y cronogramas reales publicados entre 2021 y 2026.</p>
+    </div>
+    <div class="grid-2">
+      <dl class="deflist">
+        <div><dt>Naturaleza</dt><dd>Derecho especial de uso y goce de un bien de dominio fiscal, con objetivo preestablecido.<span class="src">DL 1.939, arts. 57 y ss.</span></dd></div>
+        <div><dt>Plazo máximo</dt><dd>50 años. Los planes especiales de energía han operado con topes de 40 años.<span class="src">DL 1.939 · Rex 998/2021 · Rex 375/2024</span></dd></div>
+        <div><dt>Contraprestación</dt><dd>Renta anual a valor comercial, por todo el período del contrato.<span class="src">DL 1.939</span></dd></div>
+        <div><dt>Modalidades</dt><dd>Licitación pública o privada, nacional o internacional; o directa, en casos debidamente fundados.<span class="src">DL 1.939, arts. 57 y ss.</span></dd></div>
+        <div><dt>Fijación de la renta</dt><dd>La Comisión Especial de Enajenaciones, previa tasación, propone al Ministro el derecho o renta y su forma de pago. Renta menor sólo por decreto fundado en casos calificados.<span class="src">DL 1.939, arts. 61 y 85</span></dd></div>
+        <div><dt>Perfeccionamiento</dt><dd><strong>30 días</strong> desde la publicación en el Diario Oficial para suscribir el contrato por escritura pública.<span class="src">DL 1.939</span></dd></div>
+      </dl>
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div class="callout">
+          <h3>Ley N° 21.770 — Marco de Autorizaciones Sectoriales</h3>
+          <p>Publicada el <span class="mono">29.09.2025</span>. Clasifica las autorizaciones por tipología —la CUO cae en <em>administración o disposición</em>— y fija plazos máximos de resolución de <strong>25 a 120 días</strong>, con silencio administrativo diferenciado. Modifica más de 40 cuerpos legales, incluido el DL N° 1.939.</p>
+          <p>Su meta declarada es recortar los tiempos entre 30% y 70%. La entrada en vigencia es gradual por servicio, vía DFL; en diciembre de 2025 se dictó el decreto exento que fija diagnóstico y supervisión sobre siete instituciones clave.</p>
+        </div>
+        <div class="callout warn">
+          <h3>Supuesto que gobierna este cronograma</h3>
+          <p>Mientras no se publique la gradualidad específica del MBN, los plazos reales siguen regidos por la práctica observada 2021–2026. Las cifras de esta página describen ese escenario vigente; la proyección bajo LMAS plena se aísla en la sección 05 y no debe usarse para comprometer fechas contractuales.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <caption>Línea base empírica</caption>
+        <thead><tr><th>Indicador</th><th class="num">Valor</th><th>Fuente</th></tr></thead>
+        <tbody>
+          <tr><td>Plazo de respuesta declarado del trámite CUO</td><td class="num">14 meses</td><td>Ficha ChileAtiende N° 56395</td></tr>
+          <tr><td>Tramitación promedio real frente al plazo legal</td><td class="num">14 vs 6 meses</td><td>CNEP, permisos prioritarios (jul-2023, datos 2018–2022)</td></tr>
+          <tr><td>Ventana H2V: apertura de postulaciones → primer decreto publicado</td><td class="num">≈ 20 meses</td><td>nov-2021 → D.O. 13.07.2023, proyecto de Calama (13 ha, 20 MW)</td></tr>
+          <tr><td>Licitación ERNC 2024–25: inicio de consultas → adjudicación</td><td class="num">≈ 4,3 meses</td><td>24.12.2024 → 02.05.2025, 10 lotes en Antofagasta y Atacama</td></tr>
+          <tr><td>Cartera CUO renovables vigente</td><td class="num">236 + 164</td><td>Contratos activos más concesiones en tramitación (2026)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="cronograma">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">02 — Cronograma</p>
+      <h2>Secuencia, traslapes y ruta crítica</h2>
+      <p>Las barras sólidas son actividades de ruta crítica: un día de atraso ahí es un día de atraso en el contrato. Las barras huecas se ejecutan en paralelo y no gobiernan la fecha de término.</p>
+    </div>
+
+    <div class="controls">
+      <div class="ctrl-group">
+        <span class="eyebrow">Modalidad</span>
+        <div class="segmented" role="group" aria-label="Modalidad de adjudicación">
+          <button type="button" data-via="directa" aria-pressed="true">Asignación directa</button>
+          <button type="button" data-via="licitacion" aria-pressed="false">Licitación pública</button>
+        </div>
+      </div>
+      <div class="ctrl-group">
+        <span class="eyebrow">Escenario</span>
+        <div class="segmented" role="group" aria-label="Escenario de duración">
+          <button type="button" data-esc="p50" aria-pressed="true">P50 probable</button>
+          <button type="button" data-esc="p80" aria-pressed="false">P80 con contingencia</button>
+        </div>
+      </div>
+      <div class="ctrl-group" style="flex:1 1 200px;min-width:180px;">
+        <span class="eyebrow">Total del escenario</span>
+        <p id="totalReadout" class="mono" style="font-size:.95rem;color:var(--ink);"></p>
+      </div>
+    </div>
+
+    <div class="gantt-shell">
+      <div class="gantt-scroll">
+        <div class="gantt" id="gantt" style="--labelw:270px;"></div>
+      </div>
+      <div class="gantt-legend">
+        <span><i class="swatch"></i> Ruta crítica</span>
+        <span><i class="swatch parallel"></i> Actividad paralela</span>
+        <span><i class="swatch prep"></i> Preparación previa (no controlada por el titular)</span>
+        <span><i class="swatch swatch-ms"></i> Hito</span>
+        <span class="mono">Eje en meses</span>
+      </div>
+    </div>
+
+    <div class="tablewrap">
+      <table id="stageTable">
+        <caption id="stageCaption"></caption>
+        <thead>
+          <tr>
+            <th style="width:34%;">Etapa y actividades</th>
+            <th class="num" style="width:9%;">P50<br><span class="mono" style="font-weight:400;text-transform:none;letter-spacing:0;">meses</span></th>
+            <th class="num" style="width:9%;">P80<br><span class="mono" style="font-weight:400;text-transform:none;letter-spacing:0;">meses</span></th>
+            <th style="width:16%;">Responsable</th>
+            <th style="width:32%;">Nota</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="comparacion">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">03 — Comparación</p>
+      <h2>La licitación es más rápida porque el Estado ya pagó el costo de tiempo</h2>
+      <p>Para el titular, el llamado a licitación llega cuando el saneamiento del paño, la tasación y las consultas intersectoriales ya ocurrieron. En la vía directa esas mismas actividades recaen sobre su propia tramitación. Lo que se gana en velocidad se pierde en control sobre qué paño y cuándo.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:24%;">Dimensión</th><th style="width:38%;">Asignación directa</th><th style="width:38%;">Licitación pública</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Gatillo</strong></td><td>Solicitud del interesado, o ventana de un plan especial</td><td>Llamado del MBN sobre polígonos predefinidos</td></tr>
+          <tr><td><strong>Plazo P50 · titular</strong></td><td class="num" style="text-align:left;padding-right:14px;">13,5 meses desde el ingreso</td><td class="num" style="text-align:left;padding-right:14px;">9,0 meses desde el llamado</td></tr>
+          <tr><td><strong>Plazo P80 · titular</strong></td><td class="num" style="text-align:left;padding-right:14px;">21,5 meses</td><td class="num" style="text-align:left;padding-right:14px;">14,5 meses</td></tr>
+          <tr><td><strong>Proceso completo</strong></td><td class="num" style="text-align:left;padding-right:14px;">≈ 15 meses con prefactibilidad</td><td class="num" style="text-align:left;padding-right:14px;">≈ 17 meses con preparación del MBN</td></tr>
+          <tr><td><strong>Riesgo principal</strong></td><td>Rechazo por falta de fundamento del caso directo, o informe sectorial desfavorable</td><td>Riesgo competitivo: perder frente a otra oferta tras invertir en la propuesta</td></tr>
+          <tr><td><strong>Definición de la renta</strong></td><td>Tasación más Comisión Especial de Enajenaciones</td><td>Renta mínima en bases, más puja económica al alza</td></tr>
+          <tr><td><strong>Elección del paño</strong></td><td>El titular elige el polígono</td><td>Limitado a los lotes ofertados</td></tr>
+          <tr><td><strong>Certeza de calendario</strong></td><td>Baja: alta varianza en informes intersectoriales y toma de razón</td><td>Alta hasta la adjudicación, baja en el perfeccionamiento</td></tr>
+          <tr><td><strong>Uso típico 2021–2026</strong></td><td>Hidrógeno verde (Rex 998/2021), almacenamiento (Rex 375/2024), proyectos singulares fundados</td><td>Paquetes ERNC en Antofagasta, Atacama y Tarapacá; primeros lotes para data centers</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="riesgos">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">04 — Varianza</p>
+      <h2>Qué mueve la fecha de término</h2>
+      <p>Casi toda la dispersión del cronograma se concentra en dos puntos: los informes intersectoriales de la etapa E2 y el control de legalidad en Contraloría. Ambos son exógenos al titular, y ambos son anticipables.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <caption>Factores de extensión</caption>
+        <thead><tr><th style="width:44%;">Factor</th><th class="num" style="width:20%;">Impacto</th><th style="width:36%;">Aplica a</th></tr></thead>
+        <tbody>
+          <tr><td>Consulta indígena por afectación a comunidades o tierras CONADI <span class="chip risk">Convenio 169 OIT</span></td><td class="num">+6 a 12 meses</td><td>Ambas vías</td></tr>
+          <tr><td>Inmueble en zona fronteriza, o titular extranjero</td><td class="num">+2 a 4 meses</td><td>Ambas vías</td></tr>
+          <tr><td>Hallazgos arqueológicos o pronunciamiento del Consejo de Monumentos Nacionales</td><td class="num">+2 a 6 meses</td><td>Ambas vías</td></tr>
+          <tr><td>Impugnación del acto de adjudicación por recursos administrativos</td><td class="num">+2 a 6 meses</td><td>Licitación</td></tr>
+          <tr><td>Representación por Contraloría en toma de razón y reingreso del acto</td><td class="num">+1 a 3 meses</td><td>Ambas vías, por ciclo</td></tr>
+          <tr><td>Superposición con concesiones mineras vigentes</td><td class="num">+1 a 3 meses</td><td>Ambas vías</td></tr>
+          <tr><td>Observaciones al plano o a la minuta de deslindes</td><td class="num">+1 a 2 meses</td><td>Ambas vías, por ciclo</td></tr>
+          <tr><td>Expediente incompleto al ingreso</td><td class="num">+1 a 2 meses</td><td>Directa, por ciclo</td></tr>
+          <tr><td>Modificación de bases o prórroga del plazo de ofertas</td><td class="num">+0,5 a 1,5 meses</td><td>Licitación</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <caption>Factores de compresión</caption>
+        <thead><tr><th style="width:44%;">Palanca</th><th class="num" style="width:20%;">Ahorro</th><th style="width:36%;">Mecanismo</th></tr></thead>
+        <tbody>
+          <tr><td>Postular dentro de un plan especial vigente</td><td class="num">−2 a 4 meses</td><td>El MBN precalifica el territorio y coordina el informe sectorial, absorbiendo parte de E2 y E3</td></tr>
+          <tr><td>Aportar plano y mensura propios en condiciones de ser visados</td><td class="num">−1 a 2 meses</td><td>Elimina la elaboración del plano por personal técnico del Ministerio</td></tr>
+          <tr><td>Expediente y personería completos al ingreso</td><td class="num">−1 a 2 meses</td><td>Suprime los ciclos de subsanación en admisibilidad</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="lmas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">05 — Escenario prospectivo</p>
+      <h2>Si la LMAS se aplica plenamente al MBN</h2>
+      <p>La combinación de plazos máximos con silencio administrativo y el modelo de informe único consolidado —admisibilidad preliminar en no más de 20 días, y recopilación centralizada por el MBN de los informes de todos los organismos competentes— ataca precisamente la etapa donde hoy se concentra la varianza.</p>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th style="width:38%;">Vía</th><th class="num" style="width:20%;">Hoy (P50)</th><th class="num" style="width:20%;">Con LMAS (P50)</th><th class="num" style="width:22%;">Reducción</th></tr></thead>
+        <tbody>
+          <tr><td>Asignación directa, ingreso a contrato inscrito</td><td class="num">13,5 meses</td><td class="num">6 a 9 meses</td><td class="num">35 – 55 %</td></tr>
+          <tr><td>Licitación, horizonte del oferente</td><td class="num">9,0 meses</td><td class="num">5 a 6,5 meses</td><td class="num">30 – 45 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn" style="margin-top:26px;">
+      <h3>Condición de uso</h3>
+      <p>Esta proyección supone que se cumple la meta declarada de la ley y que la gradualidad alcanza al Ministerio de Bienes Nacionales. Ninguna de las dos condiciones está verificada a la fecha de este documento. Verificar el estado del DFL de gradualidad antes de incorporar estas cifras a un cronograma de proyecto.</p>
+    </div>
+  </div>
+</section>
+
+<section id="recomendaciones">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">06 — Gestión</p>
+      <h2>Siete decisiones que mueven el P80</h2>
+    </div>
+    <div class="grid-2">
+      <ul class="plain">
+        <li><span class="n">01</span><span><strong>Cargue el trabajo en la etapa cero.</strong> El due diligence territorial completo antes de ingresar reduce el P80 más que cualquier gestión posterior: los rechazos y las prórrogas largas casi siempre nacen de restricciones detectables ex ante.</span></li>
+        <li><span class="n">02</span><span><strong>Paralelice E3 y E4 con E2</strong> entregando voluntariamente el plano, la minuta de deslindes y la memoria técnica junto con la solicitud, en vez de esperar el requerimiento.</span></li>
+        <li><span class="n">03</span><span><strong>Reserve caja desde el mes 12.</strong> La primera renta y la garantía de fiel cumplimiento vencen en el perfeccionamiento, no en la adjudicación.</span></li>
+        <li><span class="n">04</span><span><strong>Trate los 30 días para la escritura como un hito duro.</strong> Notaría, poderes y fondos listos antes de la publicación en el Diario Oficial: es el único plazo del proceso cuyo incumplimiento puede costar la adjudicación completa.</span></li>
+      </ul>
+      <ul class="plain">
+        <li><span class="n">05</span><span><strong>Monitoree las ventanas de los planes especiales.</strong> Han sido cortas —la del Plan de Almacenamiento estuvo abierta 10 días desde el 13.05.2024— y son el camino más rápido a una asignación directa fundada.</span></li>
+        <li><span class="n">06</span><span><strong>Gestione la garantía de seriedad con seis semanas de anticipación</strong> a la apertura de ofertas. Es una causal de inadmisibilidad frecuente y enteramente evitable.</span></li>
+        <li><span class="n">07</span><span><strong>Encadene la CUO con el resto de la permisología.</strong> No es el permiso más largo del proyecto, pero es condición previa de varios otros: un atraso en el decreto o en la inscripción se propaga a toda la ruta crítica del proyecto.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="referencias">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">07 — Fuentes</p>
+      <h2>Referencias y nota metodológica</h2>
+    </div>
+    <div class="refs">
+      <div class="refgroup">
+        <h3>Normativa</h3>
+        <ol>
+          <li><a href="https://www.bcn.cl/leychile/navegar?idNorma=6778">DL N° 1.939, de 1977</a>, Normas sobre adquisición, administración y disposición de bienes del Estado, arts. 57 y ss. y art. 85. Modificado por Ley N° 19.606 (1999) y Ley N° 19.833 (2002). <span class="date">D.O. 10.11.1977</span></li>
+          <li><a href="https://www.leychile.cl/leychile/Navegar?idNorma=1216930">Ley N° 21.770</a>, establece una Ley Marco de Autorizaciones Sectoriales. <span class="date">D.O. 29.09.2025</span></li>
+          <li><a href="https://www.bienesnacionales.cl/wp-content/uploads/2022/12/Rex-1302-26.12.2022-Modifica-y-Complementa-Rex.998-23.11.21-Ref.-a-Plan-Nacional-de-Hidrogeno-Verde.pdf">Resolución Exenta N° 998, MBN</a>, Plan Nacional de Fomento a la Producción de Hidrógeno Verde en Territorio Fiscal; modificada por Rex N° 827 y Rex N° 1.302. <span class="date">23.11.2021 · 29.07.2022 · 26.12.2022</span></li>
+          <li><a href="https://www.bienesnacionales.cl/wp-content/uploads/2024/04/Rex.375-18.04.24._Aprueba_Plan_Nacional_Proyectos_de_Sistemas_Almacenamiento_Energia.-5523.pdf">Resolución Exenta N° 375, MBN</a>, Plan Nacional para Impulsar Proyectos de Sistemas de Almacenamiento de Energía en Terreno Fiscal. <span class="date">18.04.2024 · D.O. 06.05.2024</span></li>
+          <li><a href="https://www.economia.gob.cl/2025/12/29/nuevo-paso-de-ley-de-autorizaciones-sectoriales-dictan-decreto-exento-para-supervisar-proceso-de-7-instituciones-clave-en-entrega-de-permisos.htm">Decreto exento de supervisión bajo la LMAS</a>, Ministerio de Economía. <span class="date">29.12.2025</span></li>
+        </ol>
+      </div>
+      <div class="refgroup">
+        <h3>Procedimiento y plazos oficiales</h3>
+        <ol>
+          <li><a href="https://www.chileatiende.gob.cl/fichas/56395-concesion-de-uso-oneroso-de-un-inmueble-fiscal">ChileAtiende, ficha N° 56395</a> — Concesión de uso oneroso de un inmueble fiscal. Plazo declarado: 14 meses.</li>
+          <li><a href="https://www.bienesnacionales.cl/gestion-del-territorio/instrumentos-de-gestion/concesiones-onerosas/">MBN</a> — Concesión de Uso Oneroso de un Inmueble Fiscal.</li>
+          <li><a href="https://licitaciones.mbienes.gob.cl/">MBN</a> — Portal de Licitaciones.</li>
+          <li><a href="https://www.bienesnacionales.cl/digitalizacion-tramites-online/">MBN</a> — Trámites en línea y digitalización.</li>
+        </ol>
+      </div>
+      <div class="refgroup">
+        <h3>Evidencia empírica de plazos</h3>
+        <ol>
+          <li><a href="https://cnep.cl/comision-nacional-de-evaluacion-y-productividad-analizara-los-permisos-sectoriales-prioritarios-para-invertir/">CNEP</a>, <em>Análisis de los permisos sectoriales prioritarios para la inversión en Chile</em>; 439 trámites, período 2018–2022. CUO: 14 meses reales frente a 6 legales. <span class="date">jul-2023</span></li>
+          <li><a href="https://www.elmostrador.cl/mercados/2023/07/07/hasta-11-anos-de-tramitacion-cnep-apunta-a-alta-demora-de-permisos-para-invertir-en-chile/">El Mostrador</a> — Hasta 11 años de tramitación: la CNEP apunta a la demora de permisos. <span class="date">07.07.2023</span></li>
+          <li><a href="https://www.carey.cl/ministerio-de-bienes-nacionales-abre-nuevos-procesos-de-licitacion-de-terrenos-fiscales">Carey</a> — Cronograma del proceso de licitación ERNC 2024–2025, Antofagasta y Atacama. <span class="date">2025</span></li>
+          <li><a href="https://www.df.cl/empresas/industria/bienes-nacionales-licitara-mas-de-21-mil-hectareas-de-suelo-fiscal-para">Diario Financiero</a> — Cartera de 32 polígonos y más de 21.000 ha para ERNC; avance en concesiones para data centers. <span class="date">2026</span></li>
+          <li><a href="https://www.df.cl/empresas/permisologia-gobierno-busca-que-bienes-nacionales-simplifique">Diario Financiero</a> — Informe único consolidado y admisibilidad preliminar en 20 días.</li>
+          <li><a href="https://energia.gob.cl/noticias/nacional/comienza-periodo-de-postulaciones-para-la-asignacion-de-terrenos-fiscales-proyectos-de-almacenamiento-de-energia">Ministerio de Energía</a> — Apertura de postulaciones del Plan de Almacenamiento. <span class="date">may-2024</span></li>
+          <li><a href="https://energia.gob.cl/noticias/nacional/la-iniciativa-ventana-al-futuro-consiste-en-un-periodo-unico-y-excepcional-para-asignar-terrenos-para-la-produccion-de-hidrogeno-verde">Ministerio de Energía</a> — Iniciativa Ventana al Futuro.</li>
+          <li><a href="https://ogp.economia.cl/wp-content/uploads/2025/11/guia-explicativa-lmas-general.pdf">Oficina de Grandes Proyectos</a> — Guía explicativa de la LMAS. <span class="date">nov-2025</span></li>
+        </ol>
+      </div>
+      <div class="refgroup">
+        <h3>Nota metodológica y limitaciones</h3>
+        <ol>
+          <li><strong>P50</strong> es la duración probable en condiciones normales; <strong>P80</strong> incorpora contingencia y es la cifra recomendada para comprometer fechas con terceros.</li>
+          <li>Sólo son normativos el plazo máximo de 50 años, los 30 días para suscribir la escritura pública y el rango de 25 a 120 días de la LMAS. Todo lo demás es estimación.</li>
+          <li>El MBN no publica un procedimiento reglamentario con plazos por etapa para la CUO. La desagregación de este documento es una reconstrucción a partir de las actividades descritas en fuentes oficiales y de la práctica observada; no es una norma citable.</li>
+          <li>Validar el cronograma con la SEREMI de Bienes Nacionales de la región del inmueble antes de fijar hitos contractuales: la carga de trabajo regional varía de forma significativa, y Antofagasta concentra 117 de los proyectos de la cartera CUO renovable.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Documento de trabajo. No constituye asesoría legal ni compromiso de plazos por parte del Ministerio de Bienes Nacionales.</p>
+    <p class="mono" style="font-size:.72rem;">Versión 1.0 · septiembre 2026 · referencias verificadas al 07.09.2026</p>
+  </div>
+</footer>
+
+<script>
+const DATA = {
+  directa: {
+    label: "Asignación directa",
+    caption: "Etapas de la asignación directa · E0 a E8",
+    axis: {p50: 15, p80: 25},
+    total: {
+      p50: "13,5 meses desde el ingreso · 15,0 con prefactibilidad",
+      p80: "21,5 meses desde el ingreso · 24,5 con prefactibilidad"
+    },
+    rows: [
+      {phase: "Preparación del titular"},
+      {code:"E0", name:"Prefactibilidad y due diligence territorial",
+       act:"Identificación del polígono en catastro fiscal; verificación de disponibilidad; screening de restricciones (áreas protegidas, sitios prioritarios, Monumentos Nacionales, concesiones mineras, tierras CONADI, servidumbres, IPT, zona fronteriza); layout preliminar y definición de superficie, destino y plazo.",
+       who:"Titular", kind:"prep", note:"La única etapa enteramente bajo control del titular.",
+       p50:[0,1.5], p80:[0,3]},
+      {phase: "Tramitación en el Ministerio"},
+      {code:"E1", name:"Ingreso y admisibilidad",
+       act:"Solicitud formal por plataforma en línea con ClaveÚnica o en SEREMI y oficina provincial; memoria del proyecto, plano referencial, personería, capacidad técnica y financiera; revisión de admisibilidad y ciclo de subsanación.",
+       who:"MBN y titular", kind:"crit", note:"La LMAS proyecta admisibilidad preliminar en ≤ 20 días.",
+       p50:[1.5,1], p80:[3,1.5]},
+      {code:"E2", name:"Informes de disponibilidad e intersectoriales",
+       act:"Certificado de disponibilidad y no afectación; oficios y respuestas de MINVU y DOM por IPT, CONAF y MMA, Consejo de Monumentos Nacionales, DGA, SERNAGEOMIN, Vialidad, municipalidad, CONADI y Subsecretaría para las FF.AA. si hay zona fronteriza.",
+       who:"MBN y servicios", kind:"crit", note:"Concentra la mayor varianza de todo el proceso.",
+       p50:[2.5,4], p80:[4.5,7]},
+      {code:"E3", name:"Evaluación técnica y económica del proyecto",
+       act:"Informe técnico de la División de Bienes o de la SEREMI; evaluación del cronograma de inversión, hitos de cumplimiento y capacidad financiera. En planes especiales se suma el informe del Ministerio de Energía.",
+       who:"MBN · Min. Energía", kind:"par", note:"Referencia: Of. Ord. N° 777/2024 en el Plan de Almacenamiento.",
+       p50:[3,2], p80:[5,3.5]},
+      {code:"E4", name:"Mensura, plano y minuta de deslindes",
+       act:"Elaboración o revisión del plano por personal técnico del Ministerio; minuta de deslindes; informe de superficie definitiva.",
+       who:"MBN y titular", kind:"par", note:"Aportar plano propio visable ahorra 1 a 2 meses.",
+       p50:[3.5,2], p80:[5.5,3]},
+      {code:"E5", name:"Tasación y fijación de la renta concesional",
+       act:"Tasación comercial del inmueble; pronunciamiento de la Comisión Especial de Enajenaciones proponiendo renta y forma de pago; visación ministerial.",
+       who:"MBN · Comisión", kind:"crit", note:"Art. 85 DL 1.939. Renta menor sólo por decreto fundado.",
+       p50:[6.5,2], p80:[11.5,3]},
+      {code:"E6", name:"Comunicación de condiciones y aceptación",
+       act:"Notificación de renta, plazo, garantías, hitos y causales de caducidad; aceptación formal; constitución de sociedad chilena si el titular es extranjero; entrega de garantía de fiel cumplimiento.",
+       who:"Titular y MBN", kind:"crit", note:"El titular puede acelerar esta etapa con preparación previa.",
+       p50:[8.5,1.5], p80:[14.5,2]},
+      {phase: "Acto administrativo y cierre"},
+      {code:"E7", name:"Dictación del acto y control de legalidad",
+       act:"Elaboración y firma del decreto supremo del MBN por orden del Presidente; firma de Hacienda cuando corresponde; toma de razón en Contraloría; publicación del extracto en el Diario Oficial.",
+       who:"MBN · Contraloría", kind:"crit", note:"Una representación y reingreso suma 1 a 3 meses.",
+       p50:[10,3], p80:[16.5,5]},
+      {code:"E8", name:"Perfeccionamiento e inscripción",
+       act:"Escritura pública dentro de 30 días desde la publicación en el D.O.; pago de la primera renta y derechos; decreto que aprueba el contrato; inscripción en el CBR y anotación en catastro; entrega material.",
+       who:"Titular y MBN", kind:"crit", note:"Plazo legal de 30 días: es un hito duro, no estimado.",
+       p50:[13,1.5], p80:[21.5,3]}
+    ]
+  },
+  licitacion: {
+    label: "Licitación pública",
+    caption: "Fases de la licitación pública · A, B y C",
+    axis: {p50: 18, p80: 28},
+    total: {
+      p50: "9,0 meses para el oferente · 17,0 el proceso completo del MBN",
+      p80: "14,5 meses para el oferente · 27,5 el proceso completo del MBN"
+    },
+    rows: [
+      {phase: "Fase A · Preparación del portafolio (interna del MBN)"},
+      {code:"A1", name:"Selección y saneamiento del polígono",
+       act:"Identificación de inmuebles disponibles; regularización de dominio y deslindes; plano y mensura.",
+       who:"MBN", kind:"prep", note:"Cartera 2026: 32 polígonos, más de 21.000 ha en la macrozona norte.",
+       p50:[0,3], p80:[0,5]},
+      {code:"A2", name:"Autorizaciones y consultas previas",
+       act:"Informes intersectoriales y de disponibilidad territorial sobre los lotes seleccionados.",
+       who:"MBN y servicios", kind:"prep", note:"Equivale a la etapa E2 de la vía directa, asumida por el Estado.",
+       p50:[1.5,3], p80:[2.5,5]},
+      {code:"A3", name:"Tasación y renta mínima",
+       act:"Tasación comercial; la Comisión Especial de Enajenaciones fija la renta mínima anual en UF por lote.",
+       who:"MBN · Comisión", kind:"prep", note:"Referencia 2024–25: rentas mínimas de 656 a 3.393 UF anuales por lote.",
+       p50:[4.5,1.5], p80:[7.5,2.5]},
+      {code:"A4", name:"Bases administrativas y técnicas especiales",
+       act:"Redacción de bases con criterios de evaluación, garantías, hitos de inversión y plazo concesional; aprobación por resolución y visto bueno jurídico.",
+       who:"MBN", kind:"prep", note:"Define todo el marco contractual de la futura concesión.",
+       p50:[6,2], p80:[10,3]},
+      {phase: "Fase B · Proceso concursal"},
+      {code:"B1", name:"Publicación del llamado y de las bases",
+       act:"Publicación en el Diario Oficial, sitio del Ministerio y portal de licitaciones; disponibilidad de bases y antecedentes por lote.",
+       who:"MBN", kind:"crit", note:"Día cero del cronograma del oferente.",
+       p50:[8,0.5], p80:[13,0.5]},
+      {code:"B2", name:"Período de consultas",
+       act:"Consultas escritas de los interesados dentro del plazo fijado en las bases.",
+       who:"Oferentes", kind:"par", note:"Caso real 2024–25: 24.12.2024 al 06.01.2025.",
+       p50:[8.5,0.5], p80:[13.5,0.75]},
+      {code:"B3", name:"Respuestas y aclaraciones",
+       act:"Circulares aclaratorias; eventuales modificaciones de bases y prórrogas del plazo de ofertas.",
+       who:"MBN", kind:"par", note:"Una modificación de bases empuja toda la fase B.",
+       p50:[9,0.5], p80:[14.25,1]},
+      {code:"B4", name:"Preparación de la oferta",
+       act:"Visita a terreno; propuesta técnica y económica según las formalidades de las bases; documento de garantía de seriedad de la oferta; antecedentes legales y financieros.",
+       who:"Oferente", kind:"crit", note:"Traslapa con las consultas. La garantía requiere ~6 semanas.",
+       p50:[8.5,1.5], p80:[13.5,2]},
+      {code:"B5", name:"Recepción y apertura de ofertas",
+       act:"Acto público de recepción y apertura en la fecha y hora fijadas en las bases, habitualmente el mismo día.",
+       who:"MBN", kind:"ms", note:"Caso real: recepción 10 al 12.02.2025 hasta las 14:00 h.",
+       p50:[10,0], p80:[15.5,0]},
+      {code:"B6", name:"Evaluación",
+       act:"Comisión evaluadora; revisión de admisibilidad, evaluación técnica y económica, solicitud de aclaraciones.",
+       who:"MBN", kind:"crit", note:"Sin interacción del oferente salvo aclaraciones puntuales.",
+       p50:[10,1.5], p80:[15.5,2.5]},
+      {code:"B7", name:"Adjudicación",
+       act:"Resolución o decreto de adjudicación; notificación al adjudicatario; devolución de garantías a los no adjudicados.",
+       who:"MBN", kind:"crit", note:"Caso real: adjudicación programada al 02.05.2025.",
+       p50:[11.5,1], p80:[18,1.5]},
+      {phase: "Fase C · Perfeccionamiento del contrato"},
+      {code:"C1", name:"Publicación de la adjudicación en el Diario Oficial",
+       act:"Publicación del extracto del acto de adjudicación.",
+       who:"MBN", kind:"crit", note:"Hito que gatilla el plazo legal de 30 días.",
+       p50:[12.5,0.75], p80:[19.5,1]},
+      {code:"C2", name:"Suscripción de la escritura pública",
+       act:"Firma del contrato concesional por escritura pública dentro de 30 días desde la publicación; entrega de la garantía de fiel cumplimiento; pago de la primera renta.",
+       who:"Adjudicatario", kind:"crit", note:"Plazo legal. Su incumplimiento puede costar la adjudicación.",
+       p50:[13.25,1], p80:[20.5,1.5]},
+      {code:"C3", name:"Decreto aprobatorio y control de legalidad",
+       act:"Decreto que aprueba el contrato concesional; toma de razón en Contraloría.",
+       who:"MBN · Contraloría", kind:"crit", note:"Principal riesgo de cola de la vía licitada.",
+       p50:[14.25,2], p80:[22,4]},
+      {code:"C4", name:"Inscripción y entrega",
+       act:"Inscripción en el Conservador de Bienes Raíces; anotación en catastro; acta de entrega material del inmueble.",
+       who:"Adjudicatario y MBN", kind:"crit", note:"Recién aquí comienza el cómputo útil de la concesión.",
+       p50:[16.25,0.75], p80:[26,1.5]}
+    ]
+  }
+};
+
+let via = "directa", esc = "p50";
+
+function fmt(n){ return String(n).replace(".", ","); }
+
+function tickStep(axis){ return axis > 20 ? 4 : 2; }
+
+function renderGantt(){
+  const d = DATA[via];
+  const axis = d.axis[esc];
+  const step = tickStep(axis);
+  const g = document.getElementById("gantt");
+
+  let axisHTML = '<div class="gantt-axis">';
+  for(let m = 0; m <= axis; m += step){
+    axisHTML += `<div class="tick" style="left:${(m/axis*100).toFixed(3)}%"><span>${m===0?"mes 0":"m"+m}</span></div>`;
+  }
+  axisHTML += "</div>";
+
+  let gridHTML = '<div class="gantt-grid">';
+  for(let m = step; m <= axis; m += step){
+    gridHTML += `<div class="gline" style="left:${(m/axis*100).toFixed(3)}%"></div>`;
+  }
+  gridHTML += "</div>";
+
+  let rowsHTML = "";
+  d.rows.forEach(r => {
+    if(r.phase){
+      rowsHTML += `<div class="grow phase"><div class="glabel">${r.phase}</div><div class="gtrack" style="height:28px;"></div></div>`;
+      return;
+    }
+    const [start, dur] = r[esc];
+    const left = (start/axis*100);
+    const width = (dur/axis*100);
+    const flip = left + width > 74;
+    let mark;
+    if(r.kind === "ms"){
+      mark = `<div class="ms" style="left:${left.toFixed(3)}%" title="${r.name}"></div>`;
+    } else {
+      const cls = r.kind === "par" ? "bar parallel" : r.kind === "prep" ? "bar prep" : "bar";
+      mark = `<div class="${cls}${flip ? " flip" : ""}" style="left:${left.toFixed(3)}%;width:${width.toFixed(3)}%"><span class="blab">${fmt(dur)} m</span></div>`;
+    }
+    rowsHTML += `<div class="grow"><div class="glabel"><span class="code">${r.code}</span><span>${r.name}</span></div><div class="gtrack">${mark}</div></div>`;
+  });
+
+  g.innerHTML = axisHTML + `<div class="gantt-body">${gridHTML}${rowsHTML}</div>`;
+  document.getElementById("totalReadout").textContent = d.total[esc];
+}
+
+function renderTable(){
+  const d = DATA[via];
+  document.getElementById("stageCaption").textContent = d.caption;
+  const tb = document.querySelector("#stageTable tbody");
+  tb.innerHTML = d.rows.map(r => {
+    if(r.phase){
+      return `<tr><td colspan="5" style="padding-top:20px;padding-bottom:6px;border-bottom:1px solid var(--line-strong);"><span class="eyebrow">${r.phase}</span></td></tr>`;
+    }
+    const chip = r.kind === "crit" ? '<span class="chip crit">ruta crítica</span>'
+      : r.kind === "par" ? '<span class="chip par">paralela</span>'
+      : r.kind === "ms" ? '<span class="chip par">hito</span>'
+      : '<span class="chip par">previa</span>';
+    const dur = k => r.kind === "ms" ? "—" : fmt(r[k][1]);
+    return `<tr class="${r.kind === "crit" ? "crit" : ""}">
+      <td><span class="code-cell">${r.code}</span> <span class="stage-name">${r.name}</span>${r.act}</td>
+      <td class="num">${dur("p50")}</td>
+      <td class="num">${dur("p80")}</td>
+      <td>${r.who}<br>${chip}</td>
+      <td>${r.note}</td>
+    </tr>`;
+  }).join("");
+}
+
+function render(){ renderGantt(); renderTable(); }
+
+document.querySelectorAll("[data-via]").forEach(b => b.addEventListener("click", () => {
+  via = b.dataset.via;
+  document.querySelectorAll("[data-via]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  render();
+}));
+document.querySelectorAll("[data-esc]").forEach(b => b.addEventListener("click", () => {
+  esc = b.dataset.esc;
+  document.querySelectorAll("[data-esc]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  render();
+}));
+
+render();
+</script>
