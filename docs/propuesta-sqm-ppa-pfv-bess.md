@@ -102,6 +102,15 @@ El modelo **reproduce con exactitud los 170 GWh declarados en la DIA**, lo que c
 
 ## 3. Estructura de la transacción
 
+> ⚠ **Actualización tras la reunión interna del 29-sep-2026.** La minuta advierte que la figura de
+> autoconsumo **exige mismo propietario** para la generación y el consumo, o bien estructurarse vía
+> mandato/contrato. La estructura descrita en esta sección —GR adquiere el activo y es propietario—
+> conserva el beneficio de peajes sólo si se resuelve esa restricción. El análisis de escenarios y la
+> estrategia regulatoria están en
+> [`escenarios-y-hoja-de-ruta-sqm.md`](escenarios-y-hoja-de-ruta-sqm.md), que además muestra que el
+> beneficio en juego (11 USD/MWh) es mucho menor que el de coordinar con el CEN (44 USD/MWh).
+
+
 ```
 ┌─ Fase 1 ─────────────────────────────────────────────────────────────┐
 │  SQM mantiene la titularidad y lleva la DIA hasta RCA firme (nov-26) │

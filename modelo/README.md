@@ -1,7 +1,9 @@
 # Modelo de evaluación — PPA SQM Nueva Victoria
 
-Modelo horario que respalda el documento [`docs/propuesta-sqm-ppa-pfv-bess.md`](../docs/propuesta-sqm-ppa-pfv-bess.md).
-Todas las cifras del documento se reproducen ejecutando estos scripts.
+Modelo horario que respalda los documentos
+[`docs/propuesta-sqm-ppa-pfv-bess.md`](../docs/propuesta-sqm-ppa-pfv-bess.md) y
+[`docs/escenarios-y-hoja-de-ruta-sqm.md`](../docs/escenarios-y-hoja-de-ruta-sqm.md).
+Todas las cifras de ambos documentos se reproducen ejecutando estos scripts.
 
 ## Requisitos
 
@@ -22,8 +24,16 @@ pip install numpy scipy
 | `optim2.py` | Barridos de optimización: duración del BESS, potencia del BESS y superficie FV × BESS. |
 | `pricing.py` | Escalera de precios PPA, sensibilidades a WACC y CAPEX, y valorización de la compra del proyecto. |
 | `poi.py` | Sensibilidad a la capacidad del punto de inyección. |
+| `escenarios.py` | Matriz vehículo regulatorio × configuración. Añade el conmutador de peajes sobre la energía servida en sitio (con o sin figura de autoconsumo). |
+| `opt_autoconsumo.py` | Óptimo del BESS **sin** derecho de inyección: el óptimo se desplaza de 5 a 8 horas. |
+| `matriz.py` | Matriz final D0/E1/E2/E3, descomposición del valor y precio ofertable. |
+| `descomposicion.py` | Descomposición del valor de coordinar sobre configuración idéntica. |
+| `merchant.py` | Valor del activo como planta merchant, sin PPA con SQM. |
+| `reconcilia.py` | Reconcilia el déficit de 9 GWh de la minuta con el modelo horario. |
 | `charts_data.py` | Genera `charts.json` con las series de los gráficos. |
-| `svg.py` | Genera las figuras SVG a partir de `charts.json`. |
+| `svg.py` / `svg2.py` | Generan las figuras SVG (1–3 y 4–5 respectivamente). |
+| `_style.py` | CSS y helper de tablas compartidos por los dos generadores de HTML. |
+| `build_html.py` / `build_html2.py` | Generan las versiones HTML de cada documento. |
 
 ## Uso
 
@@ -33,7 +43,13 @@ python3 final.py        # tabla principal: costo de servir por configuración y 
 python3 optim2.py       # curva de optimización del almacenamiento
 python3 pricing.py      # precio ofertable y VAN de la operación
 python3 poi.py          # sensibilidad al punto de inyección
-python3 charts_data.py && python3 svg.py   # regenera las figuras
+python3 matriz.py       # matriz de escenarios regulatorios y precio ofertable
+python3 reconcilia.py   # reconciliación del balance energético con la minuta
+python3 merchant.py     # valor del activo sin PPA
+
+# regenerar figuras y documentos HTML
+python3 charts_data.py && python3 svg.py && python3 svg2.py
+python3 build_html.py && python3 build_html2.py
 ```
 
 `svg.py` lee `charts.json` desde su propio directorio, así que hay que ejecutar

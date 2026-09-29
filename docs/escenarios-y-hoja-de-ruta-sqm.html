@@ -1,0 +1,1051 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escenarios PPA SQM</title>
+<meta name="description" content="Escenarios de estructuración y hoja de ruta para el PPA SQM Nueva Victoria, incorporando la reunión interna del 29 de septiembre de 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F3F4F1; --surface:#FFFFFF; --surface-2:#EAECE7;
+  --ink:#131F23; --ink-2:#3A4A4E; --muted:#65767A;
+  --line:#D6DAD4; --line-strong:#B9C0B9;
+  --accent:#0E6B64; --accent-soft:#DDE9E6; --accent-ink:#0A4F4A;
+  --warn:#A2601B; --warn-soft:#F0E4D3;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --shadow:0 1px 2px rgba(19,31,35,.06), 0 8px 24px -18px rgba(19,31,35,.35);
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1518; --surface:#131E22; --surface-2:#1A272B;
+    --ink:#E6EBE7; --ink-2:#B6C3C1; --muted:#8A9B9A;
+    --line:#26363A; --line-strong:#3A4E52;
+    --accent:#4BAEA4; --accent-soft:#16302F; --accent-ink:#8FD3CA;
+    --warn:#D79A4E; --warn-soft:#2E2415;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1518; --surface:#131E22; --surface-2:#1A272B;
+  --ink:#E6EBE7; --ink-2:#B6C3C1; --muted:#8A9B9A;
+  --line:#26363A; --line-strong:#3A4E52;
+  --accent:#4BAEA4; --accent-soft:#16302F; --accent-ink:#8FD3CA;
+  --warn:#D79A4E; --warn-soft:#2E2415;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+}
+body{background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;margin:0;}
+*,*::before,*::after{box-sizing:border-box;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+@media (max-width:640px){.wrap{padding:0 16px;}}
+h1,h2,h3{font-family:Spectral,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0;line-height:1.18;}
+h1{font-size:clamp(1.9rem,4.4vw,2.9rem);letter-spacing:-.015em;}
+h2{font-size:clamp(1.38rem,2.5vw,1.8rem);letter-spacing:-.01em;}
+h3{font-size:1.06rem;font-weight:600;letter-spacing:-.005em;}
+p{margin:0;}
+a{color:var(--accent-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;}
+a:hover{text-decoration-thickness:2px;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.685rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;}
+
+header.masthead{border-bottom:1px solid var(--line);background:var(--surface);padding:clamp(34px,6vw,60px) 0 0;}
+.masthead .wrap{display:flex;flex-direction:column;gap:20px;}
+.mast-top{display:flex;flex-direction:column;gap:13px;}
+.mast-top h1{max-width:20ch;}
+.mast-lede{font-size:1.04rem;color:var(--ink-2);max-width:66ch;}
+.mast-meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);margin-top:6px;}
+.mast-meta div{flex:1 1 200px;padding:14px 22px 16px 0;display:flex;flex-direction:column;gap:3px;}
+.mast-meta dt{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.mast-meta dd{margin:0;font-size:.88rem;color:var(--ink-2);}
+
+.figures{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:4px;}
+@media (max-width:820px){.figures{grid-template-columns:repeat(2,1fr);}}
+.fig{padding:22px 20px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:5px;}
+.fig:last-child{border-right:0;}
+@media (max-width:820px){.fig:nth-child(2n){border-right:0;}.fig:nth-child(-n+2){border-bottom:1px solid var(--line);}}
+.fig .num{font-family:Spectral,serif;font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.fig .num small{font-size:.9rem;font-family:"IBM Plex Sans",sans-serif;color:var(--muted);margin-left:3px;letter-spacing:0;}
+.fig .cap{font-size:.82rem;color:var(--muted);line-height:1.4;}
+.fig.good .num{color:var(--accent);}
+.fig.bad .num{color:var(--warn);}
+
+section{padding:clamp(42px,5.5vw,68px) 0;border-bottom:1px solid var(--line);}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;max-width:74ch;}
+.sec-head p{color:var(--ink-2);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.grid-2 > *{min-width:0;}
+@media (max-width:800px){.grid-2{grid-template-columns:1fr;gap:24px;}}
+.body-copy{display:flex;flex-direction:column;gap:16px;max-width:74ch;}
+.body-copy p{color:var(--ink-2);font-size:.95rem;}
+.body-copy strong{color:var(--ink);font-weight:600;}
+
+.callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:19px 22px;
+  display:flex;flex-direction:column;gap:9px;margin-top:26px;}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--warn);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif;font-size:.8rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent-ink);}
+.callout.warn h3{color:var(--warn);}
+.callout p{font-size:.9rem;color:var(--ink-2);}
+
+.tablewrap{overflow-x:auto;margin-top:30px;}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.855rem;}
+caption{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-bottom:11px;}
+th{text-align:left;font-weight:600;font-size:.71rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding:0 14px 9px 0;border-bottom:1px solid var(--line-strong);vertical-align:bottom;}
+td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);}
+td:first-child,th:first-child{padding-left:0;}
+td.num,th.num{text-align:right;padding-right:18px;font-variant-numeric:tabular-nums;}
+td.num{font-family:"IBM Plex Mono",monospace;color:var(--ink);}
+tr.hi td{background:var(--accent-soft);}
+tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent);padding-left:11px;}
+tr.dim td{color:var(--muted);}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;padding:2px 7px;
+  border:1px solid var(--line-strong);color:var(--muted);white-space:nowrap;}
+.chip.good{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft);}
+.chip.risk{border-color:var(--warn);color:var(--warn);background:var(--warn-soft);}
+
+ul.plain{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+ul.plain li{display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:.92rem;color:var(--ink-2);}
+ul.plain li .n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--accent);padding-top:3px;}
+ul.plain li strong{color:var(--ink);font-weight:600;}
+
+.flow{display:flex;flex-direction:column;gap:0;margin-top:26px;}
+.flow-step{border:1px solid var(--line);background:var(--surface);padding:17px 20px;
+  display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:start;}
+.flow-step + .flow-step{border-top:0;}
+.flow-step .ph{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);padding-top:2px;}
+.flow-step p{font-size:.9rem;color:var(--ink-2);}
+.flow-step strong{color:var(--ink);font-weight:600;}
+
+figure{margin:30px 0 0;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);}
+figure .chartwrap{overflow-x:auto;padding:16px 18px 6px;}
+figcaption{font-size:.82rem;color:var(--muted);padding:0 18px 16px;line-height:1.5;border-top:1px solid var(--line);padding-top:13px;margin-top:6px;}
+figcaption b{color:var(--ink-2);font-weight:600;}
+svg.chart{display:block;width:100%;min-width:640px;height:auto;font-family:"IBM Plex Sans",sans-serif;}
+svg.chart .grid{stroke:var(--line);stroke-width:1;}
+svg.chart .ref{stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:4 4;}
+svg.chart .band{fill:var(--accent-soft);}
+svg.chart .tick{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums;}
+svg.chart .axis{font-size:11.5px;fill:var(--muted);}
+svg.chart .rowlbl{font-size:12px;fill:var(--ink-2);}
+svg.chart .dlbl{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;}
+svg.chart .lbl-ann{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums;}
+svg.chart .mid{text-anchor:middle;}
+svg.chart .end{text-anchor:end;}
+svg.chart .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
+svg.chart .fill{fill-opacity:.14;stroke:none;}
+svg.chart .bar{stroke:var(--surface);stroke-width:2;}
+svg.chart .rng{stroke-width:2.5;stroke-linecap:round;}
+svg.chart .dot{stroke:var(--surface);stroke-width:2;}
+svg.chart .dot-base{stroke:var(--surface);stroke-width:2.5;}
+svg.chart .halo{fill:none;stroke:var(--accent);stroke-width:2;}
+svg.chart .hit{fill:transparent;}
+svg.chart .neutral{stroke:var(--muted);}
+svg.chart circle.neutral{fill:var(--muted);}
+svg.chart .s1{stroke:var(--s1);}   svg.chart text.s1{fill:var(--s1);stroke:none;}
+svg.chart .s2{stroke:var(--s2);}   svg.chart text.s2{fill:var(--s2);stroke:none;}
+svg.chart .s3{stroke:var(--s3);}   svg.chart text.s3{fill:var(--s3);stroke:none;}
+svg.chart circle.s1,svg.chart rect.s1,svg.chart polygon.s1{fill:var(--s1);}
+svg.chart circle.s2,svg.chart rect.s2,svg.chart polygon.s2{fill:var(--s2);}
+svg.chart circle.s3,svg.chart rect.s3,svg.chart polygon.s3{fill:var(--s3);}
+svg.chart polygon.fill.s1{fill:var(--s1);stroke:none;}
+
+.refs{display:flex;flex-direction:column;}
+.refgroup{border-top:1px solid var(--line);padding:18px 0 20px;}
+.refgroup h3{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:600;}
+.refgroup ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:9px;}
+.refgroup li{font-size:.84rem;color:var(--ink-2);line-height:1.5;}
+footer{padding:32px 0 50px;font-size:.8rem;color:var(--muted);}
+footer .wrap{display:flex;flex-direction:column;gap:9px;}
+.themebtn{position:fixed;right:16px;bottom:16px;z-index:9;background:var(--surface);
+  border:1px solid var(--line-strong);color:var(--ink-2);font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 13px;cursor:pointer;
+  box-shadow:var(--shadow);}
+.themebtn:hover{background:var(--surface-2);}
+@media print{.themebtn{display:none;}section{break-inside:avoid;}}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+
+svg.chart .connector{stroke:var(--line-strong);stroke-width:1;stroke-dasharray:3 3;}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+ <div class="wrap">
+  <div class="mast-top">
+   <span class="eyebrow">Grenergy · documento de trabajo · complementa la propuesta SQM</span>
+   <h1>Escenarios y hoja de ruta — PPA SQM Nueva Victoria</h1>
+   <p class="mast-lede">Incorpora la reunión interna del 29 de septiembre. El hallazgo que reordena
+   la discusión: <strong>el derecho a inyectar y coordinar vale cuatro veces más que la figura de
+   autoconsumo</strong>, y la preocupación regulatoria de la reunión apunta al vehículo menos
+   valioso de los tres.</p>
+  </div>
+  <dl class="mast-meta">
+   <div><dt>Minuta</dt><dd>29-sep-2026 · Cata, Nico, Rodrigo, Juan</dd></div>
+   <div><dt>Vehículo recomendado</dt><dd>SGC · plan B: PPA tradicional coordinado</dd></div>
+   <div><dt>Camino crítico</dt><dd>Memo legal L1–L6 (Cata + J. Vergara)</dd></div>
+   <div><dt>Versión</dt><dd>1.0 · septiembre de 2026</dd></div>
+  </dl>
+ </div>
+ <div class="wrap">
+  <div class="figures">
+   <div class="fig good"><span class="num">44<small>USD/MWh</small></span>
+     <span class="cap">Vale el derecho a inyectar y coordinar con el CEN</span></div>
+   <div class="fig"><span class="num">11<small>USD/MWh</small></span>
+     <span class="cap">Vale la figura de autoconsumo: cuatro veces menos</span></div>
+   <div class="fig bad"><span class="num">−31<small>M USD</small></span>
+     <span class="cap">VAN del activo como planta merchant sin PPA: el vehículo es el negocio</span></div>
+   <div class="fig good"><span class="num">0,95<small>M USD</small></span>
+     <span class="cap">Cuesta subir el BESS de 20 a 30 MW. Ahorra US$ 2,6 M al año</span></div>
+  </div>
+ </div>
+</header>
+
+<main>
+
+<section id="cambia">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">01 · Qué cambia</span>
+   <h2>El vehículo regulatorio no es un detalle de implementación</h2>
+   <p>La minuta introduce un eje que el análisis previo no tenía. Es la variable que más mueve el
+   precio — más que el dimensionamiento del BESS, más que el CAPEX, más que el WACC.</p>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Qué aporta la minuta del 29-sep-2026</caption>
+<thead><tr>
+<th>Aporte</th>
+<th>Consecuencia sobre el análisis</th>
+</tr></thead><tbody>
+<tr>
+<td>La figura de autoconsumo <strong>exige mismo propietario</strong>, o estructurarse vía mandato/contrato</td>
+<td>Invalida la estructura propuesta en §3 del documento anterior (GR compra y es propietario) si se quiere conservar el beneficio de autoconsumo</td>
+</tr>
+<tr>
+<td>El reglamento <strong>busca impedir que grandes clientes usen la figura para alimentar consumo existente</strong>; las proyecciones de SQM 2026–2027 no muestran crecimiento</td>
+<td>El riesgo no es de precio, es de <strong>elegibilidad</strong>. Rodrigo ya fue advertido</td>
+</tr>
+<tr>
+<td>El caso Data Center evalúa <strong>tres</strong> alternativas: SGC, PPA tradicional y autoconsumo</td>
+<td>Da el marco correcto: son tres vehículos distintos, no dos configuraciones</td>
+</tr>
+</tbody></table></div>
+  <div class="callout">
+   <h3>Estado de los acuerdos de la minuta</h3>
+   <p>El acuerdo n.° 3 —calcular CAPEX y OPEX para determinar el LCOE y definir la tarifa de PPA
+   competitiva— es exactamente lo que entrega el documento anterior. Este documento cierra el
+   acuerdo n.° 2: integrar el análisis legal y decidir el vehículo. Queda pendiente el n.° 1,
+   el envío de la sección del reglamento por parte de Cata, que está en el camino crítico.</p>
+  </div>
+ </div>
+</section>
+
+<section id="hallazgo1">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">02 · Hallazgo</span>
+   <h2>El déficit de 9 GWh no se sostiene con un BESS de 20 MW</h2>
+   <p>La minuta registra un déficit estimado de 9 GWh/año. Al reproducir ese balance en el modelo
+   horario, ese número sólo aparece si la batería descarga muy por encima de los 20 MW de la DIA.</p>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Reconciliación del balance energético en autoconsumo puro</caption>
+<thead><tr>
+<th>Supuesto</th>
+<th class="num">Déficit</th>
+<th class="num">Vertimiento</th>
+</tr></thead><tbody>
+<tr>
+<td>220 GWh · consumo plano 19,0 MW · BESS 320 MWh / <strong>20 MW</strong></td>
+<td class="num">23,8 GWh</td>
+<td class="num">68,5 GWh</td>
+</tr>
+<tr>
+<td>220 GWh · consumo plano 20,0 MW · BESS 320 MWh / <strong>20 MW</strong></td>
+<td class="num">29,0</td>
+<td class="num">64,9</td>
+</tr>
+<tr class="hi">
+<td>220 GWh · consumo plano 19,0 MW · BESS 320 MWh / <strong>70 MW</strong></td>
+<td class="num"><strong>1,4</strong></td>
+<td class="num">43,0</td>
+</tr>
+<tr class="hi">
+<td>207 GWh · consumo real variable · BESS 320 MWh / <strong>30 MW</strong></td>
+<td class="num"><strong>5,2</strong></td>
+<td class="num">34,3</td>
+</tr>
+<tr>
+<td>170 GWh (DIA) · consumo real variable · BESS 320 MWh / 20 MW</td>
+<td class="num">27,5</td>
+<td class="num">22,5</td>
+</tr>
+</tbody></table></div>
+  <div class="callout warn">
+   <h3>El diagnóstico correcto</h3>
+   <p>El déficit bajo de la simulación previa es consistente con la nota «Potencia de Retiro del BESS
+   (70 MW)» de la lámina <em>Generación Estimada PV+BESS – Industria TEA</em>, <strong>no</strong> con
+   los «20 MW durante 16 horas continuas» que declara la DIA.</p>
+   <p><strong>El problema del diseño de SQM no es que sobre energía almacenada: es que falta potencia
+   de descarga.</strong> El proyecto es rico en energía y pobre en potencia, exactamente al revés de
+   lo que conviene.</p>
+  </div>
+  <div class="body-copy" style="margin-top:22px;">
+   <p>Y la corrección es barata. Subir el BESS de 20 a 30 MW manteniendo los 320 MWh cuesta
+   ≈ <strong>US$ 0,95 M</strong> adicionales de conversión y reduce el costo de servir de 74,1 a
+   58,5 USD/MWh — unos <strong>US$ 2,6 M al año</strong>. Payback inferior a cinco meses. Es la
+   mejora de mejor relación costo-beneficio de todo el rediseño y, a diferencia del resto,
+   no exige discutir el tamaño de la batería con SQM.</p>
+  </div>
+ </div>
+</section>
+
+<section id="hallazgo2">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">03 · Hallazgo</span>
+   <h2>Coordinar vale cuatro veces más que el autoconsumo</h2>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Descomposición sobre configuración idéntica · 76,5 MWp seguidor + 150 MWh/30 MW, base</caption>
+<thead><tr>
+<th>US$ M/año</th>
+<th class="num">A · Autoconsumo puro</th>
+<th class="num">B · SGC coordinado</th>
+<th class="num">C · PPA tradicional</th>
+</tr></thead><tbody>
+<tr>
+<td>Costo de capital</td>
+<td class="num">8,83</td>
+<td class="num">8,83</td>
+<td class="num">8,83</td>
+</tr>
+<tr>
+<td>OPEX</td>
+<td class="num">2,97</td>
+<td class="num">3,19</td>
+<td class="num">3,19</td>
+</tr>
+<tr>
+<td>Peajes sobre energía servida en sitio</td>
+<td class="num">0,00</td>
+<td class="num">0,00</td>
+<td class="num"><strong>1,85</strong></td>
+</tr>
+<tr>
+<td>(−) Margen de mercado</td>
+<td class="num">−3,89</td>
+<td class="num">+0,09</td>
+<td class="num">+0,09</td>
+</tr>
+<tr>
+<td>(−) Potencia de suficiencia</td>
+<td class="num">0,00</td>
+<td class="num"><strong>3,66</strong></td>
+<td class="num"><strong>3,66</strong></td>
+</tr>
+<tr>
+<td>(−) Servicios complementarios</td>
+<td class="num">0,00</td>
+<td class="num"><strong>0,60</strong></td>
+<td class="num"><strong>0,60</strong></td>
+</tr>
+<tr class="hi">
+<td><strong>Costo de servir · USD/MWh</strong></td>
+<td class="num"><strong>94,2</strong></td>
+<td class="num"><strong>46,1</strong></td>
+<td class="num"><strong>57,3</strong></td>
+</tr>
+<tr>
+<td>Vertimiento</td>
+<td class="num">75,1 GWh</td>
+<td class="num">0</td>
+<td class="num">0</td>
+</tr>
+</tbody></table></div>
+  <figure>
+   <div class="chartwrap"><svg viewBox="0 0 760 430" role="img" class="chart" aria-label="Puente de valor entre vehículos regulatorios">
+<title>De autoconsumo puro a SGC coordinado y a PPA tradicional: origen de cada diferencia</title>
+<line x1="52" y1="354.0" x2="734" y2="354.0" class="grid"/>
+<text x="43" y="358.0" class="tick end">0</text>
+<line x1="52" y1="277.8" x2="734" y2="277.8" class="grid"/>
+<text x="43" y="281.8" class="tick end">25</text>
+<line x1="52" y1="201.6" x2="734" y2="201.6" class="grid"/>
+<text x="43" y="205.6" class="tick end">50</text>
+<line x1="52" y1="125.4" x2="734" y2="125.4" class="grid"/>
+<text x="43" y="129.4" class="tick end">75</text>
+<line x1="52" y1="49.2" x2="734" y2="49.2" class="grid"/>
+<text x="43" y="53.2" class="tick end">100</text>
+<text x="12" y="194.0" class="axis mid" transform="rotate(-90 12 194.0)">USD/MWh</text>
+<rect x="70.8" y="66.9" width="47.7" height="287.1" rx="3" class="bar s1"><title>Autoconsumo puro sin inyección: 94.2 USD/MWh</title></rect>
+<text x="94.6" y="57.9" class="dlbl s1 mid">94.2</text>
+<line x1="118.5" y1="66.9" x2="156.0" y2="66.9" class="connector"/>
+<text x="94.6" y="374.0" class="tick mid">Autoconsumo puro</text>
+<text x="94.6" y="387.0" class="tick mid">sin inyección</text>
+<rect x="156.0" y="66.9" width="47.7" height="72.8" rx="3" class="bar s3" opacity="0.62"><title>Inyectar excedentes: -23.9 USD/MWh</title></rect>
+<text x="179.9" y="57.9" class="dlbl s3 mid">-23.9</text>
+<line x1="203.7" y1="139.8" x2="241.3" y2="139.8" class="connector"/>
+<text x="179.9" y="374.0" class="tick mid">Inyectar</text>
+<text x="179.9" y="387.0" class="tick mid">excedentes</text>
+<rect x="241.3" y="139.8" width="47.7" height="67.0" rx="3" class="bar s3" opacity="0.62"><title>Potencia de suficiencia: -22.0 USD/MWh</title></rect>
+<text x="265.1" y="130.8" class="dlbl s3 mid">-22.0</text>
+<line x1="289.0" y1="206.8" x2="326.5" y2="206.8" class="connector"/>
+<text x="265.1" y="374.0" class="tick mid">Potencia de</text>
+<text x="265.1" y="387.0" class="tick mid">suficiencia</text>
+<rect x="326.5" y="206.8" width="47.7" height="11.0" rx="3" class="bar s3" opacity="0.62"><title>Servicios complementarios: -3.6 USD/MWh</title></rect>
+<text x="350.4" y="197.8" class="dlbl s3 mid">-3.6</text>
+<line x1="374.2" y1="217.8" x2="411.8" y2="217.8" class="connector"/>
+<text x="350.4" y="374.0" class="tick mid">Servicios</text>
+<text x="350.4" y="387.0" class="tick mid">complementarios</text>
+<rect x="411.8" y="213.5" width="47.7" height="4.3" rx="3" class="bar s2" opacity="0.62"><title>Mayor OPEX por ciclado: +1.4 USD/MWh</title></rect>
+<text x="435.6" y="204.5" class="dlbl s2 mid">+1.4</text>
+<line x1="459.5" y1="213.5" x2="497.0" y2="213.5" class="connector"/>
+<text x="435.6" y="374.0" class="tick mid">Mayor OPEX</text>
+<text x="435.6" y="387.0" class="tick mid">por ciclado</text>
+<rect x="497.0" y="213.5" width="47.7" height="140.5" rx="3" class="bar s1"><title>SGC coordinado: 46.1 USD/MWh</title></rect>
+<text x="520.9" y="204.5" class="dlbl s1 mid">46.1</text>
+<line x1="544.7" y1="213.5" x2="582.3" y2="213.5" class="connector"/>
+<text x="520.9" y="374.0" class="tick mid">SGC</text>
+<text x="520.9" y="387.0" class="tick mid">coordinado</text>
+<rect x="582.3" y="179.7" width="47.7" height="33.8" rx="3" class="bar s2" opacity="0.62"><title>Pérdida del autoconsumo: +11.1 USD/MWh</title></rect>
+<text x="606.1" y="170.7" class="dlbl s2 mid">+11.1</text>
+<line x1="630.0" y1="179.7" x2="667.5" y2="179.7" class="connector"/>
+<text x="606.1" y="374.0" class="tick mid">Pérdida del</text>
+<text x="606.1" y="387.0" class="tick mid">autoconsumo</text>
+<rect x="667.5" y="179.4" width="47.7" height="174.6" rx="3" class="bar s1"><title>PPA tradicional GR prop.: 57.3 USD/MWh</title></rect>
+<text x="691.4" y="170.4" class="dlbl s1 mid">57.3</text>
+<text x="691.4" y="374.0" class="tick mid">PPA tradicional</text>
+<text x="691.4" y="387.0" class="tick mid">GR prop.</text>
+</svg></div>
+   <figcaption><b>De dónde viene cada diferencia.</b> Sobre configuración idéntica (76,5 MWp con
+   seguidor + 150 MWh/30 MW, escenario base). Las barras claras son los componentes; las sólidas,
+   los tres vehículos. <b>En verde</b> lo que reduce el costo, <b>en naranja</b> lo que lo
+   aumenta.</figcaption>
+  </figure>
+  <div class="tablewrap"><table class="">
+<caption>De autoconsumo puro a SGC coordinado: 48,1 USD/MWh</caption>
+<thead><tr>
+<th>Componente</th>
+<th class="num">USD/MWh</th>
+</tr></thead><tbody>
+<tr>
+<td>Margen de mercado por poder inyectar excedentes en vez de verterlos</td>
+<td class="num">23,9</td>
+</tr>
+<tr>
+<td>Potencia de suficiencia reconocida al BESS</td>
+<td class="num">22,0</td>
+</tr>
+<tr>
+<td>Servicios complementarios</td>
+<td class="num">3,6</td>
+</tr>
+<tr>
+<td>(−) Mayor OPEX por mayor ciclado</td>
+<td class="num">−1,4</td>
+</tr>
+<tr class="hi">
+<td><strong>Total</strong></td>
+<td class="num"><strong>48,1</strong></td>
+</tr>
+</tbody></table></div>
+  <div class="callout">
+   <h3>Esto invierte la prioridad regulatoria de la reunión</h3>
+   <p>La preocupación de la minuta fue si la figura de autoconsumo es elegible. Los números dicen que
+   el autoconsumo es el vehículo <strong>menos</strong> valioso de los tres: un PPA tradicional con
+   GR propietario, sin ningún beneficio de autoconsumo pero coordinado con el CEN, es
+   <strong>33 USD/MWh más barato</strong> que un autoconsumo puro perfectamente elegible.
+   <strong>Lo que hay que pelear es el derecho a inyectar y coordinar</strong>, no la figura de
+   autoconsumo.</p>
+   <p>La conclusión resiste el escenario conservador, que castiga justamente los dos componentes
+   mayores —compresión de spreads y caída del precio de potencia—: E1 queda en 90,9 y E2 en 54,7,
+   una brecha que sigue siendo de 36 USD/MWh.</p>
+  </div>
+ </div>
+</section>
+
+<section id="hallazgo3">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">04 · Hallazgo</span>
+   <h2>El activo no se sostiene solo: el vehículo <em>es</em> el negocio</h2>
+   <p>Valorizado como planta merchant, sin PPA con SQM, con toda la energía al sistema.</p>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>El activo valorizado como planta merchant, sin PPA con SQM</caption>
+<thead><tr>
+<th>Configuración</th>
+<th class="num">CAPEX</th>
+<th class="num">EBITDA</th>
+<th class="num">Yield</th>
+<th class="num">VAN 25 años</th>
+</tr></thead><tbody>
+<tr>
+<td>76,5 MWp sin BESS</td>
+<td class="num">67,3 M</td>
+<td class="num">2,60 M</td>
+<td class="num">3,9%</td>
+<td class="num"><strong>−37,0 M</strong></td>
+</tr>
+<tr class="hi">
+<td>76,5 MWp + 150 MWh / 30 MW</td>
+<td class="num">92,7 M</td>
+<td class="num">9,57 M</td>
+<td class="num">10,3%</td>
+<td class="num"><strong>+18,8 M</strong></td>
+</tr>
+<tr>
+<td>76,5 MWp + 320 MWh / 20 MW <em>(diseño SQM)</em></td>
+<td class="num">117,0 M</td>
+<td class="num">7,33 M</td>
+<td class="num">6,3%</td>
+<td class="num"><strong>−31,5 M</strong></td>
+</tr>
+<tr>
+<td>76,5 MWp + 320 MWh / 30 MW</td>
+<td class="num">118,0 M</td>
+<td class="num">9,92 M</td>
+<td class="num">8,4%</td>
+<td class="num">−2,4 M</td>
+</tr>
+</tbody></table></div>
+  <div class="body-copy" style="margin-top:22px;">
+   <p>Por escenario, para la configuración optimizada: VAN de <strong>−15,0 M</strong> (conservador),
+   <strong>+18,8 M</strong> (base), <strong>+47,9 M</strong> (optimista).</p>
+  </div>
+  <div class="callout warn">
+   <h3>Corolario para la negociación</h3>
+   <p><strong>Comprar Nueva Victoria como activo merchant no se sostiene.</strong> Sólo el caso base
+   da VAN positivo y el conservador lo destruye. El valor del activo para GR está en el PPA con SQM,
+   no en el mercado spot. Por lo tanto la pregunta del vehículo no es una condición de borde del
+   negocio: <strong>es el negocio</strong>.</p>
+   <p>De ahí que la opción de <strong>desacoplar</strong> —comprar el activo como planta de cartera y
+   venderle a SQM un PPA desde el portafolio de GR Power— no sea una alternativa de repliegue
+   atractiva. Si el vehículo falla, lo razonable es <strong>no comprar el activo</strong> y competir
+   por el PPA de SQM desde la cartera existente (Oasis de Atacama / Elena), donde GR ya tiene costo
+   marginal.</p>
+  </div>
+ </div>
+</section>
+
+<section id="matriz">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">05 · Escenarios</span>
+   <h2>La matriz de decisión</h2>
+   <p>Cada escenario con su configuración óptima, porque <strong>el óptimo del BESS depende del
+   vehículo</strong>.</p>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Matriz de escenarios — costo de servir el bloque 24/7 (166,4 GWh/año)</caption>
+<thead><tr>
+<th></th>
+<th>Escenario</th>
+<th class="num">Conserv.</th>
+<th class="num">Base</th>
+<th class="num">Optim.</th>
+<th class="num">CAPEX</th>
+<th class="num">Autosuf.</th>
+<th class="num">Vertido</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>D0</strong></td>
+<td>Diseño SQM tal cual — fija, 320 MWh/20 MW, aislado</td>
+<td class="num">111,7</td>
+<td class="num">109,7</td>
+<td class="num">108,0</td>
+<td class="num">111,2 M</td>
+<td class="num">74,8%</td>
+<td class="num">38,3 GWh</td>
+</tr>
+<tr>
+<td><strong>E1</strong></td>
+<td>Autoconsumo puro — SQM propietario, sin inyección · <em>240 MWh/30 MW</em></td>
+<td class="num">90,9</td>
+<td class="num">90,1</td>
+<td class="num">89,4</td>
+<td class="num">106,1 M</td>
+<td class="num">92,3%</td>
+<td class="num">43,0 GWh</td>
+</tr>
+<tr>
+<td><strong>E3</strong></td>
+<td>PPA tradicional — GR propietario, sin beneficio de peaje · <em>150 MWh/30 MW</em></td>
+<td class="num">66,3</td>
+<td class="num">57,3</td>
+<td class="num">52,0</td>
+<td class="num">92,7 M</td>
+<td class="num">61,9%</td>
+<td class="num">0</td>
+</tr>
+<tr class="hi">
+<td><strong>E2</strong></td>
+<td><strong>SGC coordinado — con inyección y beneficio de peaje · <em>150 MWh/30 MW</em></strong></td>
+<td class="num"><strong>54,7</strong></td>
+<td class="num"><strong>46,1</strong></td>
+<td class="num"><strong>41,3</strong></td>
+<td class="num">92,7 M</td>
+<td class="num">61,9%</td>
+<td class="num">0</td>
+</tr>
+</tbody></table></div>
+  <figure>
+   <div class="chartwrap"><svg viewBox="0 0 760 286" role="img" class="chart" aria-label="Costo de servir por escenario regulatorio">
+<title>Costo de servir el bloque 24/7 por vehículo regulatorio</title>
+<circle cx="291" cy="12" r="5" class="dot-base neutral"/>
+<text x="302" y="16" class="lbl-ann">escenario base</text>
+<line x1="404" y1="12" x2="428" y2="12" class="rng neutral"/>
+<text x="436" y="16" class="lbl-ann">rango conservador–optimista</text>
+<line x1="329.5" y1="60" x2="329.5" y2="244" class="grid"/>
+<text x="329.5" y="52" class="tick mid">40</text>
+<line x1="416.4" y1="60" x2="416.4" y2="244" class="grid"/>
+<text x="416.4" y="52" class="tick mid">60</text>
+<line x1="503.4" y1="60" x2="503.4" y2="244" class="grid"/>
+<text x="503.4" y="52" class="tick mid">80</text>
+<line x1="590.3" y1="60" x2="590.3" y2="244" class="grid"/>
+<text x="590.3" y="52" class="tick mid">100</text>
+<line x1="677.3" y1="60" x2="677.3" y2="244" class="grid"/>
+<text x="677.3" y="52" class="tick mid">120</text>
+<text x="286" y="34" class="axis">costo de servir el bloque 24/7 · USD/MWh</text>
+<line x1="590.3" y1="60" x2="590.3" y2="244" class="ref"/>
+<text x="590.3" y="262" class="lbl-ann mid">≈100 · tarifa actual del cliente</text>
+<text x="270" y="88.0" class="rowlbl end">D0 · Diseño SQM tal cual, aislado</text>
+<line x1="625.1" y1="84.0" x2="641.2" y2="84.0" class="rng s1"><title>D0 · Diseño SQM tal cual, aislado — conservador 111.7 · base 109.7 · optimista 108.0 USD/MWh</title></line>
+<circle cx="625.1" cy="84.0" r="3.5" class="dot s1"/>
+<circle cx="641.2" cy="84.0" r="3.5" class="dot s1"/>
+<circle cx="632.5" cy="84.0" r="6.5" class="dot-base s1"><title>D0 · Diseño SQM tal cual, aislado — base 109.7 USD/MWh</title></circle>
+<text x="654.2" y="88.0" class="dlbl s1">109.7</text>
+<text x="270" y="134.0" class="rowlbl end">E1 · Autoconsumo puro, sin inyección</text>
+<line x1="544.3" y1="130.0" x2="550.8" y2="130.0" class="rng s1"><title>E1 · Autoconsumo puro, sin inyección — conservador 90.9 · base 90.1 · optimista 89.4 USD/MWh</title></line>
+<circle cx="544.3" cy="130.0" r="3.5" class="dot s1"/>
+<circle cx="550.8" cy="130.0" r="3.5" class="dot s1"/>
+<circle cx="547.3" cy="130.0" r="6.5" class="dot-base s1"><title>E1 · Autoconsumo puro, sin inyección — base 90.1 USD/MWh</title></circle>
+<text x="563.8" y="134.0" class="dlbl s1">90.1</text>
+<text x="270" y="180.0" class="rowlbl end">E3 · PPA tradicional, GR propietario</text>
+<line x1="381.7" y1="176.0" x2="443.8" y2="176.0" class="rng s3"><title>E3 · PPA tradicional, GR propietario — conservador 66.3 · base 57.3 · optimista 52.0 USD/MWh</title></line>
+<circle cx="381.7" cy="176.0" r="3.5" class="dot s3"/>
+<circle cx="443.8" cy="176.0" r="3.5" class="dot s3"/>
+<circle cx="404.7" cy="176.0" r="6.5" class="dot-base s3"><title>E3 · PPA tradicional, GR propietario — base 57.3 USD/MWh</title></circle>
+<text x="456.8" y="180.0" class="dlbl s3">57.3</text>
+<text x="270" y="226.0" class="rowlbl end">E2 · SGC coordinado  (recomendado)</text>
+<line x1="335.1" y1="222.0" x2="393.4" y2="222.0" class="rng s2"><title>E2 · SGC coordinado  (recomendado) — conservador 54.7 · base 46.1 · optimista 41.3 USD/MWh</title></line>
+<circle cx="335.1" cy="222.0" r="3.5" class="dot s2"/>
+<circle cx="393.4" cy="222.0" r="3.5" class="dot s2"/>
+<circle cx="356.0" cy="222.0" r="6.5" class="dot-base s2"><title>E2 · SGC coordinado  (recomendado) — base 46.1 USD/MWh</title></circle>
+<text x="406.4" y="226.0" class="dlbl s2">46.1</text>
+</svg></div>
+   <figcaption><b>Costo de servir por vehículo regulatorio.</b> El punto marca el escenario base;
+   la línea, el rango entre conservador y optimista. La referencia punteada en 100 USD/MWh es lo que
+   SQM paga hoy. <b>D0 y E1 quedan sobre o junto a esa línea: no son ofertables.</b> El rango casi
+   nulo de E1 no es un error: al no participar del mercado, es el único escenario indiferente a
+   cómo evolucionen los precios.</figcaption>
+  </figure>
+  <div class="callout">
+   <h3>El óptimo del almacenamiento cambia con el vehículo</h3>
+   <p>Con derecho de inyección el óptimo son <strong>4–6 horas</strong> (150 MWh/30 MW); sin derecho
+   de inyección se desplaza a <strong>8 horas</strong> (240 MWh/30 MW), porque el excedente que no se
+   puede vender conviene almacenarlo. En ningún vehículo el óptimo se acerca a las 16 horas del
+   diseño actual.</p>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Precio ofertable y margen — anclado en el escenario conservador</caption>
+<thead><tr>
+<th></th>
+<th class="num">Piso conservador</th>
+<th class="num">PPA sugerido</th>
+<th class="num">Ahorro SQM</th>
+<th class="num">Margen GR</th>
+<th class="num">VAN 15 años</th>
+</tr></thead><tbody>
+<tr class="dim">
+<td><strong>D0</strong></td>
+<td class="num">111,7</td>
+<td class="num">—</td>
+<td class="num">—</td>
+<td class="num">—</td>
+<td class="num">—</td>
+</tr>
+<tr>
+<td><strong>E1</strong></td>
+<td class="num">90,9</td>
+<td class="num">~100</td>
+<td class="num">0%</td>
+<td class="num">1,65 M</td>
+<td class="num">15,0 M</td>
+</tr>
+<tr>
+<td><strong>E3</strong></td>
+<td class="num">66,3</td>
+<td class="num"><strong>72</strong></td>
+<td class="num">28%</td>
+<td class="num">2,45 M</td>
+<td class="num">22,4 M</td>
+</tr>
+<tr class="hi">
+<td><strong>E2</strong></td>
+<td class="num"><strong>54,7</strong></td>
+<td class="num"><strong>65</strong></td>
+<td class="num"><strong>35%</strong></td>
+<td class="num"><strong>3,14 M</strong></td>
+<td class="num"><strong>28,6 M</strong></td>
+</tr>
+</tbody></table></div>
+  <div class="callout warn">
+   <h3>D0 y E1 no son ofertables</h3>
+   <p>D0 cuesta más que la tarifa actual del cliente. E1 tiene un piso conservador de 90,9: cualquier
+   margen razonable lo deja en el entorno de lo que SQM ya paga, con lo cual la operación pierde su
+   razón de ser para ambas partes.</p>
+  </div>
+ </div>
+</section>
+
+<section id="estrategia">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">06 · Estrategia</span>
+   <h2>Perseguir el SGC, no el autoconsumo</h2>
+  </div>
+  <div class="body-copy">
+   <p><strong>Vehículo primario: SGC (sistema de generación-consumo). Plan B: PPA tradicional
+   coordinado. Tratar el autoconsumo como lo que es —un beneficio marginal de 11 USD/MWh— y no
+   condicionar la estructura de la operación a conseguirlo.</strong></p>
+  </div>
+  <ul class="plain" style="margin-top:20px;">
+   <li><span class="n">01</span><span>El DS 32/2026 crea expresamente la figura de sistemas de
+     generación-consumo para «complejos productivos que combinan proceso industrial, generación
+     propia y almacenamiento». <strong>Es la figura diseñada para este caso.</strong></span></li>
+   <li><span class="n">02</span><span>La restricción que preocupa a la reunión —impedir alimentar
+     consumo existente sin ampliaciones reales— es una restricción del reglamento de
+     <strong>autoconsumo</strong>. Hay que verificar si alcanza también al SGC; si no alcanza, el
+     problema de elegibilidad desaparece.</span></li>
+   <li><span class="n">03</span><span>Aun en el peor caso —ningún beneficio de peaje, GR propietario,
+     PPA tradicional— el proyecto coordinado sirve a 57,3 USD/MWh y es ofertable a 72 con
+     28% de ahorro para SQM.</span></li>
+  </ul>
+  <div class="tablewrap"><table class="">
+<caption>Las preguntas legales que deciden la operación</caption>
+<thead><tr>
+<th>#</th>
+<th>Pregunta</th>
+<th>Qué está en juego</th>
+</tr></thead><tbody>
+<tr class="hi">
+<td><strong>L1</strong></td>
+<td>¿El SGC admite que la generación y el consumo tengan <strong>propietarios distintos</strong>, o exige «generación propia» en sentido estricto?</td>
+<td><strong>Decide la estructura completa.</strong> Si exige mismo propietario, GR no puede ser dueño del activo y conservar el beneficio</td>
+</tr>
+<tr>
+<td><strong>L2</strong></td>
+<td>Si exige mismo propietario, ¿el <strong>mandato/contrato</strong> de la minuta es suficiente? ¿Arriendo, usufructo, comodato, mandato de operación?</td>
+<td>11 USD/MWh + viabilidad de la compra</td>
+</tr>
+<tr>
+<td><strong>L3</strong></td>
+<td>¿La restricción de «consumo existente sin ampliaciones» alcanza al <strong>SGC</strong> o sólo al autoconsumo?</td>
+<td>Elegibilidad de E2</td>
+</tr>
+<tr class="hi">
+<td><strong>L4</strong></td>
+<td>¿Qué reconocimiento de <strong>potencia de suficiencia</strong> obtiene un BESS dentro de un SGC, y con qué criterio de bloque de punta?</td>
+<td><strong>22,0 USD/MWh</strong> — el componente individual más grande</td>
+</tr>
+<tr>
+<td><strong>L5</strong></td>
+<td>¿Puede un SGC participar del mercado de <strong>servicios complementarios</strong>?</td>
+<td>3,6 USD/MWh</td>
+</tr>
+<tr>
+<td><strong>L6</strong></td>
+<td>¿Qué capacidad de inyección admite el punto de seccionamiento en 66 kV, y qué se requiere para llevarla a ≥ 25 MW?</td>
+<td>43,6 USD/MWh (el salto de 0 a inyectar)</td>
+</tr>
+</tbody></table></div>
+  <div class="callout warn">
+   <h3>L1 y L4 concentran el riesgo</h3>
+   <p>Hasta que <strong>L1</strong> esté respondida no se puede definir la estructura de la
+   operación, y hasta que <strong>L4</strong> esté respondida el precio ofertable tiene una
+   incertidumbre de ±22 USD/MWh. Ninguna de las dos se resuelve con más modelación.</p>
+  </div>
+ </div>
+</section>
+
+<section id="interna">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">07 · Hoja de ruta interna</span>
+   <h2>Del memo legal al mandato de negociación</h2>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Etapa A — Cierre técnico y legal (semanas 1–3)</caption>
+<thead><tr>
+<th>#</th>
+<th>Acción</th>
+<th>Responsable</th>
+<th>Entregable</th>
+</tr></thead><tbody>
+<tr>
+<td>A1</td>
+<td>Responder L1–L3 sobre la base del reglamento que compartirá Cata</td>
+<td>Cata + J. Vergara</td>
+<td>Memo legal de una página</td>
+</tr>
+<tr>
+<td>A2</td>
+<td>Consultar informalmente a CNE/CEN sobre L4 y L5</td>
+<td>Regulación</td>
+<td>Lectura preliminar del reconocimiento de potencia</td>
+</tr>
+<tr>
+<td>A3</td>
+<td>Cerrar las tres cifras discrepantes: rendimiento, POI, potencia del BESS</td>
+<td>N. Machuca / M. Aguilera</td>
+<td>Ficha técnica única de referencia</td>
+</tr>
+<tr>
+<td>A4</td>
+<td>Verificar capacidad de inyección real de la LT 66 kV (L6)</td>
+<td>Ingeniería / Conexiones</td>
+<td>Capacidad máxima y obras requeridas</td>
+</tr>
+<tr>
+<td>A5</td>
+<td>Validar precio de transferencia de GR Power para el bloque de respaldo</td>
+<td>J. Friedl / J. Álvarez</td>
+<td>Precio interno por bloque horario</td>
+</tr>
+<tr>
+<td>A6</td>
+<td>Contrastar el CAPEX del modelo contra cotizaciones vigentes de EPC y BESS</td>
+<td>Ingeniería</td>
+<td>Rango de CAPEX validado</td>
+</tr>
+</tbody></table></div>
+  <h3 style="margin-top:34px;">Etapa B — Decisión interna (semana 4)</h3>
+  <div class="body-copy" style="margin-top:12px;">
+   <p>Comité con Rodrigo, Juan, Cata y el equipo de desarrollo. Tres decisiones, en este orden:</p>
+  </div>
+  <div class="flow">
+   <div class="flow-step"><span class="ph">Uno</span>
+     <p><strong>Vehículo.</strong> SGC, PPA tradicional, o no avanzar. Determinado por A1–A2.</p></div>
+   <div class="flow-step"><span class="ph">Dos</span>
+     <p><strong>Estructura de propiedad.</strong> Compra del activo, mandato, o sólo PPA desde
+     cartera. Determinada por la anterior.</p></div>
+   <div class="flow-step"><span class="ph">Tres</span>
+     <p><strong>Mandato de negociación.</strong> Precio piso, precio objetivo, y hasta dónde se puede
+     ceder en configuración técnica.</p></div>
+  </div>
+  <div class="callout">
+   <h3>Regla de decisión sugerida</h3>
+   <p>Si <strong>L1 permite propiedad de terceros bajo SGC</strong> → comprar el activo y estructurar
+   E2. Si <strong>L1 exige mismo propietario y L2 no ofrece un vehículo contractual sólido</strong> →
+   no comprar el activo; ofrecer a SQM el rol de desarrollador, EPC y O&amp;M más un PPA desde
+   cartera, y competir por el suministro sin inmovilizar capital.</p>
+  </div>
+  <h3 style="margin-top:34px;">Etapa C — Preparación del material (semana 5)</h3>
+  <div class="body-copy" style="margin-top:12px;">
+   <p>Cinco láminas, una por paso de la conversación: validación, hallazgo de potencia, valor de
+   inyectar, oferta, estructura.</p>
+  </div>
+ </div>
+</section>
+
+<section id="sqm">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">08 · Hoja de ruta con SQM</span>
+   <h2>El orden de la conversación importa</h2>
+   <p>La secuencia natural —«compramos su proyecto, pero antes hay que rediseñarlo»— pone tres
+   pedidos sobre la mesa al mismo tiempo y activa la defensa del proyecto. Esta secuencia separa lo
+   que es de interés común de lo que es negociación.</p>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>La secuencia recomendada para la reunión con SQM</caption>
+<thead><tr>
+<th>Paso</th>
+<th>Mensaje</th>
+<th>Por qué en esta posición</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>1 · Validación</strong></td>
+<td>«Modelamos su proyecto de forma independiente y nos da 169,9 GWh contra sus 170, y US$ 111,2 M contra sus US$ 111 M»</td>
+<td>Construye credibilidad técnica antes de cualquier crítica. No cuesta nada y cambia el tono</td>
+</tr>
+<tr class="hi">
+<td><strong>2 · El hallazgo técnico</strong></td>
+<td>«El limitante no es la energía almacenada, es la potencia de descarga. Con 30 MW en vez de 20, el déficit cae de 24 a 5 GWh por US$ 0,95 M»</td>
+<td>Es un regalo: barato, verificable, y mejora <em>su</em> proyecto sea quien sea el dueño</td>
+</tr>
+<tr class="hi">
+<td><strong>3 · El problema compartido</strong></td>
+<td>«El derecho a inyectar y coordinar vale unos 44 USD/MWh. Sin él, ningún dimensionamiento hace competitivo el proyecto»</td>
+<td>Alinea intereses: ambos quieren que el activo valga más. Aquí se propone la estrategia regulatoria conjunta</td>
+</tr>
+<tr>
+<td><strong>4 · La oferta</strong></td>
+<td>«Con esos dos ajustes podemos ofrecerles un PPA 24/7 a X USD/MWh, un tercio bajo lo que pagan hoy»</td>
+<td>Llega después de haber demostrado competencia y aportado valor</td>
+</tr>
+<tr>
+<td><strong>5 · La estructura</strong></td>
+<td>Las opciones de propiedad y las condiciones</td>
+<td>Es lo único puramente distributivo. Va al final</td>
+</tr>
+</tbody></table></div>
+
+  <div class="grid-2" style="margin-top:34px;">
+   <div class="body-copy">
+    <h3>Mostrar</h3>
+    <ul style="margin:8px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;font-size:.9rem;color:var(--ink-2);">
+     <li>La validación de generación y CAPEX</li>
+     <li>El benchmark de duración de almacenamiento (Sonnedix/Copec 5,5 h, Atlas/COPEC 4 h, el caso
+     minero de 4 h). <strong>Es el argumento más fuerte y no es nuestro: es el mercado</strong></li>
+     <li>La curva de optimización del BESS, sin los costos de GR</li>
+     <li>El precio ofertable y el ahorro para SQM</li>
+    </ul>
+   </div>
+   <div class="body-copy">
+    <h3>No mostrar</h3>
+    <ul style="margin:8px 0 0;padding-left:1.2em;display:flex;flex-direction:column;gap:8px;font-size:.9rem;color:var(--ink-2);">
+     <li>El costo de servir de GR ni el margen</li>
+     <li>El VAN de la operación ni la valorización del activo</li>
+     <li>La descomposición de dónde viene el valor de coordinar — se comunica el resultado
+     (44 USD/MWh), no el desglose entre potencia, SSCC y arbitraje, que es información comercial
+     de GR</li>
+    </ul>
+   </div>
+  </div>
+
+  <div class="callout">
+   <h3>Qué pedirle a SQM en esta reunión</h3>
+   <p>Además de la información del §10 del documento anterior, <strong>dos pedidos concretos y de
+   bajo costo para ellos</strong>: (i) <strong>introducir flexibilidad de diseño en la adenda que
+   están preparando ahora</strong> —rango de potencia del BESS, estructura con seguidores, capacidad
+   de inyección ampliada—, antes de la RCA; y (ii) <strong>abordar conjuntamente la estrategia
+   regulatoria del vehículo</strong> ante CNE y CEN. GR aporta el equipo de regulación; SQM aporta la
+   titularidad y el consumo.</p>
+  </div>
+
+  <div class="callout warn">
+   <h3>El punto de quiebre a anticipar</h3>
+   <p>SQM presentó su proyecto al SEA como abastecimiento de sus instalaciones, y sus proyecciones
+   2026–2027 no muestran crecimiento. Si el reglamento de autoconsumo efectivamente les impide usar
+   la figura sobre consumo existente, <strong>SQM tiene un problema con o sin Grenergy</strong>, y su
+   proyecto pierde buena parte de su justificación económica.</p>
+   <p>Ese es el momento en que la conversación cambia de «nos quieren comprar el proyecto» a «nos
+   traen la salida». Conviene llegar con la respuesta preparada —la ruta SGC, el rediseño y el PPA—
+   y <strong>reservarla para cuando ellos planteen la dificultad, no antes</strong>.</p>
+  </div>
+ </div>
+</section>
+
+<section id="riesgos">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">09 · Riesgos</span>
+   <h2>Lo que se añade a la matriz anterior</h2>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Riesgos añadidos a la matriz del documento anterior</caption>
+<thead><tr>
+<th>Riesgo</th>
+<th>Exposición</th>
+<th>Mitigante</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>El SGC exige mismo propietario y el mandato no resiste el escrutinio regulatorio</strong></td>
+<td><span class='chip risk'>existencial</span> para la compra del activo</td>
+<td>Plan B: no comprar; competir por el PPA desde cartera. Resolver L1–L2 antes de cualquier oferta</td>
+</tr>
+<tr>
+<td><strong>El reconocimiento de potencia del BESS en un SGC es menor al supuesto</strong></td>
+<td><span class='chip risk'>alto</span> 22,0 USD/MWh</td>
+<td>El escenario conservador ya asume 6,5 USD/kW-mes. Consulta informal al CEN antes de ofertar</td>
+</tr>
+<tr>
+<td><strong>El reglamento de autoconsumo bloquea también al SGC</strong></td>
+<td><span class='chip'>medio</span> elimina E1 y E2</td>
+<td>E3 sigue siendo ofertable a 72 con 28% de ahorro</td>
+</tr>
+<tr>
+<td><strong>SQM no acepta rediseñar y exige el proyecto tal como está</strong></td>
+<td><span class='chip risk'>alto</span> D0 no es ofertable</td>
+<td>Presentar el benchmark de mercado y el hallazgo de potencia. Si aun así no cede, retirarse de la compra</td>
+</tr>
+<tr>
+<td><strong>La adenda se presenta sin flexibilidad de diseño</strong></td>
+<td><span class='chip'>medio</span> obliga a modificar la RCA después</td>
+<td>Pedido explícito en la próxima reunión, por escrito</td>
+</tr>
+</tbody></table></div>
+ </div>
+</section>
+
+<section id="metodo">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">10 · Anexo</span>
+   <h2>Cómo se implementan los escenarios</h2>
+  </div>
+  <div class="body-copy">
+   <p>Los escenarios E1, E2 y E3 se calculan con el mismo modelo horario del documento anterior. Las
+   diferencias se implementan así:</p>
+   <p><strong>E1 · autoconsumo puro:</strong> sin capacidad de inyección, sin participación en el
+   mercado de potencia ni en servicios complementarios, sin carga del BESS desde la red. El excedente
+   se vierte. Es la lectura literal de la definición de «cliente con autoconsumo» del DS 32, que
+   excluye inyectar excedentes al sistema.</p>
+   <p><strong>E2 · SGC coordinado:</strong> inyección hasta el límite del POI, participación en
+   potencia y SSCC, peajes sólo sobre la energía importada.</p>
+   <p><strong>E3 · PPA tradicional:</strong> idéntico a E2, salvo que la energía servida en sitio
+   <em>también</em> paga peajes (18 USD/MWh), porque no existe figura que permita netear.</p>
+  </div>
+  <div class="callout warn">
+   <h3>El supuesto que más pesa</h3>
+   <p>La atribución de ingresos por potencia y SSCC a E2 y E3, y su exclusión de E1, explica
+   <strong>25,6 de los 48,1 USD/MWh</strong> de diferencia entre E1 y E2. Ese supuesto es
+   precisamente la pregunta <strong>L4–L5</strong> para Cata, y es la razón por la que el memo legal
+   está en el camino crítico y <strong>no puede resolverse con más modelación</strong>.</p>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Documento de trabajo interno de Grenergy. Complementa
+  <a href="propuesta-sqm-ppa-pfv-bess.html">la propuesta SQM Nueva Victoria</a>.
+  Contiene información de SQM sujeta al NDA suscrito entre las partes.</p>
+  <p class="mono">Versión 1.0 · septiembre de 2026 · cifras indicativas de modelación propia, no
+  constituyen oferta vinculante</p>
+ </div>
+</footer>
+
+<button class="themebtn" id="themebtn" type="button" aria-label="Cambiar tema">tema</button>
+<script>
+(function(){
+  var b=document.getElementById("themebtn"), r=document.documentElement;
+  try{ var s=localStorage.getItem("sqm-theme"); if(s) r.setAttribute("data-theme",s); }catch(e){}
+  b.addEventListener("click",function(){
+    var cur=r.getAttribute("data-theme");
+    var next = cur==="dark" ? "light" : (cur==="light" ? "dark"
+      : (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark"));
+    r.setAttribute("data-theme",next);
+    try{ localStorage.setItem("sqm-theme",next); }catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
