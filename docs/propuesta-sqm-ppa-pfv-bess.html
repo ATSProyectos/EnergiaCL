@@ -1,0 +1,1779 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PPA SQM Nueva Victoria</title>
+<meta name="description" content="Propuesta Grenergy a SQM: adquisición del PFV+BESS de Nueva Victoria y PPA de suministro, con el análisis de LCOE de dos alternativas de estructuración.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --paper:#F3F4F1; --surface:#FFFFFF; --surface-2:#EAECE7;
+  --ink:#131F23; --ink-2:#3A4A4E; --muted:#65767A;
+  --line:#D6DAD4; --line-strong:#B9C0B9;
+  --accent:#0E6B64; --accent-soft:#DDE9E6; --accent-ink:#0A4F4A;
+  --warn:#A2601B; --warn-soft:#F0E4D3;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --shadow:0 1px 2px rgba(19,31,35,.06), 0 8px 24px -18px rgba(19,31,35,.35);
+  --maxw:1120px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1518; --surface:#131E22; --surface-2:#1A272B;
+    --ink:#E6EBE7; --ink-2:#B6C3C1; --muted:#8A9B9A;
+    --line:#26363A; --line-strong:#3A4E52;
+    --accent:#4BAEA4; --accent-soft:#16302F; --accent-ink:#8FD3CA;
+    --warn:#D79A4E; --warn-soft:#2E2415;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1518; --surface:#131E22; --surface-2:#1A272B;
+  --ink:#E6EBE7; --ink-2:#B6C3C1; --muted:#8A9B9A;
+  --line:#26363A; --line-strong:#3A4E52;
+  --accent:#4BAEA4; --accent-soft:#16302F; --accent-ink:#8FD3CA;
+  --warn:#D79A4E; --warn-soft:#2E2415;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -18px rgba(0,0,0,.9);
+}
+body{background:var(--paper);color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;margin:0;}
+*,*::before,*::after{box-sizing:border-box;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+@media (max-width:640px){.wrap{padding:0 16px;}}
+h1,h2,h3{font-family:Spectral,Georgia,"Times New Roman",serif;font-weight:500;text-wrap:balance;margin:0;line-height:1.18;}
+h1{font-size:clamp(1.9rem,4.4vw,2.9rem);letter-spacing:-.015em;}
+h2{font-size:clamp(1.38rem,2.5vw,1.8rem);letter-spacing:-.01em;}
+h3{font-size:1.06rem;font-weight:600;letter-spacing:-.005em;}
+p{margin:0;}
+a{color:var(--accent-ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;}
+a:hover{text-decoration-thickness:2px;}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+.eyebrow{font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.685rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;}
+
+header.masthead{border-bottom:1px solid var(--line);background:var(--surface);padding:clamp(34px,6vw,60px) 0 0;}
+.masthead .wrap{display:flex;flex-direction:column;gap:20px;}
+.mast-top{display:flex;flex-direction:column;gap:13px;}
+.mast-top h1{max-width:20ch;}
+.mast-lede{font-size:1.04rem;color:var(--ink-2);max-width:66ch;}
+.mast-meta{display:flex;flex-wrap:wrap;gap:0;border-top:1px solid var(--line);margin-top:6px;}
+.mast-meta div{flex:1 1 200px;padding:14px 22px 16px 0;display:flex;flex-direction:column;gap:3px;}
+.mast-meta dt{font-family:"IBM Plex Mono",monospace;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.mast-meta dd{margin:0;font-size:.88rem;color:var(--ink-2);}
+
+.figures{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:4px;}
+@media (max-width:820px){.figures{grid-template-columns:repeat(2,1fr);}}
+.fig{padding:22px 20px 26px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:5px;}
+.fig:last-child{border-right:0;}
+@media (max-width:820px){.fig:nth-child(2n){border-right:0;}.fig:nth-child(-n+2){border-bottom:1px solid var(--line);}}
+.fig .num{font-family:Spectral,serif;font-size:2.2rem;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.fig .num small{font-size:.9rem;font-family:"IBM Plex Sans",sans-serif;color:var(--muted);margin-left:3px;letter-spacing:0;}
+.fig .cap{font-size:.82rem;color:var(--muted);line-height:1.4;}
+.fig.good .num{color:var(--accent);}
+.fig.bad .num{color:var(--warn);}
+
+section{padding:clamp(42px,5.5vw,68px) 0;border-bottom:1px solid var(--line);}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;max-width:74ch;}
+.sec-head p{color:var(--ink-2);}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.grid-2 > *{min-width:0;}
+@media (max-width:800px){.grid-2{grid-template-columns:1fr;gap:24px;}}
+.body-copy{display:flex;flex-direction:column;gap:16px;max-width:74ch;}
+.body-copy p{color:var(--ink-2);font-size:.95rem;}
+.body-copy strong{color:var(--ink);font-weight:600;}
+
+.callout{background:var(--accent-soft);border-left:3px solid var(--accent);padding:19px 22px;
+  display:flex;flex-direction:column;gap:9px;margin-top:26px;}
+.callout.warn{background:var(--warn-soft);border-left-color:var(--warn);}
+.callout h3{font-family:"IBM Plex Sans",sans-serif;font-size:.8rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--accent-ink);}
+.callout.warn h3{color:var(--warn);}
+.callout p{font-size:.9rem;color:var(--ink-2);}
+
+.tablewrap{overflow-x:auto;margin-top:30px;}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.855rem;}
+caption{text-align:left;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-bottom:11px;}
+th{text-align:left;font-weight:600;font-size:.71rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--muted);padding:0 14px 9px 0;border-bottom:1px solid var(--line-strong);vertical-align:bottom;}
+td{padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);}
+td:first-child,th:first-child{padding-left:0;}
+td.num,th.num{text-align:right;padding-right:18px;font-variant-numeric:tabular-nums;}
+td.num{font-family:"IBM Plex Mono",monospace;color:var(--ink);}
+tr.hi td{background:var(--accent-soft);}
+tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent);padding-left:11px;}
+tr.dim td{color:var(--muted);}
+.chip{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:.66rem;padding:2px 7px;
+  border:1px solid var(--line-strong);color:var(--muted);white-space:nowrap;}
+.chip.good{border-color:var(--accent);color:var(--accent-ink);background:var(--accent-soft);}
+.chip.risk{border-color:var(--warn);color:var(--warn);background:var(--warn-soft);}
+
+ul.plain{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px;}
+ul.plain li{display:grid;grid-template-columns:26px 1fr;gap:12px;font-size:.92rem;color:var(--ink-2);}
+ul.plain li .n{font-family:"IBM Plex Mono",monospace;font-size:.72rem;font-weight:600;color:var(--accent);padding-top:3px;}
+ul.plain li strong{color:var(--ink);font-weight:600;}
+
+.flow{display:flex;flex-direction:column;gap:0;margin-top:26px;}
+.flow-step{border:1px solid var(--line);background:var(--surface);padding:17px 20px;
+  display:grid;grid-template-columns:76px 1fr;gap:16px;align-items:start;}
+.flow-step + .flow-step{border-top:0;}
+.flow-step .ph{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);padding-top:2px;}
+.flow-step p{font-size:.9rem;color:var(--ink-2);}
+.flow-step strong{color:var(--ink);font-weight:600;}
+
+figure{margin:30px 0 0;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow);}
+figure .chartwrap{overflow-x:auto;padding:16px 18px 6px;}
+figcaption{font-size:.82rem;color:var(--muted);padding:0 18px 16px;line-height:1.5;border-top:1px solid var(--line);padding-top:13px;margin-top:6px;}
+figcaption b{color:var(--ink-2);font-weight:600;}
+svg.chart{display:block;width:100%;min-width:640px;height:auto;font-family:"IBM Plex Sans",sans-serif;}
+svg.chart .grid{stroke:var(--line);stroke-width:1;}
+svg.chart .ref{stroke:var(--line-strong);stroke-width:1.5;stroke-dasharray:4 4;}
+svg.chart .band{fill:var(--accent-soft);}
+svg.chart .tick{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums;}
+svg.chart .axis{font-size:11.5px;fill:var(--muted);}
+svg.chart .rowlbl{font-size:12px;fill:var(--ink-2);}
+svg.chart .dlbl{font-size:12px;font-weight:600;font-variant-numeric:tabular-nums;}
+svg.chart .lbl-ann{font-size:11px;fill:var(--muted);font-variant-numeric:tabular-nums;}
+svg.chart .mid{text-anchor:middle;}
+svg.chart .end{text-anchor:end;}
+svg.chart .line{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round;}
+svg.chart .fill{fill-opacity:.14;stroke:none;}
+svg.chart .bar{stroke:var(--surface);stroke-width:2;}
+svg.chart .rng{stroke-width:2.5;stroke-linecap:round;}
+svg.chart .dot{stroke:var(--surface);stroke-width:2;}
+svg.chart .dot-base{stroke:var(--surface);stroke-width:2.5;}
+svg.chart .halo{fill:none;stroke:var(--accent);stroke-width:2;}
+svg.chart .hit{fill:transparent;}
+svg.chart .neutral{stroke:var(--muted);}
+svg.chart circle.neutral{fill:var(--muted);}
+svg.chart .s1{stroke:var(--s1);}   svg.chart text.s1{fill:var(--s1);stroke:none;}
+svg.chart .s2{stroke:var(--s2);}   svg.chart text.s2{fill:var(--s2);stroke:none;}
+svg.chart .s3{stroke:var(--s3);}   svg.chart text.s3{fill:var(--s3);stroke:none;}
+svg.chart circle.s1,svg.chart rect.s1,svg.chart polygon.s1{fill:var(--s1);}
+svg.chart circle.s2,svg.chart rect.s2,svg.chart polygon.s2{fill:var(--s2);}
+svg.chart circle.s3,svg.chart rect.s3,svg.chart polygon.s3{fill:var(--s3);}
+svg.chart polygon.fill.s1{fill:var(--s1);stroke:none;}
+
+.refs{display:flex;flex-direction:column;}
+.refgroup{border-top:1px solid var(--line);padding:18px 0 20px;}
+.refgroup h3{font-family:"IBM Plex Sans",sans-serif;font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:12px;font-weight:600;}
+.refgroup ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:9px;}
+.refgroup li{font-size:.84rem;color:var(--ink-2);line-height:1.5;}
+footer{padding:32px 0 50px;font-size:.8rem;color:var(--muted);}
+footer .wrap{display:flex;flex-direction:column;gap:9px;}
+.themebtn{position:fixed;right:16px;bottom:16px;z-index:9;background:var(--surface);
+  border:1px solid var(--line-strong);color:var(--ink-2);font-family:"IBM Plex Mono",monospace;
+  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:9px 13px;cursor:pointer;
+  box-shadow:var(--shadow);}
+.themebtn:hover{background:var(--surface-2);}
+@media print{.themebtn{display:none;}section{break-inside:avoid;}}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+ <div class="wrap">
+  <div class="mast-top">
+   <span class="eyebrow">Grenergy · Desarrollo Chile + GR Power · documento de trabajo</span>
+   <h1>Adquisición del PFV&nbsp;+&nbsp;BESS de SQM en Nueva Victoria y PPA de suministro</h1>
+   <p class="mast-lede">Dos alternativas de estructuración para la contraparte, con el análisis
+   de LCOE que las sustenta. La conclusión central: el proyecto tal como está diseñado cuesta
+   ≈&nbsp;110&nbsp;USD/MWh y no compite; redimensionado y coordinado con el sistema baja a
+   ≈&nbsp;46&nbsp;USD/MWh, y esa diferencia es la que financia la operación.</p>
+  </div>
+  <dl class="mast-meta">
+   <div><dt>Contraparte</dt><dd>SQM — Nitratos Yodo, Nueva Victoria</dd></div>
+   <div><dt>Consumo contratable</dt><dd>166.170 MWh/año · 19,0 MW plano 24/7</dd></div>
+   <div><dt>Activo</dt><dd>76,5 MWp + 320 MWh · US$ 111 M · RCA est. nov-2026</dd></div>
+   <div><dt>Versión</dt><dd>1.0 · septiembre de 2026</dd></div>
+  </dl>
+ </div>
+ <div class="wrap">
+  <div class="figures">
+   <div class="fig bad"><span class="num">110<small>USD/MWh</small></span>
+     <span class="cap">Costo de servir con el diseño actual: estructura fija, BESS de 16&nbsp;h, sin inyección</span></div>
+   <div class="fig good"><span class="num">46<small>USD/MWh</small></span>
+     <span class="cap">Costo de servir con la configuración optimizada: seguidor, BESS de 5&nbsp;h, coordinado</span></div>
+   <div class="fig"><span class="num">62–68<small>USD/MWh</small></span>
+     <span class="cap">Precio PPA recomendado para ofertar a SQM (Alternativa&nbsp;2)</span></div>
+   <div class="fig good"><span class="num">37<small>M USD</small></span>
+     <span class="cap">VAN a 15 años con PPA de 70 USD/MWh: la bolsa para pagar el activo</span></div>
+  </div>
+ </div>
+</header>
+
+<main>
+
+<section id="tesis">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">01 · La tesis</span>
+   <h2>Tres hallazgos que conviene fijar antes de sentarse con SQM</h2>
+  </div>
+  <ul class="plain">
+   <li><span class="n">01</span><span><strong>El proyecto, como está diseñado, destruye valor.</strong>
+     Con estructura fija, BESS de 320 MWh/20 MW (16 horas) y operación en autoconsumo puro sin
+     inyección, servir el bloque 24/7 de SQM cuesta <strong>≈ 110 USD/MWh</strong> — por encima
+     de lo que SQM paga hoy como cliente libre (referencia de mercado 100–107 USD/MWh). Tres fugas
+     simultáneas: 38,3 GWh/año vertidos por no tener derecho de inyección, cero ingresos de potencia
+     y servicios complementarios por no estar coordinado, y un BESS que cicla 173 veces al año.</span></li>
+   <li><span class="n">02</span><span><strong>Tres decisiones de diseño lo transforman.</strong>
+     Coordinar con el CEN en lugar de operar aislado vale <strong>−43,6 USD/MWh</strong>; redimensionar
+     el almacenamiento de 16 a 4–5 horas vale <strong>−31 USD/MWh</strong>; pasar a seguidor de un eje
+     vale <strong>−5 a −6 USD/MWh</strong>. Juntas llevan el costo a ≈ 46 USD/MWh en escenario base
+     y ≈ 54 USD/MWh en escenario conservador.</span></li>
+   <li><span class="n">03</span><span><strong>La batería de 16 horas es el error de diseño más caro.</strong>
+     A partir de la sexta hora, cada hora adicional de almacenamiento <em>añade</em> costo al bloque
+     completo. Las horas 11 a 16 destruyen ≈ US$ 3,4 M al año. Y ningún comparable del mercado chileno
+     — Sonnedix/Copec, Atlas/COPEC, BHP/Sungrow — supera las 6 horas.</span></li>
+  </ul>
+  <div class="callout">
+   <h3>Recomendación</h3>
+   <p>Llevar la <strong>Alternativa 2</strong> (PPA híbrido optimizado, 62–68 USD/MWh) como oferta
+   principal y la <strong>Alternativa 1</strong> (PPA 24/7 con BESS de 16 h, 85–92 USD/MWh) como
+   opción de contraste, presentada con su sobrecosto explícito para que SQM vea el precio de la
+   autonomía física. La Alternativa 2 es la única que genera bolsa suficiente para pagar el activo
+   de desarrollo <em>y</em> dejar retorno incremental a GR.</p>
+  </div>
+ </div>
+</section>
+
+<section id="partida">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">02 · Punto de partida</span>
+   <h2>Qué compramos y qué abastecemos</h2>
+   <p>El proyecto está en evaluación ante el SEA con PAC cerrada y primera adenda en preparación.
+   El consumo a abastecer es un proceso continuo —lixiviación, yodo y yoduro— esencialmente plano,
+   el perfil ideal para un PPA de bloque y el peor posible para un solar sin almacenamiento.</p>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>El proyecto de SQM</caption>
+<thead><tr>
+<th>Elemento</th>
+<th>Dato</th>
+<th>Fuente</th>
+</tr></thead><tbody>
+<tr>
+<td>Nombre</td>
+<td>«Parque Fotovoltaico y Línea de Transmisión para el abastecimiento de instalaciones SQM en la Región de Tarapacá»</td>
+<td>SEIA</td>
+</tr>
+<tr>
+<td>Ubicación</td>
+<td>Pozo Almonte, provincia del Tamarugal, Región de Tarapacá</td>
+<td>SEIA</td>
+</tr>
+<tr>
+<td>Potencia FV</td>
+<td>76,5 MWp</td>
+<td>DIA / hilo</td>
+</tr>
+<tr>
+<td>Generación declarada</td>
+<td>170 GWh el primer año de operación</td>
+<td>DIA / hilo</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>320 MWh — «20 MW durante 16 horas continuas»</td>
+<td>DIA / hilo</td>
+</tr>
+<tr>
+<td>Transmisión</td>
+<td>LT 66 kV de ≈ 6,6 km + SE seccionadora sobre línea existente</td>
+<td>SEIA</td>
+</tr>
+<tr>
+<td>Inversión declarada</td>
+<td>US$ 111 M</td>
+<td>SEIA / prensa</td>
+</tr>
+<tr>
+<td>Estado ambiental</td>
+<td>PAC cerrada (6-mar a 6-abr-2026); primera adenda en preparación; RCA estimada para noviembre</td>
+<td>Hilo, C. Pavesi 3-jul-2026</td>
+</tr>
+</tbody></table></div>
+
+  <div class="tablewrap"><table class="">
+<caption>Consumo proyectado — Tap Off Nueva Victoria 110 kV, promedio 2026–2040</caption>
+<thead><tr>
+<th>Proceso / planta</th>
+<th class="num">MWh/año</th>
+</tr></thead><tbody>
+<tr>
+<td>Lixiviación NV</td>
+<td class="num">78.289</td>
+</tr>
+<tr>
+<td>Recursos Hídricos</td>
+<td class="num">39.148</td>
+</tr>
+<tr>
+<td>Yoduro NV</td>
+<td class="num">22.848</td>
+</tr>
+<tr>
+<td>Pozas SV</td>
+<td class="num">20.840</td>
+</tr>
+<tr>
+<td>Yodo NV</td>
+<td class="num">5.046</td>
+</tr>
+<tr>
+<td>Iris / Porteos TEA</td>
+<td class="num">0</td>
+</tr>
+<tr class="hi">
+<td><strong>Total</strong></td>
+<td class="num"><strong>166.170</strong></td>
+</tr>
+<tr class="hi">
+<td><strong>Potencia horaria 24/7 equivalente</strong></td>
+<td class="num"><strong>19,0 MW</strong></td>
+</tr>
+</tbody></table></div>
+
+  <div class="tablewrap"><table class="">
+<caption>Medidores 2026 — TPVITORA_220_J1_SQM, retiro de energía activa horaria</caption>
+<thead><tr>
+<th>Mes</th>
+<th class="num">Promedio MW</th>
+<th class="num">Máximo MW</th>
+<th class="num">Mínimo MW</th>
+</tr></thead><tbody>
+<tr>
+<td>Enero</td>
+<td class="num">12,8</td>
+<td class="num">14,3</td>
+<td class="num">11,3</td>
+</tr>
+<tr>
+<td>Febrero</td>
+<td class="num">10,7</td>
+<td class="num">14,1</td>
+<td class="num">0</td>
+</tr>
+<tr>
+<td>Marzo</td>
+<td class="num">12,6</td>
+<td class="num">14,6</td>
+<td class="num">6,8</td>
+</tr>
+<tr>
+<td>Abril</td>
+<td class="num">13,1</td>
+<td class="num">22,2</td>
+<td class="num">10,0</td>
+</tr>
+<tr class="hi">
+<td><strong>Mayo</strong></td>
+<td class="num"><strong>19,6</strong></td>
+<td class="num">24,9</td>
+<td class="num">13,8</td>
+</tr>
+<tr>
+<td>Junio</td>
+<td class="num">20,2</td>
+<td class="num">25,6</td>
+<td class="num">16,9</td>
+</tr>
+<tr class="hi">
+<td>Julio</td>
+<td class="num">20,9</td>
+<td class="num"><strong>31,3</strong></td>
+<td class="num">15,7</td>
+</tr>
+<tr>
+<td>Agosto</td>
+<td class="num">19,7</td>
+<td class="num">26,3</td>
+<td class="num">15,6</td>
+</tr>
+<tr>
+<td>Septiembre</td>
+<td class="num">20,1</td>
+<td class="num">26,9</td>
+<td class="num">5,2</td>
+</tr>
+</tbody></table></div>
+
+  <div class="callout warn">
+   <h3>Dos hechos que condicionan el dimensionamiento</h3>
+   <p><strong>Hay un escalón estructural entre abril y mayo de 2026</strong>, de ≈ 13 a ≈ 19,6 MW
+   promedio, que se sostiene hasta septiembre y es consistente con la proyección de 19,0 MW plano.
+   Y <strong>el máximo horario de 31,3 MW registrado en julio excede la potencia de descarga de
+   20 MW del BESS diseñado</strong>: en esas horas el proyecto no puede sostener el consumo aun
+   con la batería llena.</p>
+  </div>
+ </div>
+</section>
+
+<section id="recurso">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">03 · Validación independiente</span>
+   <h2>El recurso solar, y la primera cifra que hay que cerrar</h2>
+   <p>Se modeló la generación horaria del sitio (lat −20,70 / lon −69,78, ≈ 1.000 msnm) con geometría
+   solar y modelo de cielo claro, sin calibrar contra los datos de SQM.</p>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>Generación modelada · 76,5 MWp</caption>
+<thead><tr>
+<th>Configuración</th>
+<th class="num">GHI kWh/m²</th>
+<th class="num">Generación anual</th>
+<th class="num">Rendimiento kWh/kWp</th>
+</tr></thead><tbody>
+<tr>
+<td>Estructura fija 20° norte, DC/AC 1,20</td>
+<td class="num">2.689</td>
+<td class="num">169,9 GWh</td>
+<td class="num">2.220</td>
+</tr>
+<tr class="hi">
+<td><strong>Seguidor 1 eje N-S, DC/AC 1,30</strong></td>
+<td class="num">2.689</td>
+<td class="num"><strong>207,1 GWh</strong></td>
+<td class="num">2.707</td>
+</tr>
+</tbody></table></div>
+
+  <div class="body-copy" style="margin-top:22px;">
+   <p>El modelo <strong>reproduce con exactitud los 170 GWh declarados en la DIA</strong>, lo que
+   confirma que el diseño de SQM asume estructura fija. Pasar a seguidor de un eje entrega
+   <strong>+37 GWh/año (+22%)</strong> por un sobrecosto de ≈ US$ 5,4 M en el campo FV — la mejor
+   relación costo-beneficio de todo el rediseño.</p>
+  </div>
+
+  <div class="callout warn">
+   <h3>Discrepancia a resolver antes de fijar precio</h3>
+   <p>La simulación interna previa de Grenergy («Generación Estimada PV+BESS – Industria TEA»)
+   asume <strong>220 GWh/año</strong>, un 6% por encima de nuestro caso con seguidor y un 29% sobre
+   la DIA. También declara <strong>POI de 17 MW</strong> y una «potencia de retiro del BESS de 70 MW»
+   que no cuadra con los 20 MW × 16 h de la DIA. Hay que cerrar tres cifras: <strong>rendimiento
+   específico, capacidad del punto de inyección y potencia nominal del BESS</strong>. Una diferencia
+   de 50 GWh/año equivale a ≈ US$ 3,5 M/año de energía.</p>
+  </div>
+ </div>
+</section>
+
+<section id="estructura">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">04 · La operación</span>
+   <h2>Estructura de la transacción</h2>
+  </div>
+  <div class="flow">
+   <div class="flow-step"><span class="ph">Fase 1</span>
+     <p><strong>SQM mantiene la titularidad</strong> y lleva la DIA hasta RCA firme (nov-2026).
+     GR ejecuta due diligence técnico-legal sobre el expediente.</p></div>
+   <div class="flow-step"><span class="ph">Fase 2</span>
+     <p><strong>Compraventa del vehículo</strong> — share deal sobre la SPV titular de la RCA,
+     servidumbres, terrenos y avance de conexión. Precio = componente fija al cierre + earn-out
+     contra hitos.</p></div>
+   <div class="flow-step"><span class="ph">Fase 3</span>
+     <p><strong>GR rediseña</strong> (seguidores, BESS redimensionado, POI ampliado), tramita la
+     modificación de RCA, construye, opera y es propietario del activo.</p></div>
+   <div class="flow-step"><span class="ph">Fase 4</span>
+     <p><strong>PPA de suministro GR → SQM</strong> en el Tap Off Nueva Victoria 110 kV: bloque 24/7,
+     15–20 años, precio fijo en USD indexado. GR Power respalda el déficit desde cartera
+     (Oasis de Atacama / Elena).</p></div>
+  </div>
+  <div class="grid-2" style="margin-top:30px;">
+   <div class="body-copy">
+    <h3>Por qué le sirve a SQM</h3>
+    <p>Libera ≈ US$ 111 M de capital que no es <em>core</em> para una minera no metálica, traslada el
+    riesgo de construcción, operación, degradación del BESS y mercado eléctrico a un operador
+    especializado, y fija precio de energía por 15–20 años muy por debajo de su costo actual.
+    Conserva el beneficio ambiental del proyecto que originó.</p>
+   </div>
+   <div class="body-copy">
+    <h3>Por qué le sirve a GR</h3>
+    <p>Entra a un activo con RCA en etapa avanzada —el permiso más lento de la cadena chilena— con
+    un offtaker <em>investment grade</em> ya identificado y punto de conexión definido, y suma un nodo
+    en Tarapacá que complementa geográficamente la plataforma de Antofagasta.</p>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="alternativas">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">05 · Las dos alternativas</span>
+   <h2>Autonomía física frente a optimización de sistema</h2>
+   <p>La Alternativa 1 es el concepto original de SQM ejecutado por GR. La Alternativa 2 dimensiona
+   el almacenamiento por valor en lugar de por autonomía, y cierra el bloque 24/7 con la cartera de
+   Grenergy Power.</p>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>Comparación de las dos alternativas</caption>
+<thead><tr>
+<th></th>
+<th>Alternativa 1 — PPA 24/7 con BESS de 16 h</th>
+<th>Alternativa 2 — PPA híbrido optimizado</th>
+</tr></thead><tbody>
+<tr>
+<td>Configuración</td>
+<td>76,5 MWp (seguidor) + 320 MWh / 20 MW</td>
+<td><strong>76,5 MWp (seguidor) + 150 MWh / 30 MW</strong></td>
+</tr>
+<tr>
+<td>CAPEX</td>
+<td>US$ 117,0 M</td>
+<td><strong>US$ 92,7 M</strong></td>
+</tr>
+<tr>
+<td>Generación</td>
+<td>207 GWh/año</td>
+<td>207 GWh/año</td>
+</tr>
+<tr>
+<td>Autosuficiencia física</td>
+<td>79,9%</td>
+<td>61,5%</td>
+</tr>
+<tr>
+<td>Importación desde GR Power</td>
+<td>33,5 GWh/año</td>
+<td>64,0 GWh/año a ≈ 54 USD/MWh</td>
+</tr>
+<tr>
+<td>Exportación de excedentes</td>
+<td>64,2 GWh/año</td>
+<td>95,1 GWh/año a ≈ 51 USD/MWh</td>
+</tr>
+<tr>
+<td>Ciclos equivalentes del BESS</td>
+<td>242/año</td>
+<td><strong>496/año</strong></td>
+</tr>
+<tr>
+<td>Costo de servir · conservador</td>
+<td>78,5 USD/MWh</td>
+<td><strong>54,4 USD/MWh</strong></td>
+</tr>
+<tr>
+<td>Costo de servir · base</td>
+<td>74,1 USD/MWh</td>
+<td><strong>45,6 USD/MWh</strong></td>
+</tr>
+<tr class="hi">
+<td><strong>Precio PPA a ofertar</strong></td>
+<td><strong>85 – 92 USD/MWh</strong></td>
+<td><strong>62 – 68 USD/MWh</strong></td>
+</tr>
+<tr>
+<td>Ahorro para SQM vs. ≈100 USD/MWh</td>
+<td>8 – 15%</td>
+<td><strong>32 – 38%</strong></td>
+</tr>
+<tr>
+<td>Margen GR a 70 USD/MWh</td>
+<td>−0,7 M USD/año</td>
+<td><strong>+4,1 M USD/año</strong></td>
+</tr>
+<tr>
+<td>Tramitación incremental</td>
+<td>—</td>
+<td>12 – 18 meses (PGP con el CEN)</td>
+</tr>
+</tbody></table></div>
+
+  <div class="callout">
+   <h3>El punto clave de la Alternativa 2</h3>
+   <p>La autosuficiencia <em>física</em> baja de 80% a 62%, pero el suministro sigue siendo
+   <strong>100% renovable y 24/7 en términos contractuales</strong>, porque el respaldo viene de la
+   cartera renovable de Grenergy Power. SQM no pierde el atributo verde; pierde solo la autonomía
+   física — y por esa autonomía estaría pagando ≈ 28 USD/MWh adicionales, unos
+   <strong>US$ 4,7 M al año</strong>.</p>
+  </div>
+
+  <figure>
+   <div class="chartwrap"><svg viewBox="0 0 760 384" role="img" class="chart" aria-label="Costo de servir por configuracion y escenario">
+<title>Costo de servir el bloque 24/7 por configuración, rango entre escenario conservador y optimista</title>
+<circle cx="301" cy="12" r="5" class="dot-base neutral"/>
+<text x="312" y="16" class="lbl-ann">escenario base</text>
+<line x1="414" y1="12" x2="438" y2="12" class="rng neutral"/>
+<text x="446" y="16" class="lbl-ann">rango conservador–optimista</text>
+<line x1="338.4" y1="62" x2="338.4" y2="346" class="grid"/>
+<text x="338.4" y="54" class="tick mid">40</text>
+<line x1="423.2" y1="62" x2="423.2" y2="346" class="grid"/>
+<text x="423.2" y="54" class="tick mid">60</text>
+<line x1="508.0" y1="62" x2="508.0" y2="346" class="grid"/>
+<text x="508.0" y="54" class="tick mid">80</text>
+<line x1="592.7" y1="62" x2="592.7" y2="346" class="grid"/>
+<text x="592.7" y="54" class="tick mid">100</text>
+<line x1="677.5" y1="62" x2="677.5" y2="346" class="grid"/>
+<text x="677.5" y="54" class="tick mid">120</text>
+<text x="296" y="36" class="axis">costo de servir el bloque 24/7 · USD/MWh</text>
+<line x1="592.7" y1="62" x2="592.7" y2="346" class="ref"/>
+<text x="592.7" y="364" class="lbl-ann mid">≈100 · cliente libre</text>
+<text x="280" y="92.0" class="rowlbl end">Diseño SQM · fija, 320 MWh/20 MW, aislado</text>
+<line x1="626.7" y1="88.0" x2="642.3" y2="88.0" class="rng s1"><title>Diseño SQM · fija, 320 MWh/20 MW, aislado — conservador 111.7 · base 109.7 · optimista 108.0 USD/MWh</title></line>
+<circle cx="626.7" cy="88.0" r="3.5" class="dot s1"/>
+<circle cx="642.3" cy="88.0" r="3.5" class="dot s1"/>
+<circle cx="633.9" cy="88.0" r="6.5" class="dot-base s1"><title>Diseño SQM · fija, 320 MWh/20 MW, aislado — base 109.7 USD/MWh</title></circle>
+<text x="655.3" y="92.0" class="dlbl s1">109.7</text>
+<text x="280" y="132.0" class="rowlbl end">Alt. 1 · seguidor, 320 MWh/20 MW (16 h)</text>
+<line x1="480.0" y1="128.0" x2="501.6" y2="128.0" class="rng s1"><title>Alt. 1 · seguidor, 320 MWh/20 MW (16 h) — conservador 78.5 · base 74.1 · optimista 73.4 USD/MWh</title></line>
+<circle cx="480.0" cy="128.0" r="3.5" class="dot s1"/>
+<circle cx="501.6" cy="128.0" r="3.5" class="dot s1"/>
+<circle cx="482.9" cy="128.0" r="6.5" class="dot-base s1"><title>Alt. 1 · seguidor, 320 MWh/20 MW (16 h) — base 74.1 USD/MWh</title></circle>
+<text x="514.6" y="132.0" class="dlbl s1">74.1</text>
+<text x="280" y="172.0" class="rowlbl end">Alt. 2 · seguidor, 240 MWh/20 MW (8 h)</text>
+<line x1="344.3" y1="168.0" x2="430.0" y2="168.0" class="rng s3"><title>Alt. 2 · seguidor, 240 MWh/20 MW (8 h) — conservador 61.6 · base 50.5 · optimista 41.4 USD/MWh</title></line>
+<circle cx="344.3" cy="168.0" r="3.5" class="dot s3"/>
+<circle cx="430.0" cy="168.0" r="3.5" class="dot s3"/>
+<circle cx="382.9" cy="168.0" r="6.5" class="dot-base s3"><title>Alt. 2 · seguidor, 240 MWh/20 MW (8 h) — base 50.5 USD/MWh</title></circle>
+<text x="443.0" y="172.0" class="dlbl s3">50.5</text>
+<text x="280" y="212.0" class="rowlbl end">Alt. 2 · seguidor, 180 MWh/30 MW (6 h)</text>
+<line x1="339.2" y1="208.0" x2="408.8" y2="208.0" class="rng s3"><title>Alt. 2 · seguidor, 180 MWh/30 MW (6 h) — conservador 56.6 · base 47.1 · optimista 40.2 USD/MWh</title></line>
+<circle cx="339.2" cy="208.0" r="3.5" class="dot s3"/>
+<circle cx="408.8" cy="208.0" r="3.5" class="dot s3"/>
+<circle cx="368.5" cy="208.0" r="6.5" class="dot-base s3"><title>Alt. 2 · seguidor, 180 MWh/30 MW (6 h) — base 47.1 USD/MWh</title></circle>
+<text x="421.8" y="212.0" class="dlbl s3">47.1</text>
+<text x="280" y="252.0" class="rowlbl end">Alt. 2 · seguidor, 150 MWh/30 MW (5 h)</text>
+<line x1="340.1" y1="248.0" x2="399.4" y2="248.0" class="rng s2"><title>Alt. 2 · seguidor, 150 MWh/30 MW (5 h) — conservador 54.4 · base 45.6 · optimista 40.4 USD/MWh</title></line>
+<circle cx="340.1" cy="248.0" r="3.5" class="dot s2"/>
+<circle cx="399.4" cy="248.0" r="3.5" class="dot s2"/>
+<circle cx="362.1" cy="248.0" r="6.5" class="dot-base s2"><title>Alt. 2 · seguidor, 150 MWh/30 MW (5 h) — base 45.6 USD/MWh</title></circle>
+<text x="412.4" y="252.0" class="dlbl s2">45.6</text>
+<text x="280" y="292.0" class="rowlbl end">Alt. 2 · seguidor, 120 MWh/30 MW (4 h)</text>
+<line x1="354.5" y1="288.0" x2="398.2" y2="288.0" class="rng s3"><title>Alt. 2 · seguidor, 120 MWh/30 MW (4 h) — conservador 54.1 · base 47.1 · optimista 43.8 USD/MWh</title></line>
+<circle cx="354.5" cy="288.0" r="3.5" class="dot s3"/>
+<circle cx="398.2" cy="288.0" r="3.5" class="dot s3"/>
+<circle cx="368.5" cy="288.0" r="6.5" class="dot-base s3"><title>Alt. 2 · seguidor, 120 MWh/30 MW (4 h) — base 47.1 USD/MWh</title></circle>
+<text x="411.2" y="292.0" class="dlbl s3">47.1</text>
+<text x="280" y="332.0" class="rowlbl end">Sólo FV, sin almacenamiento</text>
+<line x1="503.3" y1="328.0" x2="601.6" y2="328.0" class="rng s3"><title>Sólo FV, sin almacenamiento — conservador 78.9 · base 88.9 · optimista 102.1 USD/MWh</title></line>
+<circle cx="503.3" cy="328.0" r="3.5" class="dot s3"/>
+<circle cx="601.6" cy="328.0" r="3.5" class="dot s3"/>
+<circle cx="545.7" cy="328.0" r="6.5" class="dot-base s3"><title>Sólo FV, sin almacenamiento — base 88.9 USD/MWh</title></circle>
+<text x="614.6" y="332.0" class="dlbl s3">88.9</text>
+</svg></div>
+   <figcaption><b>Costo de servir el bloque 24/7 por configuración.</b> El punto marca el escenario
+   base; la línea, el rango entre el escenario conservador y el optimista. La referencia punteada en
+   100 USD/MWh es el precio final promedio que paga hoy un cliente libre en Chile. El diseño actual
+   queda por encima de esa línea en los tres escenarios. <b>En azul</b>, el diseño actual y la
+   Alternativa 1; <b>en naranja</b>, la configuración recomendada; <b>en verde</b>, las demás
+   configuraciones evaluadas.</figcaption>
+  </figure>
+ </div>
+</section>
+
+<section id="lcoe">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">06 · Optimización de LCOE</span>
+   <h2>Dónde está el dinero</h2>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>Descomposición del diseño actual — estructura fija, 320 MWh/20 MW, autoconsumo puro</caption>
+<thead><tr>
+<th>Concepto</th>
+<th class="num">US$ M/año</th>
+</tr></thead><tbody>
+<tr>
+<td>Costo de capital anualizado</td>
+<td class="num">10,60</td>
+</tr>
+<tr>
+<td>OPEX</td>
+<td class="num">3,79</td>
+</tr>
+<tr>
+<td>Compras de energía para cubrir déficit (42,0 GWh)</td>
+<td class="num">3,04</td>
+</tr>
+<tr>
+<td>Ingresos por exportación, potencia y SSCC</td>
+<td class="num">0,00</td>
+</tr>
+<tr class="hi">
+<td><strong>Total ÷ 166,4 GWh</strong></td>
+<td class="num"><strong>109,7 USD/MWh</strong></td>
+</tr>
+</tbody></table></div>
+
+  <div class="tablewrap"><table class="">
+<caption>Las cuatro palancas, cuantificadas</caption>
+<thead><tr>
+<th>#</th>
+<th>Palanca</th>
+<th class="num">Efecto sobre el costo de servir</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td><strong>Coordinar con el CEN</strong> — de autoconsumo aislado a generación-consumo: habilita inyección, pago por potencia y SSCC</td>
+<td class="num"><strong>−43,6</strong></td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Redimensionar el BESS</strong> de 16 h a 4–5 h</td>
+<td class="num"><strong>−31,0</strong></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Seguidor de un eje</strong> — +22% de energía por +8% de CAPEX FV</td>
+<td class="num">−5 a −6</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Ampliar el POI</strong> de 17 a 25–30 MW</td>
+<td class="num">−4,5</td>
+</tr>
+</tbody></table></div>
+
+  <figure>
+   <div class="chartwrap"><svg viewBox="0 0 760 420" role="img" class="chart" aria-label="Costo de servir el bloque 24/7 segun la duracion del almacenamiento">
+<title>Costo de servir el bloque 24/7 segun la duracion del BESS</title>
+<rect x="199.5" y="28" width="73.8" height="346" class="band"/>
+<text x="236.4" y="19" class="lbl-ann mid">banda óptima 4–6 h</text>
+<line x1="52" y1="374.0" x2="642" y2="374.0" class="grid"/>
+<text x="43" y="378.0" class="tick end">30</text>
+<line x1="52" y1="304.8" x2="642" y2="304.8" class="grid"/>
+<text x="43" y="308.8" class="tick end">45</text>
+<line x1="52" y1="235.6" x2="642" y2="235.6" class="grid"/>
+<text x="43" y="239.6" class="tick end">60</text>
+<line x1="52" y1="166.4" x2="642" y2="166.4" class="grid"/>
+<text x="43" y="170.4" class="tick end">75</text>
+<line x1="52" y1="97.2" x2="642" y2="97.2" class="grid"/>
+<text x="43" y="101.2" class="tick end">90</text>
+<line x1="52" y1="28.0" x2="642" y2="28.0" class="grid"/>
+<text x="43" y="32.0" class="tick end">105</text>
+<text x="52.0" y="394" class="tick mid">0</text>
+<text x="125.8" y="394" class="tick mid">2</text>
+<text x="199.5" y="394" class="tick mid">4</text>
+<text x="273.2" y="394" class="tick mid">6</text>
+<text x="347.0" y="394" class="tick mid">8</text>
+<text x="420.8" y="394" class="tick mid">10</text>
+<text x="494.5" y="394" class="tick mid">12</text>
+<text x="568.2" y="394" class="tick mid">14</text>
+<text x="642.0" y="394" class="tick mid">16</text>
+<text x="347.0" y="414" class="axis mid">horas de almacenamiento (BESS de 30 MW)</text>
+<text x="12" y="201.0" class="axis mid" transform="rotate(-90 12 201.0)">USD/MWh</text>
+<line x1="642.0" y1="28" x2="642.0" y2="374" class="ref"/>
+<polyline points="52.0,148.4 88.9,192.2 125.8,221.8 162.6,244.4 199.5,262.8 236.4,261.4 273.2,251.3 347.0,228.2 420.8,198.2 494.5,166.4 568.2,135.0 642.0,103.7" class="line s1"/>
+<circle cx="52.0" cy="148.4" r="4" class="dot s1"><title>conservador · 0 h (0 MWh): 78.9 USD/MWh</title></circle>
+<circle cx="88.9" cy="192.2" r="4" class="dot s1"><title>conservador · 1 h (30 MWh): 69.4 USD/MWh</title></circle>
+<circle cx="125.8" cy="221.8" r="4" class="dot s1"><title>conservador · 2 h (60 MWh): 63.0 USD/MWh</title></circle>
+<circle cx="162.6" cy="244.4" r="4" class="dot s1"><title>conservador · 3 h (90 MWh): 58.1 USD/MWh</title></circle>
+<circle cx="199.5" cy="262.8" r="4" class="dot s1"><title>conservador · 4 h (120 MWh): 54.1 USD/MWh</title></circle>
+<circle cx="236.4" cy="261.4" r="4" class="dot s1"><title>conservador · 5 h (150 MWh): 54.4 USD/MWh</title></circle>
+<circle cx="273.2" cy="251.3" r="4" class="dot s1"><title>conservador · 6 h (180 MWh): 56.6 USD/MWh</title></circle>
+<circle cx="347.0" cy="228.2" r="4" class="dot s1"><title>conservador · 8 h (240 MWh): 61.6 USD/MWh</title></circle>
+<circle cx="420.8" cy="198.2" r="4" class="dot s1"><title>conservador · 10 h (300 MWh): 68.1 USD/MWh</title></circle>
+<circle cx="494.5" cy="166.4" r="4" class="dot s1"><title>conservador · 12 h (360 MWh): 75.0 USD/MWh</title></circle>
+<circle cx="568.2" cy="135.0" r="4" class="dot s1"><title>conservador · 14 h (420 MWh): 81.8 USD/MWh</title></circle>
+<circle cx="642.0" cy="103.7" r="4" class="dot s1"><title>conservador · 16 h (480 MWh): 88.6 USD/MWh</title></circle>
+<text x="654.0" y="107.7" class="dlbl s1">conservador 89</text>
+<polyline points="52.0,102.3 88.9,186.7 125.8,231.0 162.6,266.0 199.5,295.1 236.4,302.0 273.2,295.1 347.0,279.4 420.8,253.1 494.5,221.8 568.2,190.9 642.0,159.5" class="line s2"/>
+<circle cx="52.0" cy="102.3" r="4" class="dot s2"><title>base · 0 h (0 MWh): 88.9 USD/MWh</title></circle>
+<circle cx="88.9" cy="186.7" r="4" class="dot s2"><title>base · 1 h (30 MWh): 70.6 USD/MWh</title></circle>
+<circle cx="125.8" cy="231.0" r="4" class="dot s2"><title>base · 2 h (60 MWh): 61.0 USD/MWh</title></circle>
+<circle cx="162.6" cy="266.0" r="4" class="dot s2"><title>base · 3 h (90 MWh): 53.4 USD/MWh</title></circle>
+<circle cx="199.5" cy="295.1" r="4" class="dot s2"><title>base · 4 h (120 MWh): 47.1 USD/MWh</title></circle>
+<circle cx="236.4" cy="302.0" r="4" class="dot s2"><title>base · 5 h (150 MWh): 45.6 USD/MWh</title></circle>
+<circle cx="273.2" cy="295.1" r="4" class="dot s2"><title>base · 6 h (180 MWh): 47.1 USD/MWh</title></circle>
+<circle cx="347.0" cy="279.4" r="4" class="dot s2"><title>base · 8 h (240 MWh): 50.5 USD/MWh</title></circle>
+<circle cx="420.8" cy="253.1" r="4" class="dot s2"><title>base · 10 h (300 MWh): 56.2 USD/MWh</title></circle>
+<circle cx="494.5" cy="221.8" r="4" class="dot s2"><title>base · 12 h (360 MWh): 63.0 USD/MWh</title></circle>
+<circle cx="568.2" cy="190.9" r="4" class="dot s2"><title>base · 14 h (420 MWh): 69.7 USD/MWh</title></circle>
+<circle cx="642.0" cy="159.5" r="4" class="dot s2"><title>base · 16 h (480 MWh): 76.5 USD/MWh</title></circle>
+<text x="654.0" y="163.5" class="dlbl s2">base 76</text>
+<polyline points="52.0,41.4 88.9,165.5 125.8,225.0 162.6,271.6 199.5,310.3 236.4,326.0 273.2,326.9 347.0,321.4 420.8,299.7 494.5,269.7 568.2,238.4 642.0,207.5" class="line s3"/>
+<circle cx="52.0" cy="41.4" r="4" class="dot s3"><title>optimista · 0 h (0 MWh): 102.1 USD/MWh</title></circle>
+<circle cx="88.9" cy="165.5" r="4" class="dot s3"><title>optimista · 1 h (30 MWh): 75.2 USD/MWh</title></circle>
+<circle cx="125.8" cy="225.0" r="4" class="dot s3"><title>optimista · 2 h (60 MWh): 62.3 USD/MWh</title></circle>
+<circle cx="162.6" cy="271.6" r="4" class="dot s3"><title>optimista · 3 h (90 MWh): 52.2 USD/MWh</title></circle>
+<circle cx="199.5" cy="310.3" r="4" class="dot s3"><title>optimista · 4 h (120 MWh): 43.8 USD/MWh</title></circle>
+<circle cx="236.4" cy="326.0" r="4" class="dot s3"><title>optimista · 5 h (150 MWh): 40.4 USD/MWh</title></circle>
+<circle cx="273.2" cy="326.9" r="4" class="dot s3"><title>optimista · 6 h (180 MWh): 40.2 USD/MWh</title></circle>
+<circle cx="347.0" cy="321.4" r="4" class="dot s3"><title>optimista · 8 h (240 MWh): 41.4 USD/MWh</title></circle>
+<circle cx="420.8" cy="299.7" r="4" class="dot s3"><title>optimista · 10 h (300 MWh): 46.1 USD/MWh</title></circle>
+<circle cx="494.5" cy="269.7" r="4" class="dot s3"><title>optimista · 12 h (360 MWh): 52.6 USD/MWh</title></circle>
+<circle cx="568.2" cy="238.4" r="4" class="dot s3"><title>optimista · 14 h (420 MWh): 59.4 USD/MWh</title></circle>
+<circle cx="642.0" cy="207.5" r="4" class="dot s3"><title>optimista · 16 h (480 MWh): 66.1 USD/MWh</title></circle>
+<text x="654.0" y="211.5" class="dlbl s3">optimista 66</text>
+<circle cx="236.4" cy="302.0" r="7.5" class="halo"/>
+<text x="236.4" y="284.0" class="lbl-ann mid">mínimo 45.6</text>
+<text x="634.0" y="42" class="lbl-ann end">diseño SQM</text>
+</svg></div>
+   <figcaption><b>La curva de optimización del almacenamiento.</b> Costo de servir el bloque 24/7
+   según la duración del BESS, con FV de 76,5 MWp en seguidor y BESS de 30 MW. El óptimo está en
+   4–6 horas en los <b>tres</b> escenarios de mercado, y la configuración recomendada de 5 h queda a
+   menos de 0,3 USD/MWh del mínimo en cada uno de ellos. El diseño de SQM
+   se sitúa en el extremo derecho de la curva, donde el costo ya volvió a subir.</figcaption>
+  </figure>
+
+  <div class="tablewrap"><table class="">
+<caption>Costo marginal de cada hora adicional de almacenamiento — escenario base</caption>
+<thead><tr>
+<th>Tramo</th>
+<th class="num">Efecto USD/MWh</th>
+<th class="num">US$/año</th>
+</tr></thead><tbody>
+<tr>
+<td>0 → 1 h</td>
+<td class="num">−18,3</td>
+<td class="num">−3,05 M</td>
+</tr>
+<tr>
+<td>1 → 2 h</td>
+<td class="num">−9,6</td>
+<td class="num">−1,60 M</td>
+</tr>
+<tr>
+<td>2 → 3 h</td>
+<td class="num">−7,6</td>
+<td class="num">−1,27 M</td>
+</tr>
+<tr>
+<td>3 → 4 h</td>
+<td class="num">−6,3</td>
+<td class="num">−1,05 M</td>
+</tr>
+<tr>
+<td>4 → 5 h</td>
+<td class="num">−1,5</td>
+<td class="num">−0,25 M</td>
+</tr>
+<tr class="hi">
+<td><strong>5 → 6 h</strong></td>
+<td class="num"><strong>+1,5</strong></td>
+<td class="num"><strong>+0,25 M</strong></td>
+</tr>
+<tr>
+<td>6 → 8 h</td>
+<td class="num">+3,4</td>
+<td class="num">+0,57 M</td>
+</tr>
+<tr>
+<td>8 → 10 h</td>
+<td class="num">+5,7</td>
+<td class="num">+0,95 M</td>
+</tr>
+<tr>
+<td>10 → 12 h</td>
+<td class="num">+6,8</td>
+<td class="num">+1,13 M</td>
+</tr>
+<tr>
+<td>12 → 14 h</td>
+<td class="num">+6,7</td>
+<td class="num">+1,12 M</td>
+</tr>
+<tr>
+<td>14 → 16 h</td>
+<td class="num">+6,8</td>
+<td class="num">+1,13 M</td>
+</tr>
+</tbody></table></div>
+
+  <div class="body-copy" style="margin-top:22px;">
+   <p><strong>La razón física:</strong> con 76,5 MWp generando 207 GWh contra un consumo de 166 GWh,
+   el balance anual es ajustado. En verano sobra energía y en invierno falta; una batería diaria no
+   resuelve un desbalance estacional. Las horas 6 a 16 quedan esperando un excedente que solo aparece
+   unos pocos meses al año, y mientras tanto pagan capital.</p>
+  </div>
+
+  <figure>
+   <div class="chartwrap"><svg viewBox="0 0 760 430" role="img" class="chart" aria-label="Perfil horario medio de generacion, consumo y costo marginal">
+<title>Perfil horario medio: generacion FV, consumo de SQM y costo marginal de la barra</title>
+<line x1="54" y1="176.0" x2="740" y2="176.0" class="grid"/>
+<text x="45" y="180.0" class="tick end">0</text>
+<line x1="54" y1="126.0" x2="740" y2="126.0" class="grid"/>
+<text x="45" y="130.0" class="tick end">20</text>
+<line x1="54" y1="76.0" x2="740" y2="76.0" class="grid"/>
+<text x="45" y="80.0" class="tick end">40</text>
+<line x1="54" y1="26.0" x2="740" y2="26.0" class="grid"/>
+<text x="45" y="30.0" class="tick end">60</text>
+<text x="54" y="16" class="axis">Generación FV y consumo · MW</text>
+<polygon points="54,176.0 68.3,176.0 96.9,176.0 125.5,176.0 154.0,176.0 182.6,176.0 211.2,176.0 239.8,168.8 268.4,111.8 297.0,47.1 325.5,35.7 354.1,34.7 382.7,35.3 411.3,35.9 439.9,35.9 468.5,35.6 497.0,36.2 525.6,43.0 554.2,89.3 582.8,160.2 611.4,176.0 640.0,176.0 668.5,176.0 697.1,176.0 725.7,176.0 740,176.0" class="fill s1"/>
+<polyline points="68.3,176.0 96.9,176.0 125.5,176.0 154.0,176.0 182.6,176.0 211.2,176.0 239.8,168.8 268.4,111.8 297.0,47.1 325.5,35.7 354.1,34.7 382.7,35.3 411.3,35.9 439.9,35.9 468.5,35.6 497.0,36.2 525.6,43.0 554.2,89.3 582.8,160.2 611.4,176.0 640.0,176.0 668.5,176.0 697.1,176.0 725.7,176.0" class="line s1"/>
+<polyline points="68.3,128.5 96.9,128.5 125.5,128.7 154.0,128.4 182.6,128.6 211.2,128.4 239.8,128.2 268.4,128.3 297.0,128.4 325.5,128.4 354.1,128.6 382.7,128.5 411.3,128.5 439.9,128.6 468.5,128.5 497.0,128.3 525.6,128.5 554.2,128.5 582.8,128.7 611.4,128.7 640.0,128.7 668.5,128.6 697.1,128.6 725.7,128.5" class="line s2"/>
+<rect x="54.0" y="26" width="28.6" height="150" class="hit"><title>00:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<rect x="82.6" y="26" width="28.6" height="150" class="hit"><title>01:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<rect x="111.2" y="26" width="28.6" height="150" class="hit"><title>02:00 — FV 0.0 MW · consumo 18.9 MW</title></rect>
+<rect x="139.8" y="26" width="28.6" height="150" class="hit"><title>03:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<rect x="168.3" y="26" width="28.6" height="150" class="hit"><title>04:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<rect x="196.9" y="26" width="28.6" height="150" class="hit"><title>05:00 — FV 0.0 MW · consumo 19.1 MW</title></rect>
+<rect x="225.5" y="26" width="28.6" height="150" class="hit"><title>06:00 — FV 2.9 MW · consumo 19.1 MW</title></rect>
+<rect x="254.1" y="26" width="28.6" height="150" class="hit"><title>07:00 — FV 25.7 MW · consumo 19.1 MW</title></rect>
+<rect x="282.7" y="26" width="28.6" height="150" class="hit"><title>08:00 — FV 51.6 MW · consumo 19.0 MW</title></rect>
+<rect x="311.2" y="26" width="28.6" height="150" class="hit"><title>09:00 — FV 56.1 MW · consumo 19.0 MW</title></rect>
+<rect x="339.8" y="26" width="28.6" height="150" class="hit"><title>10:00 — FV 56.5 MW · consumo 19.0 MW</title></rect>
+<rect x="368.4" y="26" width="28.6" height="150" class="hit"><title>11:00 — FV 56.3 MW · consumo 19.0 MW</title></rect>
+<rect x="397.0" y="26" width="28.6" height="150" class="hit"><title>12:00 — FV 56.0 MW · consumo 19.0 MW</title></rect>
+<rect x="425.6" y="26" width="28.6" height="150" class="hit"><title>13:00 — FV 56.0 MW · consumo 19.0 MW</title></rect>
+<rect x="454.2" y="26" width="28.6" height="150" class="hit"><title>14:00 — FV 56.1 MW · consumo 19.0 MW</title></rect>
+<rect x="482.8" y="26" width="28.6" height="150" class="hit"><title>15:00 — FV 55.9 MW · consumo 19.1 MW</title></rect>
+<rect x="511.3" y="26" width="28.6" height="150" class="hit"><title>16:00 — FV 53.2 MW · consumo 19.0 MW</title></rect>
+<rect x="539.9" y="26" width="28.6" height="150" class="hit"><title>17:00 — FV 34.7 MW · consumo 19.0 MW</title></rect>
+<rect x="568.5" y="26" width="28.6" height="150" class="hit"><title>18:00 — FV 6.3 MW · consumo 18.9 MW</title></rect>
+<rect x="597.1" y="26" width="28.6" height="150" class="hit"><title>19:00 — FV 0.0 MW · consumo 18.9 MW</title></rect>
+<rect x="625.7" y="26" width="28.6" height="150" class="hit"><title>20:00 — FV 0.0 MW · consumo 18.9 MW</title></rect>
+<rect x="654.3" y="26" width="28.6" height="150" class="hit"><title>21:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<rect x="682.8" y="26" width="28.6" height="150" class="hit"><title>22:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<rect x="711.4" y="26" width="28.6" height="150" class="hit"><title>23:00 — FV 0.0 MW · consumo 19.0 MW</title></rect>
+<text x="411.3" y="25.9" class="dlbl s1 mid">FV 76,5 MWp</text>
+<text x="125.5" y="118.7" class="dlbl s2">consumo SQM 19 MW</text>
+<line x1="54" y1="350.0" x2="740" y2="350.0" class="grid"/>
+<text x="45" y="354.0" class="tick end">0</text>
+<line x1="54" y1="312.5" x2="740" y2="312.5" class="grid"/>
+<text x="45" y="316.5" class="tick end">50</text>
+<line x1="54" y1="275.0" x2="740" y2="275.0" class="grid"/>
+<text x="45" y="279.0" class="tick end">100</text>
+<line x1="54" y1="237.5" x2="740" y2="237.5" class="grid"/>
+<text x="45" y="241.5" class="tick end">150</text>
+<text x="54" y="220" class="axis">Costo marginal barra Tarapacá · USD/MWh</text>
+<rect x="58.0" y="298.0" width="20.6" height="52.0" rx="3" class="bar s3"><title>00:00 — 69.3 USD/MWh</title></rect>
+<rect x="86.6" y="301.6" width="20.6" height="48.4" rx="3" class="bar s3"><title>01:00 — 64.6 USD/MWh</title></rect>
+<rect x="115.2" y="302.6" width="20.6" height="47.4" rx="3" class="bar s3"><title>02:00 — 63.2 USD/MWh</title></rect>
+<rect x="143.8" y="304.1" width="20.6" height="45.9" rx="3" class="bar s3"><title>03:00 — 61.2 USD/MWh</title></rect>
+<rect x="172.3" y="302.9" width="20.6" height="47.1" rx="3" class="bar s3"><title>04:00 — 62.8 USD/MWh</title></rect>
+<rect x="200.9" y="301.3" width="20.6" height="48.7" rx="3" class="bar s3"><title>05:00 — 64.9 USD/MWh</title></rect>
+<rect x="229.5" y="298.1" width="20.6" height="51.9" rx="3" class="bar s3"><title>06:00 — 69.2 USD/MWh</title></rect>
+<rect x="258.1" y="305.0" width="20.6" height="45.0" rx="3" class="bar s3"><title>07:00 — 60.0 USD/MWh</title></rect>
+<rect x="286.7" y="320.3" width="20.6" height="29.7" rx="3" class="bar s3"><title>08:00 — 39.6 USD/MWh</title></rect>
+<rect x="315.3" y="329.8" width="20.6" height="20.2" rx="3" class="bar s3"><title>09:00 — 27.0 USD/MWh</title></rect>
+<rect x="343.8" y="334.2" width="20.6" height="15.8" rx="3" class="bar s3"><title>10:00 — 21.0 USD/MWh</title></rect>
+<rect x="372.4" y="336.9" width="20.6" height="13.1" rx="3" class="bar s3"><title>11:00 — 17.5 USD/MWh</title></rect>
+<rect x="401.0" y="337.2" width="20.6" height="12.8" rx="3" class="bar s3"><title>12:00 — 17.1 USD/MWh</title></rect>
+<rect x="429.6" y="337.2" width="20.6" height="12.8" rx="3" class="bar s3"><title>13:00 — 17.0 USD/MWh</title></rect>
+<rect x="458.2" y="336.9" width="20.6" height="13.1" rx="3" class="bar s3"><title>14:00 — 17.5 USD/MWh</title></rect>
+<rect x="486.8" y="334.6" width="20.6" height="15.4" rx="3" class="bar s3"><title>15:00 — 20.5 USD/MWh</title></rect>
+<rect x="515.3" y="327.1" width="20.6" height="22.9" rx="3" class="bar s3"><title>16:00 — 30.6 USD/MWh</title></rect>
+<rect x="543.9" y="309.6" width="20.6" height="40.4" rx="3" class="bar s3"><title>17:00 — 53.9 USD/MWh</title></rect>
+<rect x="572.5" y="260.4" width="20.6" height="89.6" rx="3" class="bar s3"><title>18:00 — 119.4 USD/MWh</title></rect>
+<rect x="601.1" y="241.4" width="20.6" height="108.6" rx="3" class="bar s3"><title>19:00 — 144.8 USD/MWh</title></rect>
+<rect x="629.7" y="256.6" width="20.6" height="93.4" rx="3" class="bar s3"><title>20:00 — 124.6 USD/MWh</title></rect>
+<rect x="658.3" y="268.9" width="20.6" height="81.1" rx="3" class="bar s3"><title>21:00 — 108.2 USD/MWh</title></rect>
+<rect x="686.8" y="282.6" width="20.6" height="67.4" rx="3" class="bar s3"><title>22:00 — 89.8 USD/MWh</title></rect>
+<rect x="715.4" y="293.4" width="20.6" height="56.6" rx="3" class="bar s3"><title>23:00 — 75.4 USD/MWh</title></rect>
+<text x="411.3" y="329.2" class="dlbl s3 mid">17</text>
+<text x="611.4" y="233.4" class="dlbl s3 mid">145</text>
+<text x="68.3" y="370" class="tick mid">00</text>
+<text x="154.0" y="370" class="tick mid">03</text>
+<text x="239.8" y="370" class="tick mid">06</text>
+<text x="325.5" y="370" class="tick mid">09</text>
+<text x="411.3" y="370" class="tick mid">12</text>
+<text x="497.0" y="370" class="tick mid">15</text>
+<text x="582.8" y="370" class="tick mid">18</text>
+<text x="668.5" y="370" class="tick mid">21</text>
+<text x="397.0" y="390" class="axis mid">hora del día</text>
+</svg></div>
+   <figcaption><b>Por qué el almacenamiento vale lo que vale.</b> El norte del SEN presenta una
+   estructura horaria de costo marginal muy pronunciada: ≈ 13 USD/MWh en horas solares (22% de las
+   horas del año bajo 10 USD/MWh) contra ≈ 137 USD/MWh en la rampa vespertina. Un BESS de 30 MW × 5 h
+   captura ese diferencial <b>496 veces al año</b>; uno de 20 MW × 16 h lo captura 242 veces. La misma
+   inversión en litio rinde el doble cuando se dimensiona para el ciclo diario.</figcaption>
+  </figure>
+
+  <div class="tablewrap"><table class="">
+<caption>Sensibilidad del costo de servir al punto de inyección — configuración recomendada (150 MWh/30 MW)</caption>
+<thead><tr>
+<th>POI</th>
+<th class="num">Conservador</th>
+<th class="num">Base</th>
+<th class="num">Optimista</th>
+<th class="num">Exportación</th>
+<th class="num">Vertimiento</th>
+</tr></thead><tbody>
+<tr>
+<td>0 — aislado</td>
+<td class="num">96,1</td>
+<td class="num">94,2</td>
+<td class="num">92,7</td>
+<td class="num">0 GWh</td>
+<td class="num">75,1 GWh</td>
+</tr>
+<tr>
+<td>10 MW</td>
+<td class="num">66,7</td>
+<td class="num">56,5</td>
+<td class="num">49,7</td>
+<td class="num">53,5</td>
+<td class="num">37,8</td>
+</tr>
+<tr>
+<td>17 MW — supuesto GR actual</td>
+<td class="num">59,6</td>
+<td class="num">50,6</td>
+<td class="num">45,2</td>
+<td class="num">77,4</td>
+<td class="num">16,2</td>
+</tr>
+<tr class="hi">
+<td><strong>25 MW</strong></td>
+<td class="num">55,1</td>
+<td class="num"><strong>46,8</strong></td>
+<td class="num">42,5</td>
+<td class="num">93,8</td>
+<td class="num">0,5</td>
+</tr>
+<tr>
+<td>30 MW</td>
+<td class="num">54,7</td>
+<td class="num">46,1</td>
+<td class="num">41,3</td>
+<td class="num">94,6</td>
+<td class="num">0</td>
+</tr>
+<tr class="dim">
+<td>40 MW</td>
+<td class="num">54,4</td>
+<td class="num">45,6</td>
+<td class="num">40,4</td>
+<td class="num">95,1</td>
+<td class="num">0</td>
+</tr>
+</tbody></table></div>
+
+  <div class="body-copy" style="margin-top:22px;">
+   <p>El salto de 0 a 17 MW vale 43,6 USD/MWh; de 17 a 25–30 MW, otros 4 a 4,5. Por encima de 30 MW
+   satura. <strong>El diseño objetivo debe asegurar POI ≥ 25 MW</strong> — algo que hay que verificar
+   contra la capacidad real de la LT de 66 kV y del punto de seccionamiento.</p>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>Sensibilidad al WACC y al CAPEX — escenario base, USD/MWh</caption>
+<thead><tr>
+<th></th>
+<th class="num">−15% / 6%</th>
+<th class="num">Base / 7%</th>
+<th class="num">+15% / 8%</th>
+<th class="num">+30% / 9%</th>
+</tr></thead><tbody>
+<tr>
+<td>Alternativa 1 · WACC</td>
+<td class="num">67,5</td>
+<td class="num">74,1</td>
+<td class="num">81,0</td>
+<td class="num">88,2</td>
+</tr>
+<tr class="hi">
+<td><strong>Alternativa 2 · WACC</strong></td>
+<td class="num"><strong>40,4</strong></td>
+<td class="num"><strong>45,6</strong></td>
+<td class="num"><strong>51,1</strong></td>
+<td class="num"><strong>56,8</strong></td>
+</tr>
+<tr>
+<td>Alternativa 1 · CAPEX</td>
+<td class="num">64,5</td>
+<td class="num">74,1</td>
+<td class="num">83,7</td>
+<td class="num">93,3</td>
+</tr>
+<tr class="hi">
+<td><strong>Alternativa 2 · CAPEX</strong></td>
+<td class="num"><strong>38,2</strong></td>
+<td class="num"><strong>45,6</strong></td>
+<td class="num"><strong>53,0</strong></td>
+<td class="num"><strong>60,4</strong></td>
+</tr>
+</tbody></table></div>
+
+  <div class="callout">
+   <h3>La Alternativa 2 domina en todo el rango</h3>
+   <p>Incluso con CAPEX 30% por encima del supuesto y WACC de 9%, la Alternativa 2 sigue por debajo
+   del caso base de la Alternativa 1. La conclusión no depende de la calibración de costos.</p>
+  </div>
+ </div>
+</section>
+
+<section id="benchmark">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">07 · Mercado</span>
+   <h2>Referencias de precio y operaciones comparables</h2>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>Referencias de precio en Chile</caption>
+<thead><tr>
+<th>Indicador</th>
+<th class="num">Valor</th>
+<th>Período</th>
+</tr></thead><tbody>
+<tr>
+<td>Precio Medio de Mercado (PMM), SEN</td>
+<td class="num">109,2 USD/MWh</td>
+<td>dic-2025</td>
+</tr>
+<tr class="hi">
+<td><strong>Precio final promedio a clientes libres</strong></td>
+<td class="num"><strong>US$ 87 → 107/MWh</strong></td>
+<td>2020 → 2024</td>
+</tr>
+<tr>
+<td>Proyección de precio para nuevos clientes libres</td>
+<td class="num">60 – 70 USD/MWh</td>
+<td>2026</td>
+</tr>
+<tr>
+<td>Licitación de suministro regulado (rango de ofertas)</td>
+<td class="num">38 – 120 USD/MWh</td>
+<td>2026</td>
+</tr>
+<tr>
+<td>Costo marginal barra Tarapacá</td>
+<td class="num">53,5 → 63,6 USD/MWh</td>
+<td>dic-25 → may-26</td>
+</tr>
+<tr>
+<td>Costo marginal barra Crucero</td>
+<td class="num">50,6 → 60,7 USD/MWh</td>
+<td>dic-25 → may-26</td>
+</tr>
+</tbody></table></div>
+
+  <div class="tablewrap"><table class="">
+<caption>Operaciones comparables</caption>
+<thead><tr>
+<th>Operación</th>
+<th>Estructura</th>
+<th>Volumen / plazo</th>
+<th>Lectura</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Grenergy – Codelco</strong> (abr-2025)</td>
+<td>Primer PPA 24/7 de GR en Chile</td>
+<td>0,5 TWh/año · 15 años</td>
+<td>Precedente directo del producto 24/7 con respaldo de cartera</td>
+</tr>
+<tr>
+<td><strong>Grenergy – offtaker</strong> (jun-2026)</td>
+<td>PPA nocturno desde BESS Elena (3,5 GWh, ampliable a 7)</td>
+<td>1 TWh/año · 15 años, horario no solar</td>
+<td>Demuestra que GR vende el bloque nocturno <em>sin</em> batería dedicada del cliente</td>
+</tr>
+<tr>
+<td><strong>Grenergy – Algarrobal</strong> (jun-2026)</td>
+<td>PPA híbrido, offtaker <em>investment grade</em></td>
+<td>350 GWh/año · 12 años, desde ene-2028</td>
+<td>Estructura híbrida ya validada comercialmente</td>
+</tr>
+<tr>
+<td><strong>Atlas – Codelco</strong> (mar-2024)</td>
+<td>PPA 24/7 solar + BESS; proyecto 215 MW / 1,6 GWh</td>
+<td>375 GWh/año · 15 años</td>
+<td>Competidor directo en el mismo producto</td>
+</tr>
+<tr class="hi">
+<td><strong>Sonnedix – Copec EMOAC</strong> (abr-2026)</td>
+<td>BESS 117 MW / 643,8 MWh ≈ <strong>5,5 h</strong></td>
+<td>COD abr-2027</td>
+<td><span class='chip good'>confirma 4–6 h</span></td>
+</tr>
+<tr class="hi">
+<td><strong>Atlas – COPEC</strong></td>
+<td>BESS 200 MW / 800 MWh = <strong>4 h</strong></td>
+<td>—</td>
+<td><span class='chip good'>confirma 4–6 h</span></td>
+</tr>
+<tr>
+<td><strong>BHP – Sungrow</strong></td>
+<td>195 MW solar + 960 MWh en Escondida y Spence</td>
+<td>—</td>
+<td>Autoconsumo minero con almacenamiento acotado</td>
+</tr>
+<tr class="hi">
+<td>Proyecto minero (sep-2026)</td>
+<td>10 MWp FV + <strong>40 MWh (4 h)</strong></td>
+<td>−23% de costo energético, 90% renovable</td>
+<td><span class='chip good'>confirma 4–6 h</span></td>
+</tr>
+</tbody></table></div>
+
+  <div class="callout">
+   <h3>Hallazgo del benchmark</h3>
+   <p>En todas las operaciones comparables de solar + almacenamiento para consumo industrial en Chile,
+   <strong>la duración del BESS está entre 4 y 6 horas</strong>. No hay precedente de un almacenamiento
+   de 16 horas asociado a un consumo industrial. El diseño de SQM es un <em>outlier</em> de mercado, y
+   el análisis explica por qué: la autonomía de 16 horas es una especificación de continuidad
+   operacional, no una decisión económica. Es el argumento más potente para la conversación:
+   <strong>no proponemos recortar su proyecto, proponemos alinearlo con lo que hace todo el mercado</strong>,
+   incluidos sus pares mineros.</p>
+  </div>
+ </div>
+</section>
+
+<section id="precio">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">08 · Precio</span>
+   <h2>Escalera de precios y bolsa de valor</h2>
+  </div>
+
+  <div class="grid-2">
+   <div><div class="tablewrap"><table class="">
+<caption>Alternativa 1 — PPA 24/7 con BESS de 16 h</caption>
+<thead><tr>
+<th>Escenario</th>
+<th class="num">Costo</th>
+<th class="num">+10%</th>
+<th class="num">+20%</th>
+<th class="num">+30%</th>
+</tr></thead><tbody>
+<tr>
+<td>Conservador</td>
+<td class="num">78,5</td>
+<td class="num">86,4</td>
+<td class="num">94,3</td>
+<td class="num">102,1</td>
+</tr>
+<tr>
+<td>Base</td>
+<td class="num">74,1</td>
+<td class="num">81,6</td>
+<td class="num">89,0</td>
+<td class="num">96,4</td>
+</tr>
+<tr>
+<td>Optimista</td>
+<td class="num">73,4</td>
+<td class="num">80,7</td>
+<td class="num">88,1</td>
+<td class="num">95,4</td>
+</tr>
+</tbody></table></div></div>
+   <div><div class="tablewrap"><table class="">
+<caption>Alternativa 2 — PPA híbrido optimizado</caption>
+<thead><tr>
+<th>Escenario</th>
+<th class="num">Costo</th>
+<th class="num">+10%</th>
+<th class="num">+20%</th>
+<th class="num">+30%</th>
+</tr></thead><tbody>
+<tr class="hi">
+<td><strong>Conservador</strong></td>
+<td class="num"><strong>54,4</strong></td>
+<td class="num">59,8</td>
+<td class="num"><strong>65,3</strong></td>
+<td class="num">70,7</td>
+</tr>
+<tr>
+<td>Base</td>
+<td class="num">45,6</td>
+<td class="num">50,1</td>
+<td class="num">54,7</td>
+<td class="num">59,3</td>
+</tr>
+<tr>
+<td>Optimista</td>
+<td class="num">40,4</td>
+<td class="num">44,4</td>
+<td class="num">48,5</td>
+<td class="num">52,5</td>
+</tr>
+</tbody></table></div></div>
+  </div>
+
+  <div class="body-copy" style="margin-top:26px;">
+   <p><strong>Precio recomendado a poner sobre la mesa: 62–68 USD/MWh</strong> para la Alternativa 2,
+   anclado en el escenario conservador (54,4) más margen. Deja 8–14 USD/MWh de colchón contra
+   compresión de spreads y, aun así, ofrece a SQM un ahorro de un tercio sobre su costo actual.
+   Para la Alternativa 1 el precio ofertable honesto es <strong>85–92 USD/MWh</strong> — útil
+   precisamente para mostrar el costo de la autonomía.</p>
+  </div>
+
+  <div class="tablewrap"><table class="">
+<caption>Margen anual de GR y valor presente a 7% real, según el precio PPA acordado</caption>
+<thead><tr>
+<th class="num">Precio PPA</th>
+<th class="num">Alt. 1 margen</th>
+<th class="num">VAN 15 a</th>
+<th class="num">VAN 20 a</th>
+<th class="num">Alt. 2 margen</th>
+<th class="num">VAN 15 a</th>
+<th class="num">VAN 20 a</th>
+</tr></thead><tbody>
+<tr>
+<td class="num">60</td>
+<td class="num">−2,35 M</td>
+<td class="num">−21,4 M</td>
+<td class="num">−24,9 M</td>
+<td class="num">+2,40 M</td>
+<td class="num">21,8 M</td>
+<td class="num">25,4 M</td>
+</tr>
+<tr>
+<td class="num">65</td>
+<td class="num">−1,52 M</td>
+<td class="num">−13,9 M</td>
+<td class="num">−16,1 M</td>
+<td class="num">+3,23 M</td>
+<td class="num">29,4 M</td>
+<td class="num">34,2 M</td>
+</tr>
+<tr class="hi">
+<td class="num"><strong>70</strong></td>
+<td class="num"><strong>−0,69 M</strong></td>
+<td class="num"><strong>−6,3 M</strong></td>
+<td class="num">−7,3 M</td>
+<td class="num"><strong>+4,06 M</strong></td>
+<td class="num"><strong>37,0 M</strong></td>
+<td class="num">43,0 M</td>
+</tr>
+<tr>
+<td class="num">75</td>
+<td class="num">+0,14 M</td>
+<td class="num">1,3 M</td>
+<td class="num">1,5 M</td>
+<td class="num">+4,90 M</td>
+<td class="num">44,6 M</td>
+<td class="num">51,9 M</td>
+</tr>
+<tr>
+<td class="num">80</td>
+<td class="num">+0,97 M</td>
+<td class="num">8,9 M</td>
+<td class="num">10,3 M</td>
+<td class="num">+5,73 M</td>
+<td class="num">52,2 M</td>
+<td class="num">60,7 M</td>
+</tr>
+</tbody></table></div>
+
+  <div class="callout">
+   <h3>Lectura para la negociación</h3>
+   <p>A 70 USD/MWh la Alternativa 2 genera un VAN de <strong>US$ 37–43 M</strong>. Esa es la bolsa
+   desde la cual se paga (i) el activo de desarrollo a SQM y (ii) el retorno incremental de GR.
+   <strong>La Alternativa 1 al mismo precio es deficitaria</strong> (−US$ 6,3 M): si SQM insiste en
+   las 16 horas, el precio no puede bajar de ≈ 85 USD/MWh. Estructura de pago sugerida:
+   componente fija modesta al cierre, reconociendo el gasto de desarrollo y el expediente SEA, más
+   <em>earn-out</em> contra RCA firme, contra obtención del POI ≥ 25 MW y contra COD.</p>
+  </div>
+ </div>
+</section>
+
+<section id="regulatorio">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">09 · Regulatorio</span>
+   <h2>El DS 32/2026 cambia el tablero</h2>
+   <p>El Decreto Supremo N° 32 del Ministerio de Energía, publicado en junio de 2026, modifica el
+   Reglamento de Coordinación y Operación del SEN (DS 125/2017) e incorpora tres figuras directamente
+   aplicables a esta operación.</p>
+  </div>
+
+  <ul class="plain">
+   <li><span class="n">01</span><span><strong>Sistemas de Almacenamiento de Energía (SAE)</strong>
+     entre las instalaciones sujetas a coordinación, con reglas para su incorporación a la
+     programación de la operación.</span></li>
+   <li><span class="n">02</span><span><strong>Sistemas de generación-consumo</strong>, figura pensada
+     para complejos productivos que combinan proceso industrial, generación propia y almacenamiento.
+     <strong>Es la figura que habilita la Alternativa 2.</strong></span></li>
+   <li><span class="n">03</span><span><strong>Cliente con autoconsumo</strong>, definido como aquel
+     que, teniendo generación y/o almacenamiento propios, <em>no inyecta excedentes al sistema</em>.
+     Es la figura que corresponde a la Alternativa 1 en su versión aislada — y la razón por la que
+     esa versión renuncia a 43,6 USD/MWh de valor.</span></li>
+  </ul>
+
+  <div class="tablewrap"><table class="">
+<caption>Rutas de tramitación — base: análisis de N. Machuca</caption>
+<thead><tr>
+<th></th>
+<th>Opción off-grid (autoconsumo)</th>
+<th>Opción on-grid (generación-consumo)</th>
+</tr></thead><tbody>
+<tr>
+<td>Declaración</td>
+<td>SEC — proyecto como autoconsumo (plazos por confirmar)</td>
+<td>Fehaciente híbrido: <strong>4–6 meses</strong></td>
+</tr>
+<tr>
+<td>Permisos post-RCA</td>
+<td>IFC, SEREMI, DOM: 6–9 meses</td>
+<td>IFC, SEREMI, DOM: 6–9 meses</td>
+</tr>
+<tr>
+<td>CNE</td>
+<td>—</td>
+<td>Declaración en construcción: 2 meses</td>
+</tr>
+<tr>
+<td>CEN</td>
+<td>—</td>
+<td>Proceso PGP para operación: <strong>10–12 meses</strong></td>
+</tr>
+<tr class="hi">
+<td><strong>Camino crítico incremental</strong></td>
+<td>—</td>
+<td><strong>≈ 12–18 meses adicionales</strong></td>
+</tr>
+</tbody></table></div>
+
+  <div class="callout warn">
+   <h3>Secuencia recomendada</h3>
+   <p>Los 12–18 meses adicionales son el costo real de la Alternativa 2. Contra los ≈ 28 USD/MWh de
+   diferencia (≈ US$ 4,7 M/año), el retraso se paga en menos de un año de operación — pero hay que
+   gestionarlo en paralelo desde el día uno, no en secuencia. <strong>Iniciar el fehaciente híbrido y
+   la conversación con el CEN antes del cierre de la compraventa</strong>, en paralelo con la adenda
+   ambiental de SQM y al amparo del NDA vigente. El PGP de 10–12 meses es el camino crítico y no
+   admite recuperación posterior.</p>
+   <p>En paralelo: pedirle a SQM que <strong>introduzca la flexibilidad de diseño en la adenda que
+   está preparando ahora</strong> —seguidores, rango de potencia del BESS, POI ampliado—, antes de la
+   RCA. Es mucho más barato que una modificación posterior y es una petición concreta, de bajo costo
+   para ellos, para la próxima reunión.</p>
+  </div>
+ </div>
+</section>
+
+<section id="riesgos">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">10 · Riesgos</span>
+   <h2>Exposición y mitigantes</h2>
+  </div>
+  <div class="tablewrap"><table class="">
+<caption>Matriz de riesgos</caption>
+<thead><tr>
+<th>Riesgo</th>
+<th>Exposición</th>
+<th>Mitigante</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Compresión del spread horario.</strong> El almacenamiento instalado en Chile (≈ 1.700 MW a feb-2026) se duplica hacia dic-2026</td>
+<td><span class='chip risk'>alto</span> Es el principal supuesto del caso</td>
+<td>Precio anclado en escenario conservador: spread comprimido 45%, captura 70%, sin SSCC. La Alternativa 2 sigue siendo superior en ese escenario</td>
+</tr>
+<tr>
+<td><strong>Caída del precio de potencia</strong> por entrada masiva de BESS</td>
+<td><span class='chip'>medio</span> US$ 3,7 M/año en el caso base</td>
+<td>El escenario conservador ya asume 6,5 USD/kW-mes</td>
+</tr>
+<tr>
+<td><strong>POI limitado a 17 MW</strong> o menos por capacidad de la LT 66 kV</td>
+<td><span class='chip risk'>alto</span> Vale 4,5 USD/MWh; bajo 10 MW el caso se deteriora rápido</td>
+<td>Verificar capacidad real antes de fijar precio. Condición suspensiva en el SPA</td>
+</tr>
+<tr>
+<td><strong>RCA se retrasa o llega con condiciones</strong></td>
+<td><span class='chip'>medio</span></td>
+<td>Earn-out contra RCA firme; no adelantar pagos</td>
+</tr>
+<tr>
+<td><strong>El rediseño exige nueva evaluación ambiental</strong></td>
+<td><span class='chip risk'>medio-alto</span></td>
+<td>Introducir flexibilidad en la adenda actual de SQM</td>
+</tr>
+<tr>
+<td><strong>Crecimiento del consumo</strong> por sobre los 20,2 MW proyectados</td>
+<td><span class='chip'>bajo-medio</span></td>
+<td>Cláusula de ampliación con precio predefinido; la configuración híbrida escala mejor que la aislada</td>
+</tr>
+<tr>
+<td><strong>Máximos horarios de 31,3 MW</strong> superan la descarga del BESS</td>
+<td><span class='chip risk'>cierto en el diseño actual</span></td>
+<td>Los 30 MW de potencia BESS de la Alternativa 2 lo cubren casi por completo; el resto desde la red</td>
+</tr>
+<tr>
+<td><strong>Captura merchant imperfecta</strong> — el modelo usa despacho óptimo</td>
+<td><span class='chip'>medio</span></td>
+<td>El escenario conservador castiga la captura a 70%</td>
+</tr>
+</tbody></table></div>
+ </div>
+</section>
+
+<section id="pasos">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">11 · Siguiente</span>
+   <h2>Información a pedir y próximos pasos</h2>
+  </div>
+  <div class="grid-2">
+   <div class="body-copy">
+    <h3>Información a solicitar a SQM</h3>
+    <ol style="margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:9px;font-size:.9rem;color:var(--ink-2);">
+     <li><strong>Curva horaria de consumo completa</strong> (8.760 h) de al menos dos años, no promedios anuales.</li>
+     <li><strong>Detalle del escalón abril-mayo 2026</strong> (13 → 19,6 MW): ¿ampliación permanente, campaña, cambio de proceso?</li>
+     <li><strong>Estudio de generación</strong> con el que se calcularon los 170 GWh: software, configuración, pérdidas, P50/P90.</li>
+     <li><strong>Capacidad real de inyección</strong> del punto de seccionamiento en 66 kV y estudios eléctricos asociados.</li>
+     <li><strong>Contratos de suministro vigentes</strong>: precio, plazo, vencimiento y condiciones de salida.</li>
+     <li><strong>Expediente SEA completo</strong>, ICSARA y borrador de adenda.</li>
+     <li><strong>Situación de terrenos</strong>: propiedad, CUO, servidumbres de la LT.</li>
+     <li><strong>Presupuesto y ofertas de EPC</strong> recibidas, para contrastar el CAPEX de US$ 111 M.</li>
+    </ol>
+   </div>
+   <div>
+    <div class="tablewrap"><table class="">
+<caption>Próximos pasos</caption>
+<thead><tr>
+<th>#</th>
+<th>Acción</th>
+<th>Responsable</th>
+<th>Plazo</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>Cerrar las tres cifras discrepantes (rendimiento, POI, potencia BESS)</td>
+<td>N. Machuca / M. Aguilera</td>
+<td>1 sem</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Validar precio de transferencia de GR Power para el bloque de respaldo</td>
+<td>J. Friedl / J. Álvarez</td>
+<td>1 sem</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Revisión legal de la estructura de adquisición (share vs. asset deal)</td>
+<td>J. Vergara</td>
+<td>2 sem</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Consulta al equipo ambiental sobre flexibilidad de diseño en la adenda</td>
+<td>Equipo ambiental</td>
+<td>2 sem</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Reunión con SQM: presentar ambas alternativas y solicitar información</td>
+<td>R. Hernández / J. Friedl</td>
+<td>3 sem</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Term sheet no vinculante (PPA + opción de compra)</td>
+<td>GR Power / Desarrollo</td>
+<td>6 sem</td>
+</tr>
+</tbody></table></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="metodo">
+ <div class="wrap">
+  <div class="sec-head">
+   <span class="eyebrow">12 · Anexo</span>
+   <h2>Metodología, supuestos y limitaciones</h2>
+  </div>
+
+  <div class="body-copy">
+   <p><strong>Generación FV.</strong> Modelo horario de 8.760 h con geometría solar para
+   lat −20,70 / lon −69,78, irradiancia de cielo claro tipo ASHRAE calibrada a alta altitud y aire
+   limpio, transposición al plano del arreglo (fija a 20° norte y seguidor de un eje N-S con
+   backtracking, GCR 0,33), derrateo térmico con NOCT 45 °C y coeficiente −0,34%/°C, pérdidas de
+   sistema 11,5%, disponibilidad y suciedad 96,5%, recorte por inversor según DC/AC.
+   <em>Sin calibración a los datos de SQM</em>: el resultado de 169,9 GWh para estructura fija
+   coincide de forma independiente con los 170 GWh declarados en la DIA.</p>
+   <p><strong>Consumo.</strong> Perfil plano de 19,0 MW con variabilidad autocorrelacionada calibrada
+   a la dispersión observada en los medidores 2026 (desviación ≈ 10,5%, rango 13,6–24,9 MW).</p>
+   <p><strong>Precio horario.</strong> Perfil de costo marginal de la barra Tarapacá con media anual
+   de 60 USD/MWh, forma horaria del norte del SEN (valle solar profundo, rampa vespertina alta) y
+   volatilidad log-normal; 22,5% de las horas bajo 10 USD/MWh.</p>
+   <p><strong>Despacho.</strong> Optimización por programación lineal con horizonte semanal (168 h) y
+   SOC cíclico, minimizando el costo económico de servir el consumo, con todas las variables —carga,
+   descarga, importación, exportación, vertimiento— valoradas a costo de oportunidad horario.
+   Rendimiento de ida y vuelta 88%, profundidad de descarga 94%.</p>
+   <p><strong>Economía.</strong> CAPEX unitarios calibrados contra la inversión declarada de US$ 111 M
+   — el modelo reproduce US$ 111,2 M para el diseño de la DIA. WACC real después de impuestos 7,0%,
+   vida económica 25 años, impuesto 27% con depreciación lineal a 10 años, degradación FV 0,45%/año.</p>
+  </div>
+
+  <div class="grid-2" style="margin-top:8px;">
+   <div><div class="tablewrap"><table class="">
+<caption>Supuestos de costo</caption>
+<thead><tr>
+<th>Partida</th>
+<th class="num">Valor</th>
+</tr></thead><tbody>
+<tr>
+<td>FV estructura fija</td>
+<td class="num">620 USD/kWp</td>
+</tr>
+<tr>
+<td>FV seguidor 1 eje</td>
+<td class="num">690 USD/kWp</td>
+</tr>
+<tr>
+<td>BESS — componente de potencia</td>
+<td class="num">95 USD/kW</td>
+</tr>
+<tr>
+<td>BESS — componente de energía</td>
+<td class="num">138 USD/kWh</td>
+</tr>
+<tr>
+<td>Infraestructura común (LT, SE, caminos, conexión)</td>
+<td class="num">US$ 9,5 M</td>
+</tr>
+<tr>
+<td>Desarrollo + owner's cost + contingencia</td>
+<td class="num">8% del subtotal</td>
+</tr>
+<tr>
+<td>OPEX FV</td>
+<td class="num">11,5 USD/kWp/año</td>
+</tr>
+<tr>
+<td>OPEX BESS (O&amp;M + aumentación)</td>
+<td class="num">7,5 USD/kWh/año</td>
+</tr>
+<tr>
+<td>Seguros</td>
+<td class="num">0,45% del CAPEX/año</td>
+</tr>
+<tr>
+<td>Peajes + cargo servicio público + pérdidas</td>
+<td class="num">18 USD/MWh</td>
+</tr>
+</tbody></table></div></div>
+   <div><div class="tablewrap"><table class="">
+<caption>Escenarios de mercado</caption>
+<thead><tr>
+<th>Parámetro</th>
+<th class="num">Conserv.</th>
+<th class="num">Base</th>
+<th class="num">Optim.</th>
+</tr></thead><tbody>
+<tr>
+<td>Costo marginal medio</td>
+<td class="num">55</td>
+<td class="num">60</td>
+<td class="num">65</td>
+</tr>
+<tr>
+<td>Compresión del spread horario</td>
+<td class="num">45%</td>
+<td class="num">25%</td>
+<td class="num">0%</td>
+</tr>
+<tr>
+<td>Captura del valor merchant</td>
+<td class="num">70%</td>
+<td class="num">80%</td>
+<td class="num">90%</td>
+</tr>
+<tr>
+<td>Precio de potencia (USD/kW-mes)</td>
+<td class="num">6,5</td>
+<td class="num">8,5</td>
+<td class="num">9,5</td>
+</tr>
+<tr>
+<td>Ingreso por SSCC (USD/kW-año)</td>
+<td class="num">0</td>
+<td class="num">20</td>
+<td class="num">35</td>
+</tr>
+</tbody></table></div></div>
+  </div>
+
+  <div class="callout warn">
+   <h3>Limitaciones</h3>
+   <p>El despacho por programación lineal supone <strong>previsión perfecta</strong>; el escenario base
+   castiga la captura a 80% y el conservador a 70%, pero la captura real depende de la calidad de la
+   operación. El perfil de costo marginal es <strong>sintético y calibrado a referencias públicas</strong>,
+   no una proyección con modelo de despacho del SEN: antes de una oferta vinculante debe sustituirse por
+   la proyección oficial de GR Power. El consumo se modela como un año representativo de 19,0 MW, sin la
+   trayectoria 2026–2040 ni la estacionalidad real, que a la fecha no está disponible con detalle horario.
+   El reconocimiento de potencia firme del BESS usa el criterio de bloque de punta de 4 horas acotado por
+   la capacidad de inyección, y <strong>requiere validación con el CEN</strong>. No se modelan impuestos
+   diferidos, estructura de deuda de proyecto, cobertura cambiaria ni el detalle de las garantías del PPA.</p>
+  </div>
+ </div>
+</section>
+
+<section id="fuentes">
+ <div class="wrap">
+  <div class="sec-head"><span class="eyebrow">13 · Fuentes</span><h2>Referencias</h2></div>
+  <div class="refs">
+   <div class="refgroup">
+    <h3>Documentación interna</h3>
+    <ol>
+     <li>Hilo de correo «Grenergy – SQM Sinergias de PPAs», nov-2025 a sep-2026: tabla de proyección
+     de consumo de SQM, extracción de medidores de N. Machuca, simulación «Generación Estimada
+     PV+BESS – Industria TEA» y análisis de rutas de tramitación.</li>
+    </ol>
+   </div>
+   <div class="refgroup">
+    <h3>Proyecto y regulación</h3>
+    <ol>
+     <li><a href="https://www.sea.gob.cl/portal-de-participacion-ciudadana-y-consulta-indigena/proyecto/parque-fotovoltaico-y-linea-de-0">SEA — Ficha del proyecto «Parque Fotovoltaico y Línea de Transmisión … Región de Tarapacá»</a></li>
+     <li><a href="https://www.revistaei.cl/minera-sqm-ingresa-al-seia-proyecto-solar-y-de-almacenamiento-por-us111-millones/">Revista Electricidad — «Minera SQM ingresa al SEIA proyecto solar y de almacenamiento por US$111 millones»</a></li>
+     <li><a href="https://www.energiaestrategica.com/es/notes/chile-activa-el-decreto-32-las-nuevas-reglas-que-reordenan-almacenamiento-pmgd-y-operacion-electrica">Energía Estratégica — «Chile activa el Decreto 32: las nuevas reglas que reordenan almacenamiento, PMGD y operación eléctrica»</a></li>
+     <li><a href="https://www.garrigues.com/es_ES/noticia/chile-gobierno-aprueba-decreto-redefine-operacion-sistema-electrico-reparto-inyecciones">Garrigues — «Chile: El Gobierno aprueba un decreto que redefine la operación del sistema eléctrico y el reparto de inyecciones»</a></li>
+    </ol>
+   </div>
+   <div class="refgroup">
+    <h3>Precios y mercado</h3>
+    <ol>
+     <li><a href="https://www.cne.cl/wp-content/uploads/2026/01/RMensual_v202601.pdf">CNE — Reporte Mensual del Sector Energético, enero 2026</a></li>
+     <li><a href="https://www.cne.cl/wp-content/uploads/2026/06/RMensual_v202606.pdf">CNE — Reporte Mensual del Sector Energético, junio 2026</a></li>
+     <li><a href="https://electromineria.cl/sistema-electrico-precio-final-promedio-a-clientes-libres-sube-de-us87-a-us107-por-mwh-entre-2020-y-2024/">Electrominería — «Precio final promedio a clientes libres sube de US$87 a US$107 por MWh entre 2020 y 2024»</a></li>
+     <li><a href="https://www.energiaestrategica.com/chile-amplia-el-mercado-electrico-acen-proyecta-precios-de-usd-70-por-mwh-para-2026/">Energía Estratégica — «ACEN proyecta precios de USD 70 por MWh para 2026»</a></li>
+     <li><a href="https://ember-energy.org/latest-insights/how-cheap-is-battery-storage/">Ember Energy — «How cheap is battery storage?»</a></li>
+    </ol>
+   </div>
+   <div class="refgroup">
+    <h3>Operaciones comparables</h3>
+    <ol>
+     <li><a href="https://www.pv-magazine.es/2026/07/01/grenergy-firma-un-ppa-nocturno-de-1-twh-anual-durante-15-anos-en-chile/">pv magazine — «Grenergy firma un PPA nocturno de 1 TWh anual durante 15 años en Chile»</a></li>
+     <li><a href="https://www.pv-magazine-latam.com/2026/06/01/grenergy-firma-en-chile-un-ppa-hibrido-por-350-gwh-anuales-para-la-fase-algarrobal-de-oasis-de-atacama/">pv magazine LatAm — «Grenergy firma un PPA híbrido por 350 GWh anuales para la fase Algarrobal de Oasis de Atacama»</a></li>
+     <li><a href="https://www.pv-magazine-latam.com/2026/07/02/grenergy-subasta-en-chile-15-twh-anuales-de-energia-solar-y-almacenada/">pv magazine LatAm — «Grenergy subasta en Chile 1,5 TWh anuales de energía solar y almacenada»</a></li>
+     <li><a href="https://www.pv-tech.org/atlas-renewable-energy-signs-375gwh-24-7-ppa-with-codelco/">pv-tech — «Atlas Renewable Energy signs 375GWh 24/7 PPA with Codelco»</a></li>
+     <li><a href="https://www.pv-tech.org/atlas-renewable-energy-us510-million-financing-215mw-1-6gwh-solar-plus-storage-chile/">pv-tech — «Atlas Renewable Energy secures US$510 million financing for 215MW/1.6GWh solar-plus-storage in Chile»</a></li>
+     <li><a href="https://www.energy-storage.news/atlas-copec-ppa-200mw-800mwh-bess-chile/">Energy-Storage.news — «Atlas and COPEC sign PPA for 200MW/800MWh BESS in Chile»</a></li>
+     <li><a href="https://www.pv-magazine-latam.com/2026/04/24/en-chile-sonnedix-firma-tres-ppas-con-copec-emoac-para-un-bess-de-117-mw-6438-mwh/">pv magazine LatAm — «Sonnedix firma tres PPAs con Copec EMOAC para un BESS de 117 MW / 643,8 MWh»</a></li>
+     <li><a href="https://www.reporteminero.cl/noticia/noticias/2026/09/proyecto-minero-reduce-costos-energeticos-solar-baterias-descarbonizacion">Reporte Minero — «Proyecto minero reduce 23% costos energéticos con solar y baterías»</a></li>
+    </ol>
+   </div>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="wrap">
+  <p>Documento de trabajo interno de Grenergy. Contiene información de SQM sujeta al NDA suscrito
+  entre las partes.</p>
+  <p class="mono">Versión 1.0 · septiembre de 2026 · cifras indicativas de modelación propia, no
+  constituyen oferta vinculante</p>
+ </div>
+</footer>
+
+<button class="themebtn" id="themebtn" type="button" aria-label="Cambiar tema">tema</button>
+<script>
+(function(){
+  var b=document.getElementById("themebtn"), r=document.documentElement;
+  try{ var s=localStorage.getItem("sqm-theme"); if(s) r.setAttribute("data-theme",s); }catch(e){}
+  b.addEventListener("click",function(){
+    var cur=r.getAttribute("data-theme");
+    var next = cur==="dark" ? "light" : (cur==="light" ? "dark"
+      : (matchMedia("(prefers-color-scheme: dark)").matches ? "light" : "dark"));
+    r.setAttribute("data-theme",next);
+    try{ localStorage.setItem("sqm-theme",next); }catch(e){}
+  });
+})();
+</script>
+
+</body>
+</html>
