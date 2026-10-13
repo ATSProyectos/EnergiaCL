@@ -1,7 +1,9 @@
 # Estrategia de tramitación — Chanqueahue Fase 1 (150 MW) y Fase 2 (~100 MW)
 
 **Objeto:** confirmar la estrategia de tramitación para desarrollar la Fase 2 de Chanqueahue como ampliación que utiliza la misma conexión al SEN, y definir secuencia de hitos, titularidad y vía regulatoria.
-**Fecha:** 13 de octubre de 2026 · **Versión:** 2.0
+**Fecha:** 13 de octubre de 2026 · **Versión:** 3.0
+
+> **Documento complementario.** La arquitectura de SPV, la asignación de activos y permisos entre vehículos, y la estrategia para que las dos tramitaciones ante el SEA sean independientes están en **`estructura-spv-chanqueahue-fase2.md`**. Ese documento es posterior y, donde haya diferencia, prevalece: incorpora los antecedentes del hilo *RE: Chanqueahue FASE II* (hasta el 13.10.2026), entre ellos la decisión de usar una SPV separada para la Fase 2, lo que **cierra la vía del fehaciente** para ella (§3, vía B) y la reemplaza por contrato de transporte más SUCTD.
 
 > **Advertencia de verificación.** Los hosts `coordinador.cl`, `sea.gob.cl`, `cne.cl`, `sec.cl` y `bcn.cl` están bloqueados por la política de red del entorno en que se elaboró este documento, de modo que los documentos primarios no pudieron abrirse directamente. El análisis se construyó sobre fuentes secundarias y citas indirectas (§9). Los puntos marcados **[V]** deben verificarse contra el texto vigente antes de accionarse.
 
@@ -29,15 +31,18 @@
 |---|---|
 | Capacidad solicitada en la SAC | 250 MW |
 | Etapa del proceso de conexión | En elaboración del Informe de Autorización de Conexión **Preliminar** |
-| Fase 1 | 150 MW solar + BESS propio colindante; es la que obtendrá RCA e IFC y sobre la cual se hará la DEC |
+| Fase 1 | 150 MW solar + BESS propio colindante; es la que obtendrá RCA y concesión eléctrica, y sobre la cual se hará la DEC |
 | Fase 2 | El delta (~100 MW), **solo solar** |
 | Dimensionamiento de SET elevadora y LAT | **250 MW** (holgura de 100 MW disponible) |
-| Conexión de la Fase 2 | En **media tensión** a la SET elevadora Chanqueahue, aprovechando el BESS ya existente |
-| Emplazamiento de la Fase 2 | Predios **alejados al menos 2 km** de la Fase 1 |
+| Punto de conexión al SEN | **S/E Totihue**, vía LAT desde la SET elevadora de la Fase 1 |
+| Conexión y emplazamiento de la Fase 2 | **Dos sectores**: ~30 ha cercanas en MT directo a la SET elevadora, y 120–150 ha lejanas agrupadas en **AT con línea de ~3,3 km**. Dato a reconciliar: con posterioridad se manejó MT para el sector lejano |
+| Superficie con acuerdos en avance | **148,7 ha**; rango en definición 120–180 ha |
+| Concesión eléctrica SEC | **Ya dimensionada a 250 MW**; sin cambios por la nueva fase |
+| SPV de la Fase 2 | **GR Laguna San Rafael SpA**, RUT 77.134.068-7 (ex proyecto Charquecillo) |
 | Fecha estimada de IAC | **enero 2027** |
 | Plazo a DEC | enero 2029, más prórroga de hasta 2 años (enero 2031) |
 | Inicio de construcción Fase 1 (objetivo interno) | enero 2028 |
-| Propiedad de la infraestructura compartida | A priori en la SPV de la Fase 1; **no definido** |
+| Propiedad de la infraestructura compartida | SPV de la Fase 1: SET elevadora, LAT a Totihue y BESS |
 | Compromisos comerciales con fecha dura | Ninguno por ahora |
 | Apetito de riesgo en acceso abierto | Mitigar el riesgo, evaluando el *trade-off* velocidad vs. exposición |
 
@@ -46,7 +51,7 @@
 | # | Supuesto | Por qué importa |
 |---|---|---|
 | S1 | El punto de conexión al SEN es una S/E de transmisión **nacional o zonal** (servicio público) | Confirma que la vía de la Capa 1 es SAC y no SUCTD sobre instalación ajena |
-| S2 | "IFC" = Informe Favorable para la Construcción ante la SEC | Es uno de los permisos sectoriales que habilitan la DEC |
+| S2 | ~~"IFC" = Informe Favorable para la Construcción~~ **Resuelto:** se trata de la **concesión eléctrica ante la SEC**, ya dimensionada a 250 MW | Confirmar si cubre las obras de la Fase 2 o si su línea AT requiere concesión propia |
 | S3 | La RCA de la Fase 1 **aún no está aprobada** y no declara etapas | Si ya lo está, la vía ambiental de la Fase 2 cambia (§5) |
 | S4 | El BESS colindante es de la Fase 1 y la Fase 2 lo **usaría**, no construiría uno propio | Es un segundo activo compartido: el principal vínculo funcional remanente (§5.2) |
 
