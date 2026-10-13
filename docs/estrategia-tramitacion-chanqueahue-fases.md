@@ -1,10 +1,9 @@
 # Estrategia de tramitación — Chanqueahue Fase 1 (150 MW) y Fase 2 (~100 MW)
 
-**Objeto:** confirmar la estrategia de tramitación para desarrollar la Fase 2 de Chanqueahue como ampliación que utiliza la misma conexión al SEN, y definir la secuencia de hitos, titularidad y vía regulatoria.
-**Estado del proyecto al momento de este análisis:** SAC por 250 MW presentada ante el Coordinador, **en elaboración del Informe de Autorización de Conexión Preliminar**.
-**Fecha:** 13 de octubre de 2026 · **Versión:** 1.0
+**Objeto:** confirmar la estrategia de tramitación para desarrollar la Fase 2 de Chanqueahue como ampliación que utiliza la misma conexión al SEN, y definir secuencia de hitos, titularidad y vía regulatoria.
+**Fecha:** 13 de octubre de 2026 · **Versión:** 2.0
 
-> **Advertencia de verificación.** Los hosts `coordinador.cl`, `sea.gob.cl`, `cne.cl`, `sec.cl` y `bcn.cl` están bloqueados por la política de red de este entorno, de modo que los documentos primarios no pudieron abrirse directamente. El análisis se construyó sobre fuentes secundarias y citas indirectas (§8). Los puntos marcados **[V]** deben verificarse contra el texto vigente antes de accionarse.
+> **Advertencia de verificación.** Los hosts `coordinador.cl`, `sea.gob.cl`, `cne.cl`, `sec.cl` y `bcn.cl` están bloqueados por la política de red del entorno en que se elaboró este documento, de modo que los documentos primarios no pudieron abrirse directamente. El análisis se construyó sobre fuentes secundarias y citas indirectas (§9). Los puntos marcados **[V]** deben verificarse contra el texto vigente antes de accionarse.
 
 ---
 
@@ -12,38 +11,44 @@
 
 | # | Conclusión | Consecuencia |
 |---|---|---|
-| 1 | **La conexión tiene dos capas, no una.** La capacidad en el punto de conexión al SEN (transmisión de servicio público) la da la SAC/IAC por 250 MW. El uso de la S/E elevadora y la línea —instalaciones **dedicadas** propias— se gobierna por un régimen distinto: proyecto fehaciente, SUCTD o capacidad contratada. | La pregunta de Cristian ("¿habría que meter otra SAC?") y la respuesta de Mario ("solicitamos un fehaciente") responden a **capas distintas**. Ambas son correctas en su capa. No se necesita una segunda SAC si los 250 MW ya quedan autorizados en la primera. |
-| 2 | **El riesgo dominante no es la titularidad: es la caducidad.** Transcurrido el plazo del IAC sin DEC, la aprobación caduca y la capacidad vuelve a considerarse disponible. El plazo máximo es de 24 meses desde el IAC, prorrogable una sola vez. **[V]** | Si se emite un IAC por 250 MW y la DEC cubre solo 150 MW, hay que confirmar si el remanente de 100 MW sobrevive hasta el vencimiento o caduca parcialmente. **Es la pregunta que decide toda la estrategia** y no apareció en la conversación. |
-| 3 | **La intuición de Mario sobre el "mismo titular" es correcta, y ahora se sabe por qué.** El criterio del Coordinador es que solo califican como fehacientes los proyectos **del mismo propietario** cuyas instalaciones dedicadas se pretenden usar; los de terceros van por SUCTD. | Con SPV distinta, la Fase 2 es tercero → SUCTD, no fehaciente. Pero la *definición* de proyecto fehaciente incluye al **arrendatario, usufructuario o quien explote a cualquier título**, lo que abre una vía sin ceder la SPV. Tensión a resolver con el Coordinador **[V]**. |
-| 4 | **Existe una cuarta vía que no se discutió: la capacidad contratada.** El art. 79 inc. 2º LGSE exceptúa del acceso abierto tanto los proyectos propios declarados fehacientemente *como* la **capacidad contratada**. | Un contrato firme de transporte entre el dueño de la S/E y la SPV de la Fase 2 protege la capacidad **sin exigir identidad de titular**. Es la palanca que reconcilia el objetivo de conexión con el de una SPV separable. |
-| 5 | **La secuencia "DEC primero, fehaciente después" deja una ventana de exposición.** El art. 79 inc. 2º protege los proyectos propios declarados fehacientemente **"al momento de la solicitud"** de un tercero. | La reserva de capacidad solo existe desde que se declara. Hay que comprimir el calendario: declarar el fehaciente (o firmar el contrato) **en cuanto esté el IAC Definitivo**, no después de la DEC. |
+| 1 | **La conexión tiene dos capas, no una.** La capacidad en el punto de conexión al SEN la da la SAC/IAC por 250 MW. El uso de la SET elevadora y la LAT —instalaciones **dedicadas** propias— se gobierna por un régimen distinto: proyecto fehaciente, SUCTD o capacidad contratada. | La pregunta de Cristian ("¿habría que meter otra SAC?") y la respuesta de Mario ("solicitamos un fehaciente") responden a **capas distintas**: ambas son correctas en la suya. Con la SET y la LAT dimensionadas para 250 MW, **no se requiere una segunda SAC**. |
+| 2 | **El riesgo dominante es la ventana de acceso abierto, no la caducidad.** El IAC por 250 MW se publica (ene-2027) mientras solo 150 MW están declarados: eso señaliza al mercado una SET con holgura. El art. 79 inc. 2º LGSE solo protege la capacidad contratada y los proyectos propios declarados fehacientemente **"al momento de la solicitud"** de un tercero. | Desde ene-2027 y hasta que exista fehaciente o contrato, los 100 MW son contestables por SUCTD de un tercero. **Esta es la ventana que hay que cerrar primero.** |
+| 3 | **La intuición de Mario sobre el "mismo titular" es correcta, y ahora se sabe por qué.** El criterio de aplicación del Coordinador es que solo califican como fehacientes los proyectos **del mismo propietario** cuyas instalaciones dedicadas se usarán; los de terceros van por SUCTD. | Mantener una sola SPV hasta cerrar el IAC es lo que deja disponible la vía más rápida y barata. Su secuencia —consolidar, cerrar, separar antes del instrumento de Capa 2— es la correcta. |
+| 4 | **Con las fechas confirmadas, la caducidad pasa a ser un riesgo administrable.** IAC ene-2027 → DEC ene-2029 → prórroga única hasta ene-2031. Inicio de construcción Fase 1 objetivo ene-2028. | La Fase 2 tiene entre 2 y 4 años para llegar a su propia DEC. Condición operativa: **ingresar la DIA de la Fase 2 durante 2027**, porque la prórroga es discrecional y se concede sobre avance acreditado, no por el solo transcurso del plazo. |
+| 5 | **La separación de ≥2 km entre predios es una buena noticia y cambia el análisis ambiental.** Debilita de forma significativa la lectura de unidad de proyecto y hace defendible una DIA independiente para la Fase 2. | El vínculo funcional que queda —SET elevadora y BESS compartidos— es lo único sobre lo que podría construirse un reproche. Es gestionable documentalmente. |
+| 6 | **Aparece una palanca de diseño con consecuencia de permisos: el nivel de tensión de la línea MT.** El DS 17/2025 subió el umbral de la tipología b.1 a **>23 kV *y* trazado de 2 km**. El trazado de la Fase 2 ya supera los 2 km, de modo que **la tensión decide** si la línea es tipología por sí sola. | A ≤23 kV la línea queda fuera de la tipología b.1; sobre 23 kV, dentro. Pero mover ~100 MW en MT sobre 2 km es exigente eléctricamente (§4.3): hay que decidir el *trade-off* conscientemente, no por defecto. |
+| 7 | **Existe una cuarta vía que no se discutió: la capacidad contratada.** El art. 79 inc. 2º exceptúa del acceso abierto tanto los proyectos propios declarados fehacientemente *como* la **capacidad contratada**. | Es el plan B si el criterio de identidad de titular resulta restrictivo, y la única vía que protege la capacidad **con SPV distintas**. |
 
 ---
 
-## 1. Punto de partida y supuestos
+## 1. Punto de partida
 
-### 1.1 Lo que está confirmado
+### 1.1 Datos confirmados
 
 | Elemento | Dato |
 |---|---|
 | Capacidad solicitada en la SAC | 250 MW |
 | Etapa del proceso de conexión | En elaboración del Informe de Autorización de Conexión **Preliminar** |
-| Fase 1 | 150 MW; es la que obtendrá RCA e IFC y sobre la cual se haría la DEC |
-| Fase 2 | El delta (~100 MW); se conectaría a la **misma S/E elevadora del Proyecto** |
-| Intención comercial | Fase 2 en una SPV distinta, como proyecto independiente |
+| Fase 1 | 150 MW solar + BESS propio colindante; es la que obtendrá RCA e IFC y sobre la cual se hará la DEC |
+| Fase 2 | El delta (~100 MW), **solo solar** |
+| Dimensionamiento de SET elevadora y LAT | **250 MW** (holgura de 100 MW disponible) |
+| Conexión de la Fase 2 | En **media tensión** a la SET elevadora Chanqueahue, aprovechando el BESS ya existente |
+| Emplazamiento de la Fase 2 | Predios **alejados al menos 2 km** de la Fase 1 |
+| Fecha estimada de IAC | **enero 2027** |
+| Plazo a DEC | enero 2029, más prórroga de hasta 2 años (enero 2031) |
+| Inicio de construcción Fase 1 (objetivo interno) | enero 2028 |
+| Propiedad de la infraestructura compartida | A priori en la SPV de la Fase 1; **no definido** |
+| Compromisos comerciales con fecha dura | Ninguno por ahora |
+| Apetito de riesgo en acceso abierto | Mitigar el riesgo, evaluando el *trade-off* velocidad vs. exposición |
 
-### 1.2 Supuestos de trabajo (a confirmar)
+### 1.2 Supuestos pendientes
 
 | # | Supuesto | Por qué importa |
 |---|---|---|
-| S1 | La S/E elevadora y la línea de conexión serán **de propiedad del grupo** (instalaciones dedicadas propias), no de un tercero | Define si la vía es fehaciente/SUCTD propia o SUCTD sobre instalación ajena |
-| S2 | El punto de conexión al SEN es una S/E de **transmisión nacional o zonal** (servicio público) | Define que la vía de la capa 1 es SAC y no SUCTD |
-| S3 | La S/E elevadora y la línea se dimensionan para **250 MW**, no para 150 MW | Si se dimensionan a 150 MW, no hay capacidad técnica disponible que reservar y la Fase 2 exige ampliar obra dedicada |
-| S4 | "IFC" = Informe Favorable para la Construcción ante la SEC | Es uno de los permisos sectoriales que habilitan la DEC |
-| S5 | La RCA de la Fase 1 **aún no está aprobada** | Si ya lo está y no declaró etapas, la vía ambiental de la Fase 2 cambia (§3.4) |
-| S6 | La Fase 2 se emplaza en el **mismo predio o predios colindantes**, misma tecnología | Determina la exposición al criterio de unidad de proyecto del SEA |
-
-> Los supuestos S3, S5 y S6 son los que más pueden alterar la recomendación. S5 y S6 quedaron sin respuesta en la consulta previa.
+| S1 | El punto de conexión al SEN es una S/E de transmisión **nacional o zonal** (servicio público) | Confirma que la vía de la Capa 1 es SAC y no SUCTD sobre instalación ajena |
+| S2 | "IFC" = Informe Favorable para la Construcción ante la SEC | Es uno de los permisos sectoriales que habilitan la DEC |
+| S3 | La RCA de la Fase 1 **aún no está aprobada** y no declara etapas | Si ya lo está, la vía ambiental de la Fase 2 cambia (§5) |
+| S4 | El BESS colindante es de la Fase 1 y la Fase 2 lo **usaría**, no construiría uno propio | Es un segundo activo compartido: el principal vínculo funcional remanente (§5.2) |
 
 ---
 
@@ -51,176 +56,244 @@
 
 | Capa | Norma / instrumento | Contenido relevante |
 |---|---|---|
-| Conexión al SEN (servicio público) | **DS N° 37/2019**, Minenergía — Reglamento de los sistemas de transmisión y de la planificación de la transmisión | Procedimiento de SAC; contenidos mínimos del IAC Preliminar (art. 21); régimen de acceso abierto **[V]** |
-| Conexión al SEN — procedimiento | Coordinador, *Procedimiento Interno de Interconexión de Proyectos* (v. dic-2024) y *Criterios para la Aplicación del Régimen de Acceso Abierto* (DAA-PIC v2, abr-2023) | Etapas, plazos, una sola oportunidad de modificar la solicitud, plazo de 24 meses a DEC, prórroga |
-| Instalaciones dedicadas | **Art. 79 inc. 2º LGSE** | El titular de instalación dedicada no puede negar el servicio habiendo capacidad técnica disponible, *sin perjuicio de la capacidad contratada y de los proyectos propios declarados fehacientemente al momento de la solicitud* |
+| Conexión al SEN (servicio público) | **DS N° 37/2019**, Minenergía — Reglamento de los sistemas de transmisión | Procedimiento de SAC; contenidos mínimos del IAC Preliminar (art. 21); régimen de acceso abierto **[V]** |
+| Conexión — procedimiento | Coordinador: *Procedimiento Interno de Interconexión de Proyectos* (dic-2024) y *Criterios para la Aplicación del Régimen de Acceso Abierto* (DAA-PIC v2, abr-2023) | Etapas y plazos; **una sola oportunidad de modificar la solicitud**; plazo de 24 meses a DEC; prórroga única |
+| Instalaciones dedicadas | **Art. 79 inc. 2º LGSE** | El titular no puede negar el servicio habiendo capacidad técnica disponible, *sin perjuicio de la capacidad contratada y de los proyectos propios declarados fehacientemente al momento de la solicitud* |
 | Instalaciones dedicadas | **Art. 80 inc. 2º LGSE** | El Coordinador determina fundadamente la CTD, oyendo a las partes; los titulares deben informarle contratos de transporte vigentes y proyectos que usen esa capacidad |
 | Proyectos fehacientes | Coordinador, *Consideración y Gestión de Proyectos Fehacientes* | Definición; criterio de aplicación (mismo propietario); consigna de fehaciencia; IACPF |
 | Declaración en construcción | **Art. 72°-17 LGSE** y **DS N° 125/2017** (Reglamento de Coordinación y Operación del SEN, D.O. 20.12.2019), Título II Cap. 1 | La CNE declara en construcción solo instalaciones que acrediten, al menos, permisos sectoriales, órdenes de compra y cronograma de obras; seguimiento y revocación por incumplimiento de hitos o cambios significativos |
-| Caducidad de capacidad | **Ley N° 20.936** | Transcurrido el plazo sin declaración en construcción, la aprobación caduca y la capacidad técnica vuelve a considerarse disponible **[V]** |
+| Caducidad de capacidad | **Ley N° 20.936** | Transcurrido el plazo sin declaración en construcción, la aprobación caduca y la capacidad vuelve a considerarse disponible **[V]** |
 | Ambiental | **Ley N° 19.300, art. 11 bis** | Prohíbe fraccionar *a sabiendas* para variar el instrumento o eludir el SEIA; **excepciona expresamente** los proyectos cuya ejecución se acredite **por etapas** |
-| Ambiental | **DS N° 40/2012** (RSEIA), art. 2 g) y art. 3 | Definición de modificación de proyecto; tipologías de ingreso |
+| Ambiental | **DS N° 40/2012** (RSEIA), art. 2 g) y art. 3 | Modificación de proyecto; tipologías de ingreso (c) generación, b.1) transmisión |
 | Ambiental — reforma vigente | **DS N° 17/2025**, MMA (Contraloría 31.12.2025; D.O. **21.01.2026**) | Ajusta el art. 2 g.1: si la intervención corresponde a la **misma tipología** por la que el proyecto fue calificado, se aplican los criterios generales en lugar de exigir automáticamente nuevo ingreso. Sube el umbral de transmisión a **>23 kV *y* trazado de 2 km** (art. 3 b.1) |
 
 ---
 
-## 3. Las cuatro decisiones, y en qué orden
+## 3. La arquitectura de conexión: dos capas
 
-### 3.1 El delta 250 − 150 = 100 MW: la caducidad es el riesgo dominante
+**Capa 1 — punto de conexión al SEN (transmisión de servicio público).** La da la SAC. Con el IAC emitido por 250 MW y la SET y LAT dimensionadas para esa capacidad, la inyección de la Fase 2 **ya queda autorizada**: no se requiere una segunda SAC, salvo que la Fase 2 modifique el punto de conexión o agregue obras sobre instalaciones de servicio público. Lo único que hay que administrar es la caducidad (§4.2).
 
-La conversación asume que, obtenido un IAC por 250 MW, los 100 MW quedan "guardados" mientras se construye la Fase 1. Eso **no es seguro**:
+**Capa 2 — uso de la SET elevadora, la LAT y el BESS (instalaciones dedicadas propias).** Cuatro caminos:
 
-- El plazo para obtener la DEC **no puede exceder 24 meses** desde la emisión de la autorización; si la carta Gantt propone más, el Coordinador fija 24 meses.
-- La prórroga se concede **por una única vez** y hasta por el plazo originalmente otorgado, con un techo de 24 meses adicionales contados desde el vencimiento original. La SEC ya confirmó este techo en un caso de parque eólico.
-- Vencido el plazo sin DEC, **la aprobación caduca y la capacidad vuelve a estar disponible** (Ley N° 20.936).
-
-**La pregunta abierta y decisiva:** ¿una DEC por 150 MW de un IAC por 250 MW conserva el remanente hasta el vencimiento del plazo, o gatilla caducidad parcial de los 100 MW no declarados? **[V]**
-
-El escenario adverso implica que la Fase 2 debe alcanzar **su propia DEC** dentro de la ventana del IAC original (24 meses + eventual prórroga), lo que obliga a que su RCA y permisos sectoriales estén listos en ese plazo. Eso es un calendario exigente para un proyecto que hoy no tiene DIA ingresada, y es el verdadero *driver* del cronograma — no la estructura societaria.
-
-> **Hay un antecedente útil:** el Coordinador ha emitido autorizaciones cuya validez se ancla a la vigencia de la SUCTD de una fase posterior ("permanecerá válida mientras la SUCTD del Atacama Solar-BESS Fase III se encuentre vigente"). El desarrollo por fases con instrumento propio por fase es práctica aceptada; la cuestión es el plazo, no la admisibilidad.
-
-### 3.2 La vía de conexión de la Fase 2: cuatro caminos, no dos
-
-Separando las dos capas:
-
-**Capa 1 — punto de conexión al SEN (transmisión de servicio público).** La da la SAC. Si el IAC se emite por 250 MW, la capacidad de inyección de la Fase 2 ya está autorizada y **no se requiere una segunda SAC**, salvo que la Fase 2 agregue obras nuevas sobre instalaciones de servicio público o modifique el punto de conexión. Solo hay que evitar la caducidad (§3.1).
-
-**Capa 2 — uso de la S/E elevadora y la línea (instalaciones dedicadas propias).** Aquí hay cuatro caminos:
-
-| Vía | Cómo opera | Requisito de titularidad | Cuándo conviene |
+| Vía | Cómo opera | Requisito de titularidad | Lectura para Chanqueahue |
 |---|---|---|---|
-| **A. Nueva SAC independiente** | La Fase 2 tramita su propio proceso completo ante el Coordinador | Indiferente | Solo si la Fase 2 se conecta directo a servicio público con obras propias. Caro: nueva cola, nuevos estudios, compite por capacidad |
-| **B. Proyecto fehaciente** | El titular de la instalación dedicada declara su propio proyecto; obtiene consigna de fehaciencia e IACPF | **Mismo propietario** de las instalaciones dedicadas, según criterio de aplicación del Coordinador. La definición admite además arrendatario, usufructuario o quien explote a cualquier título **[V]** | Es la vía más limpia y barata **si se mantiene identidad de titular** |
-| **C. SUCTD de la Fase 2** | La SPV 2, como tercero, solicita uso de la capacidad técnica disponible de la instalación dedicada del grupo | Indiferente — es la vía de terceros | Funciona con SPV distintas. Costo: la CTD se determina y publica, y queda contestable por cualquier tercero |
-| **D. Capacidad contratada** | Contrato firme de transporte entre el dueño de la S/E y la SPV 2; esa capacidad queda excluida de la CTD por art. 79 inc. 2º | **Indiferente** | La palanca menos usada y la que reconcilia ambos objetivos. A validar: el Coordinador revisa los contratos vigentes (art. 80 inc. 2º) y puede escrutar un contrato con relacionada para un proyecto sin RCA **[V]** |
+| **A. Nueva SAC independiente** | La Fase 2 tramita su propio proceso completo | Indiferente | **Descartable.** Solo aplicaría si la Fase 2 se conectara directo a servicio público con obras propias. Nueva cola, nuevos estudios, compite por capacidad |
+| **B. Proyecto fehaciente** | El titular de la instalación dedicada declara su propio proyecto; obtiene consigna de fehaciencia e IACPF | **Mismo propietario** de las instalaciones dedicadas (criterio de aplicación). La definición admite además arrendatario, usufructuario o quien explote a cualquier título **[V]** | **Vía recomendada.** La más rápida y barata, y la que cierra antes la ventana de acceso abierto — siempre que se mantenga identidad de titular hasta declararlo |
+| **C. SUCTD de la Fase 2** | La SPV 2, como tercero, solicita uso de la capacidad técnica disponible | Indiferente — es la vía de terceros | Funciona con SPV distintas, pero la CTD se determina y publica, quedando contestable. Es la vía que **obliga** a usar si se separa la titularidad antes de tiempo |
+| **D. Capacidad contratada** | Contrato firme de transporte entre el dueño de la SET y la SPV 2; esa capacidad queda excluida de la CTD por art. 79 inc. 2º | **Indiferente** | **Plan B.** Protege la capacidad sin identidad de titular. A validar: el Coordinador revisa los contratos vigentes (art. 80 inc. 2º) y puede escrutar un contrato con relacionada para un proyecto sin RCA **[V]** |
 
-**Lectura:** Cristian apunta a la vía A; Mario, a la B. La pregunta de Mario sobre identidad de titular es exactamente el punto que decide entre B y C. Y la vía D, no discutida, permite SPV distinta **sin** perder la protección de capacidad.
+---
 
-### 3.3 Titularidad: la secuencia de Mario es correcta, el instrumento puede mejorarse
+## 4. Riesgos, en orden de severidad
 
-Mario propone: *"sino después podemos hacer cesión de la SPV, antes de iniciar el fehaciente"*. **La secuencia es la correcta** — consolidar bajo un titular, cerrar el IAC, y separar antes de activar el instrumento de la Capa 2. Dos precisiones:
+### 4.1 Riesgo 1 — La ventana de acceso abierto (ene-2027 en adelante)
 
-1. **Momento.** La separación debe ocurrir después del IAC Definitivo y **antes** de declarar el fehaciente o presentar la SUCTD, para que el instrumento se presente ya con la titularidad definitiva y no haya que rectificarlo. Esto coincide con lo que Mario propuso.
-2. **Instrumento.** "Cesión de la SPV" (venta de acciones) conserva la personalidad jurídica y con ella los permisos: es preferible a una cesión de activos, que obliga a transferir permiso por permiso. Si lo que se necesita es *separar* la Fase 2 de un vehículo que también tiene la Fase 1, la técnica a evaluar con los abogados es la **división de sociedad**, donde la entidad que nace recibe el patrimonio de la Fase 2. A validar caso a caso: la transferencia de la RCA requiere además el trámite de **cambio de titularidad ante el SEA**, que en la práctica se ha visto lento cuando se pide junto con refundir RCA.
+El IAC se publica en la plataforma de Acceso Abierto del Coordinador. Desde ene-2027, cualquier tercero puede ver una SET elevadora y una LAT dimensionadas para 250 MW con solo 150 MW declarados en construcción. Esa holgura es exactamente lo que una SUCTD de tercero busca.
 
-> **Riesgo a dimensionar:** si la RCA es **una sola para 250 MW**, separar la Fase 2 después exige dividir o refundir esa RCA — trámite incierto. Si en cambio cada fase tiene **su propia RCA**, la separación es limpia. Esto empuja a decidir el encuadre ambiental *antes*, no después (§3.4).
+La defensa del art. 79 inc. 2º es de **dos puertas y se mide en el momento de la solicitud del tercero**: capacidad contratada, o proyecto propio declarado fehacientemente. Mientras no exista una de las dos, no hay defensa.
 
-### 3.4 Encuadre ambiental: la respuesta a la última pregunta de Mario
+> **Esto corrige la secuencia de la conversación.** El plan era "DEC de la Fase 1 primero, fehaciente después". La reserva de capacidad no existe hasta que se declara, de modo que el fehaciente debe presentarse **en cuanto esté el IAC Definitivo**, en paralelo con la DEC de la Fase 1 y no después de ella.
 
-> *"otra opción sería, si es que se puede ingresar una nueva DIA independiente pero con la misma SPV de Chanqueahue, no sé si el SEA te obligaría a verlo como un proyecto por etapas o ampliación"*
+**Pregunta crítica que esto abre:** ¿qué antecedentes exige el Coordinador para consignar un proyecto como fehaciente, y puede la Fase 2 calificar en 2027 **sin RCA**? Si la consigna exige RCA, la ventana de exposición no se puede cerrar con la vía B y hay que recurrir a la vía D (capacidad contratada), que no depende del estado de permisos del proyecto beneficiario. **[V]** — es la verificación de mayor valor de todo el plan.
 
-Tres precisiones:
+### 4.2 Riesgo 2 — Caducidad del remanente de 100 MW (administrable)
 
-**(a) El art. 11 bis no es el obstáculo que parece.** Prohíbe fraccionar **"a sabiendas"** y con el objeto de **variar el instrumento de evaluación o eludir el SEIA**, e **excepciona expresamente** los proyectos cuya ejecución por etapas se acredite. Es decir: si el proyecto conjunto de 250 MW seguiría siendo evaluable por DIA, no hay "variación de instrumento" y el reproche de fraccionamiento se debilita sustancialmente. La pregunta operativa no es si el SEA *obliga* a verlo por etapas, sino **qué encuadre conviene declarar** — porque declararlo por etapas es precisamente lo que activa la excepción legal.
+| Hito | Fecha |
+|---|---|
+| IAC estimado | ene-2027 |
+| Plazo máximo a DEC (24 meses) | ene-2029 |
+| Prórroga única, hasta por el plazo original | ene-2031 |
+| Inicio de construcción Fase 1 (objetivo) | ene-2028 |
 
-**(b) La Fase 2 sí deberá ingresar al SEIA, bajo S6.** Uno de los criterios de "cambio de consideración" es si las obras agregadas constituyen **por sí solas** una tipología del art. 3 RSEIA. En el precedente *Crucero Este*, el SEA concluyó que subir de 127,87 a 213,12 MW **con los mismos paneles en la misma área** no constituía por sí sola una tipología — pero ahí no había obra nueva en terreno nuevo. Una Fase 2 de ~100 MW sobre superficie adicional sí constituye por sí sola una central generadora de la tipología c) del art. 3, de modo que habrá ingreso. Lo que está en juego es **el envase**: modificación de la RCA existente, o proyecto nuevo con RCA propia.
+La Fase 1 llega a su DEC con holgura. La Fase 2 dispone de 2 años ciertos y hasta 4 con prórroga, lo que es suficiente para DIA, RCA, IFC, permisos sectoriales y órdenes de compra — **si la DIA entra durante 2027**.
 
-**(c) El DS N° 17/2025 cambió el tablero y es reciente.** Vigente desde el 21 de enero de 2026, ajusta el art. 2 g.1 para que, cuando la intervención corresponde a la **misma tipología** por la que el proyecto fue calificado, se apliquen los criterios generales en vez de exigir automáticamente nuevo ingreso. También subió el umbral de transmisión a **>23 kV *y* 2 km de trazado**, lo que puede dejar fuera de tipología propia a una línea dedicada corta. Ambos puntos deben revisarse contra el texto publicado antes de fijar la estrategia **[V]**.
+Dos cautelas:
+1. **La prórroga no es automática.** Se concede por una única vez y sobre avance acreditado; la SEC ya confirmó el techo del plazo original más 24 meses. Un remanente sin RCA en ene-2029 es una solicitud de prórroga débil. El plazo de planificación real es **ene-2029**, con ene-2031 como colchón, no como fecha objetivo.
+2. **Sigue abierto si la caducidad es parcial o total.** ¿Una DEC por 150 MW de un IAC por 250 MW conserva el remanente hasta el vencimiento, o gatilla caducidad parcial de los 100 MW? **[V]**
 
-**Comparación de envases ambientales:**
+> Hay antecedente favorable: el Coordinador ha emitido autorizaciones cuya validez se ancla a la vigencia de la SUCTD de una fase posterior ("permanecerá válida mientras la SUCTD del Atacama Solar-BESS Fase III se encuentre vigente"). El desarrollo por fases con instrumento propio por fase es práctica aceptada.
 
-| Envase | Ventaja | Costo |
+### 4.3 Riesgo 3 — Coherencia eléctrica de la conexión en MT
+
+Conectar ~100 MW en media tensión sobre un trazado de al menos 2 km es exigente. A 33 kV, 100 MW equivalen del orden de **1.750 A**; a 23 kV, cerca de **2.500 A**. Eso implica varios circuitos en paralelo o conductores de sección muy alta, con pérdidas y costo relevantes sobre 2 km.
+
+Esto interactúa directamente con los permisos:
+
+| Decisión de diseño | Consecuencia de permisos | Consecuencia eléctrica |
 |---|---|---|
-| **RCA única por 250 MW, declarada por etapas** | Activa la excepción del art. 11 bis; justifica DEC parcial; alinea con la SAC por 250 MW | La separación posterior de la Fase 2 exige dividir/refundir RCA + cambio de titularidad: trámite lento e incierto |
-| **RCA Fase 1 (150 MW) + DIA de modificación para la Fase 2** | Evalúa solo el delta; aprovecha el DS 17/2025 | Sigue siendo **un** proyecto y **una** RCA: mismo problema de separabilidad |
-| **RCA Fase 1 + DIA nueva e independiente para la Fase 2** | Separabilidad limpia: RCA propia, titular propio, DEC propia, vendible | Expuesto al criterio de unidad de proyecto; la DIA debe describir la S/E de la Fase 1 como infraestructura existente y resolver impactos acumulativos |
+| Línea **≤23 kV** | Queda **fuera** de la tipología b.1 del art. 3 RSEIA, cualquiera sea el largo | Corriente muy alta; múltiples circuitos; pérdidas sobre 2 km |
+| Línea **>23 kV** con trazado ≥2 km | **Dentro** de la tipología b.1: constituye tipología por sí sola | Solución eléctrica razonable; posible SET elevadora propia en la Fase 2 |
+
+La solución técnicamente natural para ~100 MW a 2+ km es elevar en el predio de la Fase 2 y transmitir en alta tensión — lo que cruza el umbral y convierte la línea en tipología propia. **Conviene tomar esta decisión conscientemente, con ingeniería y permisos en la misma mesa**, y no heredarla del diseño preliminar. Nótese que caer en la tipología b.1 no es necesariamente malo: la Fase 2 ingresará al SEIA de todos modos (§5.2), y una SET propia reduce la dependencia funcional respecto de la Fase 1, lo que ayuda en la separabilidad comercial.
+
+### 4.4 Riesgo 4 — Costo de separar la Fase 2 más adelante
+
+Si la Fase 2 termina cubierta por una RCA conjunta, extraerla exige dividir o refundir esa RCA más un cambio de titularidad ante el SEA — trámite que en la práctica se ha visto lento cuando ambos se piden juntos. Se mitiga eligiendo el envase ambiental correcto desde el inicio (§5.3), no al momento de vender.
 
 ---
 
-## 4. Opciones estratégicas comparadas
+## 5. Encuadre ambiental
 
-| | **Opción 1 — Una SPV, dos etapas, cesión posterior** (plan de la conversación) | **Opción 2 — Dos SPV desde el inicio + infra segregada** | **Opción 3 — Statu quo: cerrar la SAC y decidir después** |
+### 5.1 El art. 11 bis no es el obstáculo que parece
+
+La norma prohíbe fraccionar **"a sabiendas"** y con el objeto de **variar el instrumento de evaluación o eludir el SEIA**, y **excepciona expresamente** los proyectos cuya ejecución por etapas se acredite. Si el proyecto conjunto de 250 MW seguiría siendo evaluable por DIA, no hay variación de instrumento y el reproche se debilita sustancialmente.
+
+La pregunta operativa no es si el SEA *obliga* a verlo por etapas, sino **qué encuadre conviene declarar** — porque declararlo por etapas es precisamente lo que activa la excepción legal.
+
+### 5.2 Qué cambia con los predios separados por ≥2 km
+
+Este dato mejora la posición de forma significativa. El criterio de unidad de proyecto se construye sobre contigüidad geográfica y dependencia funcional:
+
+| Factor | Situación en Chanqueahue | Efecto |
+|---|---|---|
+| Contigüidad geográfica | **Predios alejados ≥2 km** | **Favorable.** Debilita la lectura de proyecto único |
+| Misma tecnología y tipología | Solar en ambas fases | Neutro a favorable: habilita la excepción del art. 2 g.1 del DS 17/2025 si se va por modificación |
+| SET elevadora compartida | Sí | Vínculo funcional |
+| **BESS compartido** | Sí, el de la Fase 1 | **Vínculo funcional, el más fuerte** |
+| Instrumento de evaluación | DIA en ambos casos | **Favorable.** Sin variación de instrumento, el núcleo del art. 11 bis no se configura |
+
+El BESS compartido es el punto a trabajar. Además del ángulo ambiental, tiene un ángulo regulatorio propio: si energía de la Fase 2 se almacena en un BESS de la Fase 1, ese BESS presta un servicio a un tercero y hay que resolver cómo se estructura (contrato, medida y asignación de inyecciones ante el Coordinador). **Conviene definirlo explícitamente antes de que quede implícito en el diseño.**
+
+De todas formas, la Fase 2 **sí ingresará al SEIA**: ~100 MW solares sobre superficie nueva constituyen por sí solos una central generadora de la tipología c) del art. 3. Lo que está en juego es el envase. El precedente *Crucero Este* (de 127,87 a 213,12 MW tratado como modificación) no es trasladable, porque allí el aumento se logró con los mismos paneles en la misma área, sin obra nueva en terreno nuevo.
+
+### 5.3 Comparación de envases
+
+| Envase | Ventaja | Costo | Encaje con Chanqueahue |
 |---|---|---|---|
-| **Capa 1 (SEN)** | IAC 250 MW a nombre de la SPV actual | IAC 250 MW a nombre de la SPV que será dueña de la infra | IAC 250 MW, sin arquitectura de Fase 2 definida |
-| **Capa 2 (dedicada)** | Vía B — fehaciente del mismo titular | Vía D — capacidad contratada, con vía C como respaldo | Por definir |
-| **Ambiental** | RCA por etapas, o RCA 150 + modificación | RCA propia por fase | Por definir |
-| **Separabilidad de la Fase 2** | Baja: exige dividir RCA y transferir permisos | **Alta**: venta de acciones sin tocar permisos | Indeterminada |
-| **Riesgo de acceso abierto** | Bajo, si el fehaciente se declara temprano | Bajo, si el contrato se firma temprano | **Alto**: ventana sin protección |
-| **Costo de implementación** | Bajo ahora, alto después | **Alto ahora** (usa la única ventana de modificación), bajo después | Nulo ahora, indeterminado después |
-| **Riesgo de caducidad del delta** | Presente en las tres: lo mitiga el calendario de la Fase 2, no la estructura | | |
-
-**Restricción crítica de calendario que condiciona las tres opciones:** según los criterios del Coordinador, **la solicitud no puede modificarse más de una vez**, en un plazo de **15 días**, entregando una nueva versión como parte de las respuestas a las observaciones al IAC Preliminar. Chanqueahue está justo antes de esa ventana. **Es la última oportunidad barata de ajustar la arquitectura de conexión**; después, la estructura cristaliza en el IAC Final y Definitivo.
-
-Benchmark de duración observado (proyecto *PFV BESS El Peral*, 2025): Preliminar 04.08 → observaciones 25.08 → Final 25.09 → Definitivo 23.10. Del Preliminar al Definitivo, ~2,5 meses.
+| RCA única por 250 MW, declarada por etapas | Activa la excepción del art. 11 bis; justifica DEC parcial; alinea con la SAC | Separación posterior exige dividir/refundir RCA + cambio de titularidad | Solo si la Fase 2 **no** se vende |
+| RCA Fase 1 + DIA de modificación para la Fase 2 | Evalúa solo el delta; aprovecha el art. 2 g.1 del DS 17/2025 | Sigue siendo un proyecto y una RCA: mismo problema de separabilidad | Poco atractivo: paga el costo de separabilidad sin ganar la limpieza |
+| **RCA Fase 1 + DIA nueva e independiente para la Fase 2** | Separabilidad limpia: RCA propia, titular propio, DEC propia, vendible | Expuesto al criterio de unidad de proyecto; la DIA debe describir SET y BESS como infraestructura existente y resolver impactos acumulativos | **Recomendado.** Los ≥2 km de separación y el ingreso por DIA en ambos casos hacen esta exposición manejable |
 
 ---
 
-## 5. Recomendación
+## 6. Propiedad de la infraestructura compartida
 
-**Opción 1 como base, con dos correcciones y una decisión anticipada.**
+Punto que quedó explícitamente abierto. La regulación aplicable es la de instalaciones dedicadas (arts. 79 y 80 LGSE), y las consecuencias de cada estructura son estas:
 
-1. **Mantener un solo titular hasta el IAC Definitivo.** No introducir la SPV 2 en el proceso de conexión en curso: añadiría riesgo a una SAC que está a punto de recibir su Preliminar, sin beneficio inmediato. La secuencia que propuso Mario —consolidar, cerrar, separar antes del instrumento de Capa 2— es la correcta.
+### Opción I — La SET, la LAT y el BESS quedan en la SPV de la Fase 1
 
-2. **Corrección 1: declarar el proyecto por etapas, explícitamente, en ambos frentes.** Es la jugada de mayor apalancamiento y la más barata: activa la excepción del art. 11 bis, da fundamento a una DEC parcial frente al Coordinador, y hace defendible cualquiera de los dos envases ambientales posteriores.
+| | |
+|---|---|
+| **Capa 2 disponible** | Vía B (fehaciente) mientras la Fase 2 sea de la misma SPV; vía C o D si se separa |
+| **Obligaciones que asume la SPV 1** | Pasa a ser titular de instalaciones dedicadas: acceso abierto sobre su capacidad disponible, e informar al Coordinador los contratos de transporte vigentes y los proyectos que usen esa capacidad (art. 80 inc. 2º) |
+| **Ventaja** | Es la estructura que **no toca** la SAC en curso. Deja la vía B disponible de inmediato |
+| **Costo** | Al vender la Fase 2, el comprador queda dependiendo de activos del vendedor. Es un punto de *due diligence* y de negociación de contratos de servidumbre, transporte y uso del BESS |
 
-3. **Corrección 2: no esperar a la DEC para proteger la capacidad.** La protección del art. 79 inc. 2º se mide **al momento de la solicitud** de un tercero. En cuanto esté el IAC Definitivo, declarar el fehaciente (vía B) o firmar el contrato de transporte (vía D). Mientras no exista uno de los dos, la capacidad de la S/E elevadora es contestable.
+### Opción II — SET, LAT y BESS en una SPV de transmisión separada
 
-4. **Decisión anticipada: elegir el envase ambiental antes de la separación societaria, no después.** Si la Fase 2 se va a vender, la **DIA independiente con RCA propia** vale el costo de exponerse al criterio de unidad de proyecto, porque evita dividir una RCA conjunta más adelante. Si no se va a vender y solo se busca *ring-fencing* financiero, la RCA única por etapas es más simple.
+| | |
+|---|---|
+| **Capa 2 disponible** | **Ambos** generadores pasan a ser terceros respecto de la infraestructura: vía C o D para la Fase 1 **y** para la Fase 2 |
+| **Ventaja** | Separabilidad simétrica: cualquiera de las dos fases se vende sin que el comprador dependa del otro generador. Es la estructura más limpia para una cartera |
+| **Costo** | Implementarla **ahora** exige reestructurar la titularidad de la SAC en curso, consumiendo la única ventana de modificación (§7). Y hace perder la vía B también para la Fase 1 |
 
-5. **Si la respuesta del Coordinador sobre identidad de titular es restrictiva**, migrar a la vía D (capacidad contratada), que no depende de ella. Es el plan B que hace que la estrategia no se rompa si Tommy confirma la lectura estricta.
+### Opción III — Opción I ahora, segregación posterior
+
+| | |
+|---|---|
+| **Cómo** | La infraestructura queda en la SPV 1 hasta el IAC Definitivo y la DEC; después se segrega, por ejemplo mediante división de sociedad |
+| **Ventaja** | **Preserva la vía B hoy y la opción de llegar a la Opción II mañana.** No consume la ventana de modificación |
+| **Costo** | La segregación posterior obliga a informar al Coordinador el cambio de propiedad de instalaciones dedicadas y a mapear la transferencia del IAC y de la DEC. Es trabajo acotado, pero hay que planificarlo, no improvisarlo |
+
+**Recomendación:** **Opción III.** Dado que no hay compromisos comerciales con fecha dura y que el calendario tiene holgura, el valor de preservar optatividad es alto y el costo de decidir ahora —consumir la ventana de modificación— es inmediato y no recuperable.
 
 ---
 
-## 6. Plan de avance
+## 7. La restricción de calendario que condiciona todo
 
-### Bloque I — Antes de que llegue el IAC Preliminar (ventana de días)
+Según los criterios del Coordinador, **la solicitud no puede modificarse más de una vez**, en un plazo de **15 días**, entregando una nueva versión como parte de las respuestas a las observaciones al IAC Preliminar. Hay además una discrepancia entre fuentes sobre si el plazo de observaciones es de 15 o 30 días hábiles **[V]**.
 
-| # | Acción | Responsable | Por qué ahora |
+Chanqueahue está justo antes de esa ventana: **es la última oportunidad barata de ajustar la arquitectura de conexión.** Después, la estructura cristaliza en el IAC Final y Definitivo.
+
+Duración de referencia, proyecto *PFV BESS El Peral* (2025): Preliminar 04.08 → observaciones 25.08 → Final 25.09 → Definitivo 23.10. Del Preliminar al Definitivo, unos 2,5 meses.
+
+---
+
+## 8. Recomendación y plan de avance
+
+### 8.1 Recomendación
+
+**El plan de la conversación es el correcto. Las respuestas lo refuerzan, con tres correcciones.**
+
+1. **Mantener una sola SPV hasta el IAC Definitivo**, con la infraestructura en la SPV de la Fase 1 (Opción III). No introducir la SPV 2 en el proceso de conexión en curso: consumiría la ventana de modificación sin beneficio, porque no hay compromisos comerciales que lo exijan. La secuencia de Mario —consolidar, cerrar, separar antes del instrumento de Capa 2— es la correcta.
+
+2. **Corrección 1 — No esperar la DEC para proteger la capacidad.** La protección del art. 79 inc. 2º se mide al momento de la solicitud de un tercero. El fehaciente de la Fase 2 debe presentarse en cuanto esté el IAC Definitivo, **en paralelo** con la DEC de la Fase 1.
+
+3. **Corrección 2 — Declarar el proyecto por etapas, explícitamente, en ambos frentes.** Activa la excepción del art. 11 bis, da fundamento a una DEC parcial frente al Coordinador y hace defendible el envase ambiental elegido.
+
+4. **Corrección 3 — Decidir el envase ambiental antes de la separación societaria, no después.** Si la Fase 2 se va a vender, **DIA independiente con RCA propia**: con predios a ≥2 km y DIA en ambos casos, la exposición al criterio de unidad de proyecto es manejable, y evita dividir una RCA conjunta más adelante.
+
+5. **Si el criterio de identidad de titular resulta restrictivo**, migrar a la vía D (capacidad contratada), que no depende de él. Es el plan B que impide que la estrategia se rompa.
+
+### 8.2 Velocidad vs. reducción de riesgo
+
+El *trade-off* que se planteó, resuelto:
+
+| Estrategia | Velocidad | Exposición en acceso abierto | Separabilidad de la Fase 2 |
 |---|---|---|---|
-| I.1 | **Consulta formal al Coordinador** sobre los dos puntos binarios: (i) si una DEC parcial por 150 MW conserva el remanente de 100 MW hasta el vencimiento del plazo del IAC o gatilla caducidad parcial; (ii) si un arrendatario/usufructuario de la S/E elevadora califica para declarar proyecto fehaciente, dada la tensión entre la definición y el criterio de aplicación | Regulatorio | Las dos respuestas determinan la arquitectura. Ambas se pueden obtener antes de que cierre la ventana de observaciones |
-| I.2 | Verificar el **dimensionamiento de la S/E elevadora y la línea**: ¿250 MW o 150 MW? (supuesto S3) | Ingeniería | Si están dimensionadas a 150 MW no hay CTD que reservar y toda la discusión de Capa 2 cambia |
-| I.3 | Revisar el **texto publicado del DS 17/2025** y evaluar el nuevo art. 2 g.1 y el umbral de 2 km para la línea dedicada | Ambiental | Vigente desde enero de 2026; puede abrir la vía de modificación |
-| I.4 | Decidir el **destino comercial de la Fase 2** (venta / financiamiento / orden interno) | Negocio / Mario | Es el único *input* que decide entre RCA única y RCA propia. Quedó sin responder |
+| **Una SPV + fehaciente temprano** (recomendada) | **Alta** — no toca la SAC en curso | **Baja** si la consigna de fehaciencia se obtiene sin RCA; media si exige RCA | Media: resoluble con división de sociedad y DIA independiente |
+| Una SPV + contrato de transporte temprano | Alta | **Baja** y no depende del estado de permisos de la Fase 2 | Alta |
+| Dos SPV desde el inicio | **Baja** — consume la ventana de modificación | Media: obliga a vía C o D | Alta |
+| Statu quo, decidir después del IAC | Alta hoy | **Alta** — ventana abierta desde ene-2027 | Indeterminada |
 
-### Bloque II — Ventana de observaciones al IAC Preliminar (15 días, única oportunidad)
+La conclusión relevante es que **no hay que elegir** entre velocidad y riesgo: la combinación de una sola SPV con instrumento de Capa 2 temprano da ambas. El *trade-off* real aparece solo si la consigna de fehaciencia exige RCA de la Fase 2, caso en el cual la vía D lo resuelve.
+
+### 8.3 Plan de avance
+
+**Bloque I — Antes de que llegue el IAC Preliminar (ventana de días)**
 
 | # | Acción | Responsable |
 |---|---|---|
-| II.1 | Revisar el Preliminar contra la arquitectura de dos etapas: capacidad total autorizada, dimensionamiento del equipamiento dedicado, plazo a DEC fijado y carta Gantt | Regulatorio + Ingeniería |
-| II.2 | Si procede, presentar **la única modificación admitida** de la solicitud, incorporando el desarrollo por etapas y el dimensionamiento para 250 MW | Regulatorio |
-| II.3 | Negociar en observaciones el **plazo a DEC y la carta Gantt** de modo que la ventana cubra también el hito de la Fase 2 | Regulatorio |
+| I.1 | **Consulta formal al Coordinador** sobre tres puntos binarios: (i) antecedentes exigidos para consignar un proyecto como fehaciente y si la Fase 2 puede calificar **sin RCA**; (ii) si una DEC parcial por 150 MW conserva el remanente de 100 MW hasta el vencimiento del plazo del IAC o gatilla caducidad parcial; (iii) si un arrendatario o usufructuario de la SET califica para declarar fehaciente, dada la tensión entre la definición y el criterio de aplicación | Regulatorio |
+| I.2 | Resolver la **tensión vs. tipología** de la línea de la Fase 2: ≤23 kV o alta tensión con SET propia, con ingeniería y permisos en la misma mesa (§4.3) | Ingeniería + Ambiental |
+| I.3 | Revisar el **texto publicado del DS 17/2025**: nuevo art. 2 g.1 y umbral de 2 km de la tipología b.1 | Ambiental |
+| I.4 | Decidir el **destino comercial de la Fase 2** al menos a nivel de escenario, porque decide el envase ambiental | Negocio |
+| I.5 | Definir cómo se estructura el **uso del BESS de la Fase 1 por la Fase 2**: contrato, medida y asignación de inyecciones | Regulatorio + Comercial |
 
-### Bloque III — Del IAC Final al Definitivo (~2,5 meses de referencia)
+**Bloque II — Ventana de observaciones al IAC Preliminar (única oportunidad)**
+
+| # | Acción |
+|---|---|
+| II.1 | Revisar el Preliminar contra la arquitectura de dos etapas: capacidad total autorizada, dimensionamiento del equipamiento dedicado, plazo a DEC y carta Gantt |
+| II.2 | Si procede, presentar **la única modificación admitida**, incorporando el desarrollo por etapas |
+| II.3 | Negociar el **plazo a DEC y la carta Gantt** de modo que la ventana cubra también el hito de la Fase 2 |
+
+**Bloque III — Del IAC Final al Definitivo (~2,5 meses de referencia) y 2027**
 
 | # | Acción |
 |---|---|
 | III.1 | Cerrar el IAC Final y Definitivo por los 250 MW |
-| III.2 | Completar RCA e IFC de la Fase 1 y presentar la **DEC ante la CNE** (permisos sectoriales + órdenes de compra + cronograma de obras) |
-| III.3 | **Inmediatamente tras el Definitivo:** declarar el proyecto fehaciente de la Fase 2 (vía B) o firmar el contrato de transporte (vía D). No esperar la DEC |
-| III.4 | Ejecutar la separación societaria elegida, **antes** de presentar el instrumento de Capa 2 y con el cambio de titularidad ante el SEA ya mapeado |
+| III.2 | **Inmediatamente tras el Definitivo:** declarar el proyecto fehaciente de la Fase 2, o firmar el contrato de transporte si la vía B no está disponible. **No esperar la DEC** |
+| III.3 | Completar RCA e IFC de la Fase 1 y presentar la **DEC ante la CNE** (permisos sectoriales, órdenes de compra, cronograma de obras) |
+| III.4 | **Ingresar la DIA de la Fase 2 durante 2027**, en el envase decidido en I.4, describiendo SET, LAT y BESS como infraestructura existente y resolviendo impactos acumulativos |
 
-### Bloque IV — Fase 2
+**Bloque IV — 2028 a 2029**
 
 | # | Acción |
 |---|---|
-| IV.1 | Ingresar la DIA de la Fase 2 en el envase decidido en I.4, describiendo la S/E elevadora como infraestructura existente y resolviendo impactos acumulativos |
-| IV.2 | Obtener permisos sectoriales e IFC de la Fase 2 |
-| IV.3 | **DEC de la Fase 2 dentro de la ventana del IAC original** (24 meses + eventual prórroga única). Este es el hito crítico del plan |
+| IV.1 | Inicio de construcción Fase 1 (objetivo ene-2028) |
+| IV.2 | Obtener RCA, permisos sectoriales e IFC de la Fase 2 |
+| IV.3 | Ejecutar la separación societaria elegida, **antes** de que el instrumento de Capa 2 requiera rectificación, con el cambio de titularidad ante el SEA mapeado |
+| IV.4 | **DEC de la Fase 2 antes de ene-2029.** Hito crítico: tratar ene-2029 como fecha de planificación y ene-2031 como colchón, no como objetivo |
+
+### 8.4 Qué falta confirmar
+
+**Bloqueantes:**
+1. Antecedentes exigidos para la consigna de fehaciencia, y si la Fase 2 califica sin RCA. **[V]** — determina si la ventana de acceso abierto se cierra en 2027 o más tarde.
+2. Si la DEC parcial conserva el remanente de capacidad o gatilla caducidad parcial. **[V]**
+3. Si arrendatario o usufructuario califica para fehaciente, o el criterio es estrictamente "mismo propietario". **[V]**
+4. Destino comercial de la Fase 2, al menos como escenario.
+
+**Para cerrar el cronograma:**
+5. Estado de la tramitación ambiental de la Fase 1 y si declara etapas o capacidad adicional.
+6. Nivel de tensión definitivo de la conexión de la Fase 2 y si tendrá SET propia.
+7. Estructura del uso del BESS de la Fase 1 por la Fase 2.
+8. Naturaleza del punto de conexión al SEN (nacional o zonal) y tenencia de los terrenos de la Fase 2.
+9. Plazo de observaciones efectivo al IAC Preliminar: 15 o 30 días hábiles. **[V]**
 
 ---
 
-## 7. Qué falta confirmar
-
-**Bloqueantes de la estrategia:**
-
-1. ¿DEC parcial conserva el remanente de capacidad, o caduca? **[V]** — decide si la Fase 2 tiene un plazo duro o holgado.
-2. ¿Arrendatario/usufructuario califica para fehaciente, o el criterio es estrictamente "mismo propietario"? **[V]** — decide entre vía B y vía D.
-3. Destino comercial de la Fase 2 — decide el envase ambiental.
-
-**Necesarios para cerrar el cronograma:**
-
-4. Estado de la tramitación ambiental de la Fase 1 y si declaró etapas o capacidad adicional.
-5. Dimensionamiento de la S/E elevadora y la línea (250 MW vs 150 MW).
-6. Tecnología de la Fase 2 (FV, BESS o híbrido) y si coincide con la Fase 1.
-7. Terrenos: mismo predio o colindantes; tenencia privada o fiscal (CUO).
-8. Quién será dueño de la infraestructura compartida: SPV Fase 1 o SPV de transmisión separada.
-9. Compromisos comerciales con fecha dura (PPA, licitación de suministro, financista).
-10. Fecha estimada de emisión del IAC y PES objetivo.
-
----
-
-## 8. Fuentes
+## 9. Fuentes
 
 Documentos del Coordinador Eléctrico Nacional:
 - [Procedimiento Interno de Interconexión de Proyectos (v. dic-2024)](https://www.coordinador.cl/wp-content/uploads/2024/12/Procedimiento-Interno-de-Interconexion-de-Proyectos-1.pdf)
@@ -231,6 +304,7 @@ Documentos del Coordinador Eléctrico Nacional:
 - [Informe de Autorización de Conexión Definitivo — PFV BESS El Peral (oct-2025)](https://cartas.coordinador.cl/download_anexos/690a1513356357710f683b20/0)
 - [Minuta de Revisión de Antecedentes Proyecto Fehaciente](https://cartas.coordinador.cl/download_anexos/678160233563575774927dfe/0)
 - [Informe de Autorización de Conexión de Proyecto Fehaciente (abr-2025)](https://cartas.coordinador.cl/download_anexos/680963123563574614c7ae9f/0)
+- [Guía de ayuda al usuario: presentación y gestión de solicitudes](https://cartas.coordinador.cl/download_anexos/689a1386356357392ac8bb46/0)
 
 Normativa y autoridades:
 - [LGSE, art. 72°-17 — Construcción, interconexión, puesta en servicio y operación](https://leyes-cl.com/ley_general_de_servicios_electricos_en_materia_de_energia_electrica/72-17.htm)
@@ -240,8 +314,7 @@ Normativa y autoridades:
 - [SEA — Guías relacionadas al artículo 11 de la Ley N° 19.300](https://www.sea.gob.cl/guias-relacionadas-al-articulo-11-de-la-ley-ndeg19300)
 - [SEA — Preguntas frecuentes SEIA](https://www.sea.gob.cl/soporte/preguntas-frecuentes-seia)
 - [SEA — Principales cambios de la modificación al Reglamento del SEIA](https://www.sea.gob.cl/noticias/conoce-los-principales-cambios-que-considera-la-modificacion-al-reglamento-del-seia)
-- [SEA — Consulta de pertinencia PFV Crucero Este (aumento de 127,87 a 213,12 MW)](https://pertinencia.sea.gob.cl/sea-pertinence-web/services/public/document/801147BB-E736-4C73-B9BB-36657A61FEBE)
-- [MMA — Minuta anteproyecto de reforma al Reglamento del SEIA](https://expedientes.mma.gob.cl/storage/2025/07/29/expedientes/pdf/doc_11_20250729135110.pdf)
+- [SEA — Consulta de pertinencia PFV Crucero Este (de 127,87 a 213,12 MW)](https://pertinencia.sea.gob.cl/sea-pertinence-web/services/public/document/801147BB-E736-4C73-B9BB-36657A61FEBE)
 
 Análisis sobre el DS N° 17/2025:
 - [Carey — Aprueban nueva reforma al Reglamento del SEIA](https://www.carey.cl/aprueban-nueva-reforma-al-reglamento-del-sistema-de-evaluacion-de-impacto)
